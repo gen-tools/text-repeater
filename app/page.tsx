@@ -2,7 +2,7 @@ import { Metadata } from "next"
 import { TextRepeaterTool } from "@/components/tools/text-repeater-tool"
 import { FAQAccordion } from "@/components/faq-accordion"
 import { RelatedTools } from "@/components/related-tools"
-import { Repeat, Zap, Globe, Shield, Sparkles, Clock } from "lucide-react"
+import { Repeat, Zap, Globe, Shield, Sparkles, Clock, Check } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Text Repeater Online - Free Text Multiplication Tool",
@@ -48,33 +48,65 @@ const features = [
   {
     icon: Repeat,
     title: "Multiple Repeat Modes",
-    description: "Repeat entire text, individual words, lines, or paragraphs with precision control.",
+    description: "Most repeaters do one thing: copy your whole text over and over. Ours goes further. Repeat an entire block, word by word, line by line, or paragraph by paragraph — whatever the job actually calls for.",
   },
   {
     icon: Zap,
     title: "Instant Results",
-    description: "See your repeated text in real-time as you type. No waiting, no page reloads.",
+    description: "Your repeated text appears as you type. No Generate button to hunt for, no page refresh, no waiting. Just watch it build in real time.",
   },
   {
     icon: Globe,
     title: "Works Everywhere",
-    description: "Fully responsive design works on desktop, tablet, and mobile devices.",
+    description: "At your desk or on your phone during lunch — the tool fits the screen you're on. Desktop, tablet, mobile: same clean experience, no pinching or zooming required.",
   },
   {
     icon: Shield,
     title: "Privacy First",
-    description: "All processing happens in your browser. Your text never leaves your device.",
+    description: "Everything runs inside your browser. Your text never touches a server, never gets stored on our end, and never goes anywhere you didn't send it yourself.",
   },
   {
     icon: Sparkles,
     title: "Custom Separators",
-    description: "Add any character or text between repetitions for complete formatting control.",
+    description: "A comma between each repeat. A line break. Three dashes. Your own emoji. Whatever you want between repetitions, you can put there — the tool gets out of your way.",
   },
   {
     icon: Clock,
     title: "Copy History",
-    description: "Access your recent copies from local storage for quick reuse.",
+    description: "Changed your mind about what you copied two minutes ago? Your recent outputs are saved locally so you can pull them back without starting over.",
   },
+]
+
+const steps = [
+  {
+    title: "Enter Your Text",
+    description: "Type directly into the input field or paste something you already have. Works with plain text, emojis, symbols, and most languages.",
+  },
+  {
+    title: "Set Your Repeat Count",
+    description: "Pick a number between 1 and 10,000. There's a quick-pick row for common counts if you'd rather not type it out.",
+  },
+  {
+    title: "Choose a Repeat Mode",
+    description: "Decide whether the whole text repeats as one block, each word repeats individually, or each line gets its own treatment. Different jobs need different modes.",
+  },
+  {
+    title: "Add a Separator (Optional)",
+    description: "Leave it blank for back-to-back repetitions, or drop in a comma, a line break, a space, or any character you want to appear between each one.",
+  },
+  {
+    title: "Copy or Download",
+    description: "Hit Copy to send it straight to your clipboard, or grab a .TXT file if you need it saved. Either way, you're done in under a minute.",
+  },
+]
+
+const reasons = [
+  "It's free — not \"free for the first 10 uses\" or \"free with a watermark.\" Actually free.",
+  "No account required. No email address, no password, no confirmation link sitting in your inbox. Open the page and use it.",
+  "Everything happens in your browser, which means your text stays on your device. We never see what you type.",
+  "It works on any device you're already using. Phone, tablet, laptop — no separate app to download.",
+  "It handles whatever you throw at it: English, Arabic, Hindi, Japanese, emojis, punctuation, long paragraphs, single characters. If you can type it, the tool can repeat it.",
+  "And when you're done, you can copy straight to your clipboard or download a clean .TXT file — whichever fits your next step.",
 ]
 
 export default function HomePage() {
@@ -156,21 +188,15 @@ export default function HomePage() {
             How to Use the Text Repeater
           </h2>
           <div className="mx-auto max-w-3xl">
-            <ol className="space-y-6">
-              {[
-                { step: "Enter Your Text", desc: "Type or paste the text you want to repeat into the input field." },
-                { step: "Set Repeat Count", desc: "Choose how many times you want your text duplicated (1-10,000)." },
-                { step: "Choose Repeat Mode", desc: "Select whether to repeat entire text, each word, or each line." },
-                { step: "Add Separator (Optional)", desc: "Specify a custom separator like comma, space, or newline." },
-                { step: "Copy or Download", desc: "Click copy to clipboard or download as a TXT file." },
-              ].map((item, index) => (
+            <ol className="space-y-8">
+              {steps.map((item, index) => (
                 <li key={index} className="flex gap-4">
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary text-lg font-bold text-primary-foreground">
                     {index + 1}
                   </span>
-                  <div>
-                    <h3 className="font-semibold">{item.step}</h3>
-                    <p className="text-muted-foreground">{item.desc}</p>
+                  <div className="pt-1">
+                    <h3 className="mb-1 text-lg font-semibold">Step {index + 1} — {item.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed">{item.description}</p>
                   </div>
                 </li>
               ))}
@@ -179,26 +205,17 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Benefits Section */}
+      {/* Why People Keep Coming Back Section */}
       <section className="border-t border-border bg-muted/30 py-16">
         <div className="container mx-auto px-4">
           <h2 className="mb-12 text-center text-3xl font-bold">
-            Why Choose Our Text Repeater?
+            Why People Keep Coming Back
           </h2>
-          <div className="mx-auto grid max-w-4xl gap-6 sm:grid-cols-2">
-            {[
-              "100% free with no hidden costs",
-              "No registration or sign-up required",
-              "Works instantly in your browser",
-              "Your data stays private and secure",
-              "Mobile-friendly responsive design",
-              "Supports all languages and emojis",
-              "Download results as TXT files",
-              "Keyboard shortcuts for power users",
-            ].map((benefit) => (
-              <div key={benefit} className="flex items-center gap-3">
-                <div className="h-2 w-2 rounded-full bg-primary" />
-                <span>{benefit}</span>
+          <div className="mx-auto max-w-3xl space-y-4">
+            {reasons.map((reason, index) => (
+              <div key={index} className="flex gap-3">
+                <Check className="mt-1 h-5 w-5 shrink-0 text-primary" />
+                <p className="text-foreground leading-relaxed">{reason}</p>
               </div>
             ))}
           </div>
