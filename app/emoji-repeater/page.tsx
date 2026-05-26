@@ -68,7 +68,7 @@ export default function EmojiRepeaterPage() {
           <Breadcrumbs />
           <div className="text-center">
             <h1 className="mb-4 text-4xl font-bold tracking-tight text-balance lg:text-5xl">
-              Emoji Repeater Online — Free, Instant, No App Needed
+              Emoji Repeater Online
             </h1>
             <p className="mx-auto max-w-3xl text-lg text-muted-foreground text-pretty">
               {"There's a specific kind of satisfaction in sending someone a message that's just 200 heart emojis. No words. No explanation. Just stretching down their screen until they have to scroll. That's what this tool is for."}
