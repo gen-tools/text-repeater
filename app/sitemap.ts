@@ -6,7 +6,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
     '',
     '/emoji-repeater',
-    '/line-repeater',
     '/word-repeater',
     '/blank-text',
     '/zalgo-text',

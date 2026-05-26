@@ -11,7 +11,6 @@ import { cn } from "@/lib/utils"
 const tools = [
   { name: "Text Repeater", href: "/" },
   { name: "Emoji Repeater", href: "/emoji-repeater" },
-  { name: "Line Repeater", href: "/line-repeater" },
   { name: "Word Repeater", href: "/word-repeater" },
   { name: "Blank Text", href: "/blank-text" },
   { name: "Zalgo Text", href: "/zalgo-text" },

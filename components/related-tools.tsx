@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { ArrowRight, Type, Smile, AlignLeft, FileText, Sparkles, Hash, CaseSensitive } from "lucide-react"
+import { ArrowRight, Type, Smile, FileText, Sparkles, Hash, CaseSensitive } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const allTools = [
@@ -15,12 +15,7 @@ const allTools = [
     description: "Multiply emojis for social media and messaging",
     icon: Smile,
   },
-  {
-    name: "Line Repeater",
-    href: "/line-repeater",
-    description: "Duplicate lines of text with ease",
-    icon: AlignLeft,
-  },
+
   {
     name: "Word Repeater",
     href: "/word-repeater",
