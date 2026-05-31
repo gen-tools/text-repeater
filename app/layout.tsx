@@ -74,6 +74,9 @@ export const metadata: Metadata = {
     apple: '/apple-icon.png',
   },
   manifest: '/manifest.json',
+  verification: {
+    google: 'iYhD3GQqnatWWaAejnJSUeiLbpnq0YaYmKEM0v3DbxI',
+  },
 }
 
 export const viewport: Viewport = {
