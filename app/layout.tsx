@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://textrepeater.com'),
+  metadataBase: new URL('https://text-repeater0.vercel.app'),
   title: {
     default: 'Text Repeater Online - Free Text Multiplication Tool',
     template: '%s | TextRepeater',
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://textrepeater.com',
+    url: 'https://text-repeater0.vercel.app',
     siteName: 'TextRepeater',
     title: 'Text Repeater Online - Free Text Multiplication Tool',
     description: 'Free online text repeater tool. Repeat text, words, lines, emojis instantly. Generate zalgo text, fancy fonts, and convert text cases.',
@@ -97,7 +97,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="bg-background">
       <head>
-        <link rel="canonical" href="https://textrepeater.com" />
+        <link rel="canonical" href="https://text-repeater0.vercel.app" />
       </head>
       <body className={`${geist.variable} ${geistMono.variable} font-sans antialiased`}>
         <ThemeProvider
