@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://textrepeater.com'
+  const baseUrl = 'https://text-repeater0.vercel.app/'
   
   const routes = [
     '',
