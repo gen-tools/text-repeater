@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/api/', '/_next/'],
       },
     ],
-    sitemap: 'https://textrepeater.com/sitemap.xml',
+    sitemap: 'https://text-repeater0.vercel.app/sitemap.xml',
   }
 }
