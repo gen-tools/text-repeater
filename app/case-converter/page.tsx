@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   title: "Case Converter - Convert Text Between Cases",
   description: "Free text case converter. Transform text to uppercase, lowercase, title case, sentence case, camelCase, snake_case, and more. Perfect for developers and writers.",
   alternates: {
-    canonical: "https://textrepeater.com/case-converter",
+    canonical: "https://text-repeater0.vercel.app/case-converter",
   },
   openGraph: {
     title: "Case Converter - Convert Text Between Cases",
     description: "Transform text to uppercase, lowercase, title case, and programming cases.",
-    url: "https://textrepeater.com/case-converter",
+    url: "https://text-repeater0.vercel.app/case-converter",
   },
 }
 
