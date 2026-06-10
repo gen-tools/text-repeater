@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   title: "Fancy Text Generator - Stylish Fonts & Unicode Text",
   description: "Free fancy text generator. Transform plain text into stylish fonts like bold, italic, script, and more. Perfect for social media bios, usernames, and posts.",
   alternates: {
-    canonical: "https://textrepeater.com/fancy-text-generator",
+    canonical: "https://text-repeater0.vercel.app/fancy-text-generator",
   },
   openGraph: {
     title: "Fancy Text Generator - Stylish Fonts & Unicode Text",
     description: "Transform plain text into stylish fonts with our free fancy text generator.",
-    url: "https://textrepeater.com/fancy-text-generator",
+    url: "https://text-repeater0.vercel.app/fancy-text-generator",
   },
 }
 
