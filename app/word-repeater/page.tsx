@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   title: "Word Repeater - Repeat Individual Words",
   description: "Free word repeater tool. Repeat each word in your text multiple times. Create unique text effects and patterns with repeated words.",
   alternates: {
-    canonical: "https://textrepeater.com/word-repeater",
+    canonical: "https://text-repeater0.vercel.app/word-repeater",
   },
   openGraph: {
     title: "Word Repeater - Repeat Individual Words",
     description: "Free word repeater tool. Repeat each word in your text multiple times.",
-    url: "https://textrepeater.com/word-repeater",
+    url: "https://text-repeater0.vercel.app/word-repeater",
   },
 }
 
