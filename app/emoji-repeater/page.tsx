@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   title: "Emoji Repeater Online - Free, Instant, No App Needed",
   description: "Free emoji repeater tool. Repeat any emoji as many times as you want. Pick the count, separator, and copy to clipboard instantly. No signup required.",
   alternates: {
-    canonical: "https://textrepeater.com/emoji-repeater",
+    canonical: "https://text-repeater0.vercel.app/emoji-repeater",
   },
   openGraph: {
     title: "Emoji Repeater Online - Free, Instant, No App Needed",
     description: "Repeat any emoji as many times as you want. Pick the count, separator, and copy to clipboard instantly.",
-    url: "https://textrepeater.com/emoji-repeater",
+    url: "https://text-repeater0.vercel.app/emoji-repeater",
   },
 }
 
