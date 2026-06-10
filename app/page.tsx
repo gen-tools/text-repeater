@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   title: "Text Repeater Online - Free Text Multiplication Tool",
   description: "Free online text repeater tool. Repeat any text, words, lines, or paragraphs multiple times instantly. Copy and paste with one click. No sign-up required.",
   alternates: {
-    canonical: "https://textrepeater.com",
+    canonical: "https://text-repeater0.vercel.app/",
   },
   openGraph: {
     title: "Text Repeater Online - Free Text Multiplication Tool",
     description: "Free online text repeater tool. Repeat any text, words, lines, or paragraphs multiple times instantly.",
-    url: "https://textrepeater.com",
+    url: "https://text-repeater0.vercel.app/",
   },
 }
 
