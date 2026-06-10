@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   title: "Blank Text Generator - Invisible Characters & Empty Text",
   description: "Generate invisible characters and blank text. Create zero-width spaces, braille blanks, and other invisible Unicode characters for social media and messaging.",
   alternates: {
-    canonical: "https://textrepeater.com/blank-text",
+    canonical: "https://text-repeater0.vercel.app/blank-text",
   },
   openGraph: {
     title: "Blank Text Generator - Invisible Characters & Empty Text",
     description: "Generate invisible characters and blank text for social media and messaging.",
-    url: "https://textrepeater.com/blank-text",
+    url: "https://text-repeater0.vercel.app/blank-text",
   },
 }
 
