@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   title: "Zalgo Text Generator - Create Glitchy Cursed Text",
   description: "Free zalgo text generator. Create creepy, glitchy, cursed text effects with combining Unicode characters. Perfect for Halloween, horror themes, and memes.",
   alternates: {
-    canonical: "https://textrepeater.com/zalgo-text",
+    canonical: "https://text-repeater0.vercel.app/zalgo-text",
   },
   openGraph: {
     title: "Zalgo Text Generator - Create Glitchy Cursed Text",
     description: "Create creepy, glitchy zalgo text effects with our free generator.",
-    url: "https://textrepeater.com/zalgo-text",
+    url: "https://text-repeater0.vercel.app/zalgo-text",
   },
 }
 
