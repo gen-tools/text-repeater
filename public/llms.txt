@@ -1,0 +1,22 @@
+Text Repeater
+Website:
+https://text-repeater0.vercel.app
+
+Description:
+Free online text tools including text repeater, fancy text generator, emoji repeater, blank text generator, case converter, word repeater, zalgo text, and more.
+
+Important Pages:
+https://text-repeater0.vercel.app/
+https://text-repeater0.vercel.app/emoji-repeater
+https://text-repeater0.vercel.app/word-repeater
+https://text-repeater0.vercel.app/blank-text
+https://text-repeater0.vercel.app/zalgo-text
+https://text-repeater0.vercel.app/fancy-text-generator
+https://text-repeater0.vercel.app/case-converter
+https://text-repeater0.vercel.app/about
+https://text-repeater0.vercel.app/contact
+https://text-repeater0.vercel.app/privacy
+https://text-repeater0.vercel.app/terms
+
+Contact:
+contact@textrepeater.com
