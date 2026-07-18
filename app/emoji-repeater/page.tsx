@@ -92,7 +92,7 @@ export default function EmojiRepeaterPage() {
           <div className="relative mx-auto w-full max-w-2xl aspect-[1376/768] overflow-hidden rounded-2xl border border-border bg-card shadow-lg transition-all duration-300 hover:shadow-xl">
             <Image
               src={heroImage}
-              alt="Emoji Repeater Online - Glossy colorful 3D smiley emojis and repeating icons in perspective grid layout"
+              alt="Emoji Repeater Online"
               fill
               sizes="(max-w-768px) 100vw, 672px"
               className="object-contain rounded-2xl"
