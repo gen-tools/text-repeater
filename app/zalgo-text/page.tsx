@@ -93,7 +93,7 @@ export default function ZalgoTextPage() {
           <div className="relative mx-auto w-full max-w-2xl aspect-[1376/768] overflow-hidden rounded-2xl border border-border bg-card shadow-lg transition-all duration-300 hover:shadow-xl">
             <Image
               src={heroImage}
-              alt="Zalgo Text Generator - Cyber-glitch digital art piece with cryptic distorted neon text over futuristic matrix background"
+              alt="Zalgo Text Generator"
               fill
               sizes="(max-w-768px) 100vw, 672px"
               className="object-contain rounded-2xl"
