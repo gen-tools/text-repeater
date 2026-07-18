@@ -76,7 +76,7 @@ export default function HomePage() {
           <div className="relative mx-auto w-full max-w-2xl aspect-[1376/768] overflow-hidden rounded-2xl border border-border bg-card shadow-lg transition-all duration-300 hover:shadow-xl">
             <Image
               src={heroImage}
-              alt="Text Repeater Online - Futuristic holographic neon-blue typography repeating text lines fading into a cosmic dark background"
+              alt="Text Repeater Online"
               fill
               sizes="(max-w-768px) 100vw, 672px"
               className="object-contain rounded-2xl"
