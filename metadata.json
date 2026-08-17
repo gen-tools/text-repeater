@@ -1,0 +1,5 @@
+{
+  "name": "My Text Repeater",
+  "description": "Free online text repeater tool. Repeat text, words, lines, and emojis instantly. Generate zalgo text, fancy fonts, and convert text cases.",
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
