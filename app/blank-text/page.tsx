@@ -9,23 +9,27 @@ import { Check, HelpCircle } from "lucide-react"
 const FAQAccordion = dynamic(() => import("@/components/faq-accordion").then(mod => mod.FAQAccordion), { ssr: true })
 const RelatedTools = dynamic(() => import("@/components/related-tools").then(mod => mod.RelatedTools), { ssr: true })
 
+const PAGE_TITLE = "Blank Text Generator — Copy and Paste Invisible Text"
+const PAGE_DESCRIPTION = "Generate blank text with our blank text generator. Copy and paste invisible Unicode characters for empty messages, blank usernames, bios, and more."
+const PAGE_URL = "https://mytextrepeater.com/blank-text"
+
 export const metadata: Metadata = {
-  title: "Blank Text Generator — Copy and Paste Invisible Text",
-  description: "Generate blank text with our blank text generator. Copy and paste invisible Unicode characters for empty messages, blank usernames, bios, and more.",
+  title: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
   alternates: {
-    canonical: "https://mytextrepeater.com/blank-text",
+    canonical: PAGE_URL,
   },
   openGraph: {
-    title: "Blank Text Generator — Copy and Paste Invisible Text",
-    description: "Generate blank text with our blank text generator. Copy and paste invisible Unicode characters for empty messages, blank usernames, bios, and more.",
-    url: "https://mytextrepeater.com/blank-text",
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+    url: PAGE_URL,
     type: "website",
     siteName: "My Text Repeater",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Blank Text Generator — Copy and Paste Invisible Text",
-    description: "Generate blank text with our blank text generator. Copy and paste invisible Unicode characters for empty messages, blank usernames, bios, and more.",
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
   },
 }
 
@@ -57,26 +61,52 @@ const faqs = [
 ]
 
 export default function BlankTextPage() {
-  const jsonLd = {
+  const softwareAppJsonLd = {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
+    "@type": "SoftwareApplication",
     name: "Blank Text Generator",
-    description: "A blank text generator produces invisible Unicode characters — such as a zero-width space, invisible symbol, or Hangul filler character — that you can copy and paste into apps like WhatsApp, Instagram, Discord, and TikTok to create an empty message, blank username, or invisible bio.",
-    url: "https://mytextrepeater.com/blank-text",
-    applicationCategory: "UtilityApplication",
-    operatingSystem: "Any",
+    description: "Free online blank text and invisible character generator. Copy and paste invisible Unicode spaces for WhatsApp, Instagram bios, Discord, and gaming usernames.",
+    url: PAGE_URL,
+    applicationCategory: "UtilitiesApplication",
+    operatingSystem: "All",
+    browserRequirements: "Requires JavaScript. Requires HTML5.",
+    softwareVersion: "1.0",
     offers: {
       "@type": "Offer",
       price: "0",
       priceCurrency: "USD",
     },
+    featureList: [
+      "Copy multiple invisible Unicode characters (Zero-Width Space, Hangul Filler, Braille Blank)",
+      "Custom repetition of blank spaces up to 10,000 times",
+      "One-click copy to clipboard",
+      "Test invisible characters in browser",
+      "Compatible with WhatsApp, Discord, Instagram, and games",
+    ],
+  }
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
   }
 
   return (
     <article className="w-full" id="blank-text-page">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
       {/* Hero Header Section */}

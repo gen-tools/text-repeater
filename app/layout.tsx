@@ -11,18 +11,19 @@ const geist = Geist({
   subsets: ["latin"],
   variable: "--font-geist-sans",
   display: "swap",
+  adjustFontFallback: false,
 })
 const geistMono = Geist_Mono({ 
   subsets: ["latin"],
   variable: "--font-geist-mono",
   display: "swap",
+  adjustFontFallback: false,
 })
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://mytextrepeater.com'),
   title: 'My Text Repeater - Free Online Text Manipulation Tools',
   description: 'Free online text repeater and manipulation tools. Repeat text, words, emojis, convert cases, count words, and generate fancy fonts instantly.',
-  keywords: ['my text repeater', 'text repeater', 'repeat text', 'text multiplier', 'copy paste text', 'emoji repeater', 'zalgo text', 'fancy text generator', 'case converter', 'word counter', 'blank text'],
   authors: [{ name: 'My Text Repeater' }],
   creator: 'My Text Repeater',
   publisher: 'My Text Repeater',

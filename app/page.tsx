@@ -9,23 +9,27 @@ import { Check, Shield, Laptop, HelpCircle } from "lucide-react"
 const FAQAccordion = dynamic(() => import("@/components/faq-accordion").then(mod => mod.FAQAccordion), { ssr: true })
 const RelatedTools = dynamic(() => import("@/components/related-tools").then(mod => mod.RelatedTools), { ssr: true })
 
+const PAGE_TITLE = "Text Repeater - Repeat Text Online Up to 10,000 Times"
+const PAGE_DESCRIPTION = "Free Text Repeater to repeat text 100 times or up to 10,000. Repeat words, sentences, emojis, and messages with custom separators. Copy or download."
+const PAGE_URL = "https://mytextrepeater.com/"
+
 export const metadata: Metadata = {
-  title: "Text Repeater - Repeat Text Online Up to 10,000 Times",
-  description: "Free Text Repeater to repeat text 100 times or up to 10,000. Repeat words, sentences, emojis, and messages with custom separators. Copy or download.",
+  title: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
   alternates: {
-    canonical: "https://mytextrepeater.com/",
+    canonical: PAGE_URL,
   },
   openGraph: {
-    title: "Text Repeater - Repeat Text Online Up to 10,000 Times",
-    description: "Free Text Repeater to repeat text 100 times or up to 10,000. Repeat words, sentences, emojis, and messages with custom separators. Copy or download.",
-    url: "https://mytextrepeater.com/",
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+    url: PAGE_URL,
     type: "website",
     siteName: "My Text Repeater",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Text Repeater - Repeat Text Online Up to 10,000 Times",
-    description: "Free Text Repeater to repeat text 100 times or up to 10,000. Repeat words, sentences, emojis, and messages with custom separators. Copy or download.",
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
   },
 }
 
@@ -55,7 +59,7 @@ const faqs = [
     answer: "Yes, presets like 100, 500, and 1,000 are there for common repeat counts, though you can always type a custom number instead.",
   },
   {
-      question: "Can I repeat emojis?",
+    question: "Can I repeat emojis?",
     answer: (
       <>
         Yes, you can{" "}
@@ -63,6 +67,7 @@ const faqs = [
         cleanly like any other text.
       </>
     ),
+    plainAnswer: "Yes, you can repeat emojis cleanly like any other text.",
   },
   {
     question: "Can I use this as a WhatsApp text repeater?",
@@ -95,35 +100,54 @@ const faqs = [
 ]
 
 export default function HomePage() {
-  const jsonLd = {
+  const softwareAppJsonLd = {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
-    name: "Text Repeater Online",
-    description: "Free online text repeater tool to multiply text, words, lines instantly.",
+    "@type": "SoftwareApplication",
+    name: "Text Repeater",
+    description: "Free online text repeater tool to duplicate words, sentences, lines, and emojis up to 10,000 times with custom separators.",
     url: "https://mytextrepeater.com/",
-    applicationCategory: "UtilityApplication",
-    operatingSystem: "Any",
+    applicationCategory: "UtilitiesApplication",
+    operatingSystem: "All",
+    browserRequirements: "Requires JavaScript. Requires HTML5.",
+    softwareVersion: "1.0",
     offers: {
       "@type": "Offer",
       price: "0",
       priceCurrency: "USD",
     },
     featureList: [
-      "Repeat text multiple times",
-      "Four repeat modes",
-      "Custom separators",
-      "Live character and word counter",
-      "One-click copy",
-      "Download as TXT",
-      "Mobile friendly",
+      "Repeat text multiple times up to 10,000x",
+      "Four repeat modes (Single Block, Each Line, Word by Word, Paragraphs)",
+      "Custom separators (space, newline, comma, period, custom)",
+      "Live character, word, and line counter",
+      "One-click copy to clipboard",
+      "Download output as TXT file",
+      "100% client-side privacy",
     ],
+  }
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: typeof faq.answer === "string" ? faq.answer : (faq.plainAnswer || "Yes, you can repeat emojis cleanly like any other text."),
+      },
+    })),
   }
 
   return (
     <article className="w-full">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
       {/* Hero Section */}

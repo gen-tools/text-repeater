@@ -121,30 +121,70 @@ export default async function BlogPostPage({ params }: Props) {
 
   const relatedBlogPosts = getRelatedPosts(post.slug)
 
-  const jsonLd = {
+  const articleJsonLd = {
     "@context": "https://schema.org",
-    "@type": "BlogPosting",
+    "@type": "Article",
     headline: post.title,
     description: post.description,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://mytextrepeater.com/blog/${post.slug}`,
+    },
     url: `https://mytextrepeater.com/blog/${post.slug}`,
     datePublished: post.date,
+    dateModified: post.date,
     author: {
       "@type": "Organization",
-      name: post.author,
+      name: post.author || "My Text Repeater",
+      url: "https://mytextrepeater.com",
     },
     publisher: {
       "@type": "Organization",
       name: "My Text Repeater",
       url: "https://mytextrepeater.com",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://mytextrepeater.com/icon.png",
+      },
     },
     keywords: post.tags.join(", "),
+    articleSection: post.category,
+  }
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://mytextrepeater.com",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Blog",
+        item: "https://mytextrepeater.com/blog",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: post.title,
+        item: `https://mytextrepeater.com/blog/${post.slug}`,
+      },
+    ],
   }
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
 
       {/* Header Banner */}

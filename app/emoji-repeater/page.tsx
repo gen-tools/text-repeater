@@ -8,23 +8,27 @@ const FAQAccordion = dynamic(() => import("@/components/faq-accordion").then(mod
 const RelatedTools = dynamic(() => import("@/components/related-tools").then(mod => mod.RelatedTools), { ssr: true })
 import { Breadcrumbs } from "@/components/breadcrumbs"
 
+const PAGE_TITLE = "Emoji Repeater Online | Repeat Emojis Up to 10,000 Times"
+const PAGE_DESCRIPTION = "Repeat any emojis up to 10,000 times with our emoji repeater online. Choose custom separators, copy, download, or share your repeated emojis instantly."
+const PAGE_URL = "https://mytextrepeater.com/emoji-repeater"
+
 export const metadata: Metadata = {
-  title: "Emoji Repeater Online | Repeat Emojis Up to 10,000 Times",
-  description: "Repeat any emojis up to 10,000 times with our emoji repeater online. Choose custom separators, copy, download, or share your repeated emojis instantly.",
+  title: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
   alternates: {
-    canonical: "https://mytextrepeater.com/emoji-repeater",
+    canonical: PAGE_URL,
   },
   openGraph: {
-    title: "Emoji Repeater Online | Repeat Emojis Up to 10,000 Times",
-    description: "Repeat any emojis up to 10,000 times with our emoji repeater online. Choose custom separators, copy, download, or share your repeated emojis instantly.",
-    url: "https://mytextrepeater.com/emoji-repeater",
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+    url: PAGE_URL,
     type: "website",
     siteName: "My Text Repeater",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Emoji Repeater Online | Repeat Emojis Up to 10,000 Times",
-    description: "Repeat any emojis up to 10,000 times with our emoji repeater online. Choose custom separators, copy, download, or share your repeated emojis instantly.",
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
   },
 }
 
@@ -64,26 +68,53 @@ const faqs = [
 ]
 
 export default function EmojiRepeaterPage() {
-  const jsonLd = {
+  const softwareAppJsonLd = {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
-    name: "Emoji Repeater tool interface",
-    description: "Free online emoji repeater tool to multiply emojis instantly.",
-    url: "https://mytextrepeater.com/emoji-repeater",
-    applicationCategory: "UtilityApplication",
-    operatingSystem: "Any",
+    "@type": "SoftwareApplication",
+    name: "Emoji Repeater Online",
+    description: "Free online emoji repeater tool to repeat emojis up to 10,000 times with custom separators, one-click copy, and download options.",
+    url: PAGE_URL,
+    applicationCategory: "UtilitiesApplication",
+    operatingSystem: "All",
+    browserRequirements: "Requires JavaScript. Requires HTML5.",
+    softwareVersion: "1.0",
     offers: {
       "@type": "Offer",
       price: "0",
       priceCurrency: "USD",
     },
+    featureList: [
+      "Repeat single or combined emojis up to 10,000 times",
+      "Full support for complex Unicode emojis, skin tones, and flag sequences",
+      "Custom separators including space, line break, and custom symbols",
+      "One-click copy to clipboard",
+      "Download output as TXT file",
+      "100% private in-browser generation",
+    ],
+  }
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
   }
 
   return (
     <article className="w-full">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
       <section className="border-b border-border bg-gradient-to-b from-muted/50 to-background py-12 lg:py-20">

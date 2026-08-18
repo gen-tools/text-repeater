@@ -9,23 +9,27 @@ import { Check, Shield, Laptop, HelpCircle } from "lucide-react"
 const FAQAccordion = dynamic(() => import("@/components/faq-accordion").then(mod => mod.FAQAccordion), { ssr: true })
 const RelatedTools = dynamic(() => import("@/components/related-tools").then(mod => mod.RelatedTools), { ssr: true })
 
+const PAGE_TITLE = "Word Repeater — Repeat Each Word in Text Instantly"
+const PAGE_DESCRIPTION = "Repeat each word in your text on its own up to 10,000 times with custom separators, live word count, and instant copy or download."
+const PAGE_URL = "https://mytextrepeater.com/word-repeater"
+
 export const metadata: Metadata = {
-  title: "Word Repeater — Repeat Each Word in Text Instantly",
-  description: "Repeat each word in your text on its own up to 10,000 times with custom separators, live word count, and instant copy or download.",
+  title: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
   alternates: {
-    canonical: "https://mytextrepeater.com/word-repeater",
+    canonical: PAGE_URL,
   },
   openGraph: {
-    title: "Word Repeater — Repeat Each Word in Text Instantly",
-    description: "Repeat each word in your text on its own up to 10,000 times with custom separators, live word count, and instant copy or download.",
-    url: "https://mytextrepeater.com/word-repeater",
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+    url: PAGE_URL,
     type: "website",
     siteName: "My Text Repeater",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Word Repeater — Repeat Each Word in Text Instantly",
-    description: "Repeat each word in your text on its own up to 10,000 times with custom separators, live word count, and instant copy or download.",
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
   },
 }
 
@@ -85,26 +89,52 @@ const faqs = [
 ]
 
 export default function WordRepeaterPage() {
-  const jsonLd = {
+  const softwareAppJsonLd = {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
+    "@type": "SoftwareApplication",
     name: "Word Repeater",
-    description: "Free online word repeater tool to repeat individual words in your text.",
-    url: "https://mytextrepeater.com/word-repeater",
-    applicationCategory: "UtilityApplication",
-    operatingSystem: "Any",
+    description: "Free online word repeater tool to repeat individual words in your text with custom delimiters up to 10,000 times.",
+    url: PAGE_URL,
+    applicationCategory: "UtilitiesApplication",
+    operatingSystem: "All",
+    browserRequirements: "Requires JavaScript. Requires HTML5.",
+    softwareVersion: "1.0",
     offers: {
       "@type": "Offer",
       price: "0",
       priceCurrency: "USD",
     },
+    featureList: [
+      "Repeat each word individually up to 10,000 times",
+      "Custom word separators (space, comma, dash, newline, custom)",
+      "Live word and character statistics",
+      "Instant copy and download as text file",
+      "Completely free with zero server storage",
+    ],
+  }
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
   }
 
   return (
     <article className="w-full" id="word-repeater-page">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
       {/* Hero Header Section */}

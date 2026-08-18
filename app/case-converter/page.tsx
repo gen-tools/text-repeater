@@ -9,23 +9,27 @@ import { Check, HelpCircle } from "lucide-react"
 const FAQAccordion = dynamic(() => import("@/components/faq-accordion").then(mod => mod.FAQAccordion), { ssr: true })
 const RelatedTools = dynamic(() => import("@/components/related-tools").then(mod => mod.RelatedTools), { ssr: true })
 
+const PAGE_TITLE = "Case Converter | Small to Capital & Lowercase Tool"
+const PAGE_DESCRIPTION = "Convert small to capital letters, uppercase to lowercase, Title Case, Sentence Case, and more with our free online case converter. Copy instantly."
+const PAGE_URL = "https://mytextrepeater.com/case-converter"
+
 export const metadata: Metadata = {
-  title: "Case Converter | Small to Capital & Lowercase Tool",
-  description: "Convert small to capital letters, uppercase to lowercase, Title Case, Sentence Case, and more with our free online case converter. Copy instantly.",
+  title: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
   alternates: {
-    canonical: "https://mytextrepeater.com/case-converter",
+    canonical: PAGE_URL,
   },
   openGraph: {
-    title: "Case Converter | Small to Capital & Lowercase Tool",
-    description: "Convert small to capital letters, uppercase to lowercase, Title Case, Sentence Case, and more with our free online case converter. Copy instantly.",
-    url: "https://mytextrepeater.com/case-converter",
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+    url: PAGE_URL,
     type: "website",
     siteName: "My Text Repeater",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Case Converter | Small to Capital & Lowercase Tool",
-    description: "Convert small to capital letters, uppercase to lowercase, Title Case, Sentence Case, and more with our free online case converter. Copy instantly.",
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
   },
 }
 
@@ -93,26 +97,52 @@ const faqs = [
 ]
 
 export default function CaseConverterPage() {
-  const jsonLd = {
+  const softwareAppJsonLd = {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
+    "@type": "SoftwareApplication",
     name: "Case Converter",
-    description: "Paste your text, pick a case, and get the converted result instantly. Letter casing changes — upper, lower, title, sentence, or toggled — without touching spelling, spacing, or word order.",
-    url: "https://mytextrepeater.com/case-converter",
-    applicationCategory: "UtilityApplication",
-    operatingSystem: "Any",
+    description: "Free online text case converter to switch between UPPERCASE, lowercase, Title Case, Sentence case, PascalCase, camelCase, snake_case, and kebab-case.",
+    url: PAGE_URL,
+    applicationCategory: "UtilitiesApplication",
+    operatingSystem: "All",
+    browserRequirements: "Requires JavaScript. Requires HTML5.",
+    softwareVersion: "1.0",
     offers: {
       "@type": "Offer",
       price: "0",
       priceCurrency: "USD",
     },
+    featureList: [
+      "Convert text between UPPERCASE, lowercase, Title Case, and Sentence Case",
+      "Developer code casing: camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE",
+      "Alternating and SpongeBob mock case",
+      "Instant copy and download as text file",
+      "100% private in-browser execution",
+    ],
+  }
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
   }
 
   return (
     <article className="w-full" id="case-converter-page">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
       {/* Hero Header Section */}

@@ -7,23 +7,27 @@ const FAQAccordion = dynamic(() => import("@/components/faq-accordion").then(mod
 const RelatedTools = dynamic(() => import("@/components/related-tools").then(mod => mod.RelatedTools), { ssr: true })
 import { Breadcrumbs } from "@/components/breadcrumbs"
 
+const PAGE_TITLE = "Zalgo Text Generator - Create Glitchy Cursed Text"
+const PAGE_DESCRIPTION = "Free zalgo text generator. Create creepy, glitchy, cursed text effects with combining Unicode characters. Perfect for Halloween, horror themes, and memes."
+const PAGE_URL = "https://mytextrepeater.com/zalgo-text"
+
 export const metadata: Metadata = {
-  title: "Zalgo Text Generator - Create Glitchy Cursed Text",
-  description: "Free zalgo text generator. Create creepy, glitchy, cursed text effects with combining Unicode characters. Perfect for Halloween, horror themes, and memes.",
+  title: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
   alternates: {
-    canonical: "https://mytextrepeater.com/zalgo-text",
+    canonical: PAGE_URL,
   },
   openGraph: {
-    title: "Zalgo Text Generator - Create Glitchy Cursed Text",
-    description: "Free zalgo text generator. Create creepy, glitchy, cursed text effects with combining Unicode characters. Perfect for Halloween, horror themes, and memes.",
-    url: "https://mytextrepeater.com/zalgo-text",
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+    url: PAGE_URL,
     type: "website",
     siteName: "My Text Repeater",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Zalgo Text Generator - Create Glitchy Cursed Text",
-    description: "Free zalgo text generator. Create creepy, glitchy, cursed text effects with combining Unicode characters. Perfect for Halloween, horror themes, and memes.",
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
   },
 }
 
@@ -51,26 +55,52 @@ const faqs = [
 ]
 
 export default function ZalgoTextPage() {
-  const jsonLd = {
+  const softwareAppJsonLd = {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
+    "@type": "SoftwareApplication",
     name: "Zalgo Text Generator",
-    description: "Free online zalgo text generator to create glitchy cursed text.",
-    url: "https://mytextrepeater.com/zalgo-text",
-    applicationCategory: "UtilityApplication",
-    operatingSystem: "Any",
+    description: "Free online zalgo text generator to create glitchy, creepy, corrupted, and cursed Unicode text effects instantly.",
+    url: PAGE_URL,
+    applicationCategory: "UtilitiesApplication",
+    operatingSystem: "All",
+    browserRequirements: "Requires JavaScript. Requires HTML5.",
+    softwareVersion: "1.0",
     offers: {
       "@type": "Offer",
       price: "0",
       priceCurrency: "USD",
     },
+    featureList: [
+      "Customizable glitch intensity (Mini, Normal, Crazy)",
+      "Directional distortion controls (Up, Middle, Down)",
+      "Instant real-time conversion preview",
+      "One-click copy to clipboard",
+      "Compatible with Discord, Twitter, Reddit, and social media",
+    ],
+  }
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
   }
 
   return (
     <article className="w-full">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
       <section className="border-b border-border bg-gradient-to-b from-muted/50 to-background py-12 lg:py-20">

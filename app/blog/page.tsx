@@ -5,33 +5,37 @@ import { RelatedTools } from "@/components/related-tools"
 import { BLOG_POSTS } from "@/lib/blog-data"
 import { Calendar, Clock, ArrowRight, Tag, BookOpen, User } from "lucide-react"
 
+const PAGE_TITLE = "Blog & Guides — Text Repeater, Formatting & Unicode Tips"
+const PAGE_DESCRIPTION = "Read the latest guides, tutorials, and tips on text repeating, invisible characters, Zalgo text, case conversion, and word counting tools."
+const PAGE_URL = "https://mytextrepeater.com/blog"
+
 export const metadata: Metadata = {
-  title: "Blog & Guides — Text Repeater, Formatting & Unicode Tips",
-  description: "Read the latest guides, tutorials, and tips on text repeating, invisible characters, Zalgo text, case conversion, and word counting tools.",
+  title: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
   alternates: {
-    canonical: "https://mytextrepeater.com/blog",
+    canonical: PAGE_URL,
   },
   openGraph: {
-    title: "Blog & Guides — Text Repeater, Formatting & Unicode Tips",
-    description: "Read the latest guides, tutorials, and tips on text repeating, invisible characters, Zalgo text, case conversion, and word counting tools.",
-    url: "https://mytextrepeater.com/blog",
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+    url: PAGE_URL,
     type: "website",
     siteName: "My Text Repeater",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Blog & Guides — Text Repeater, Formatting & Unicode Tips",
-    description: "Read the latest guides, tutorials, and tips on text repeating, invisible characters, Zalgo text, case conversion, and word counting tools.",
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
   },
 }
 
 export default function BlogIndexPage() {
-  const jsonLd = {
+  const blogJsonLd = {
     "@context": "https://schema.org",
     "@type": "Blog",
     name: "My Text Repeater Blog",
     description: "Articles, guides, and tutorials about text repeating tools, Unicode fonts, and formatting tips.",
-    url: "https://mytextrepeater.com/blog",
+    url: PAGE_URL,
     publisher: {
       "@type": "Organization",
       name: "My Text Repeater",
@@ -50,6 +54,25 @@ export default function BlogIndexPage() {
     })),
   }
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://mytextrepeater.com",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Blog",
+        item: PAGE_URL,
+      },
+    ],
+  }
+
   const featuredPost = BLOG_POSTS.find((p) => p.featured) || BLOG_POSTS[0]
   const regularPosts = BLOG_POSTS.filter((p) => p.slug !== featuredPost.slug)
 
@@ -57,7 +80,11 @@ export default function BlogIndexPage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
 
       {/* Hero Section */}

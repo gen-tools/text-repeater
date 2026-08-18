@@ -9,23 +9,27 @@ import heroImage from "@/src/assets/images/word_counter_hero_1785799741311.jpg"
 const FAQAccordion = dynamic(() => import("@/components/faq-accordion").then(mod => mod.FAQAccordion), { ssr: true })
 const RelatedTools = dynamic(() => import("@/components/related-tools").then(mod => mod.RelatedTools), { ssr: true })
 
+const PAGE_TITLE = "Word Counter & Text Analyzer | Count Words & Characters"
+const PAGE_DESCRIPTION = "Free online word counter and text analyzer to count words, characters, sentences, paragraphs, readability, reading time, and keyword density instantly."
+const PAGE_URL = "https://mytextrepeater.com/word-counter"
+
 export const metadata: Metadata = {
-  title: "Word Counter & Text Analyzer | Count Words & Characters",
-  description: "Free online word counter and text analyzer to count words, characters, sentences, paragraphs, readability, reading time, and keyword density instantly.",
+  title: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
   alternates: {
-    canonical: "https://mytextrepeater.com/word-counter",
+    canonical: PAGE_URL,
   },
   openGraph: {
-    title: "Word Counter & Text Analyzer | Count Words & Characters",
-    description: "Free online word counter and text analyzer to count words, characters, sentences, paragraphs, readability, reading time, and keyword density instantly.",
-    url: "https://mytextrepeater.com/word-counter",
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+    url: PAGE_URL,
     type: "website",
     siteName: "My Text Repeater",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Word Counter & Text Analyzer | Count Words & Characters",
-    description: "Free online word counter and text analyzer to count words, characters, sentences, paragraphs, readability, reading time, and keyword density instantly.",
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
   },
 }
 
@@ -73,14 +77,16 @@ const faqs = [
 ]
 
 export default function WordCounterPage() {
-  const jsonLd = {
+  const softwareAppJsonLd = {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
+    "@type": "SoftwareApplication",
     name: "Word Counter & Text Analyzer",
-    description: "Free online word counter tool to measure words, characters, sentences, paragraphs, reading time, keyword density, and readability.",
-    url: "https://mytextrepeater.com/word-counter",
-    applicationCategory: "UtilityApplication",
-    operatingSystem: "Any",
+    description: "Free online word counter and text analyzer to measure words, characters, sentences, paragraphs, reading time, keyword density, and Flesch readability scores.",
+    url: PAGE_URL,
+    applicationCategory: "UtilitiesApplication",
+    operatingSystem: "All",
+    browserRequirements: "Requires JavaScript. Requires HTML5.",
+    softwareVersion: "1.0",
     offers: {
       "@type": "Offer",
       price: "0",
@@ -98,11 +104,28 @@ export default function WordCounterPage() {
     ],
   }
 
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  }
+
   return (
     <article className="w-full" id="word-counter-page">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
       {/* Hero Header Section */}

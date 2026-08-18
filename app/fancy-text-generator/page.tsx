@@ -7,23 +7,27 @@ const FAQAccordion = dynamic(() => import("@/components/faq-accordion").then(mod
 const RelatedTools = dynamic(() => import("@/components/related-tools").then(mod => mod.RelatedTools), { ssr: true })
 import { Breadcrumbs } from "@/components/breadcrumbs"
 
+const PAGE_TITLE = "Fancy Text Generator - Stylish Fonts & Unicode Text"
+const PAGE_DESCRIPTION = "Free fancy text generator. Transform plain text into stylish fonts like bold, italic, script, and more. Perfect for social media bios, usernames, and posts."
+const PAGE_URL = "https://mytextrepeater.com/fancy-text-generator"
+
 export const metadata: Metadata = {
-  title: "Fancy Text Generator - Stylish Fonts & Unicode Text",
-  description: "Free fancy text generator. Transform plain text into stylish fonts like bold, italic, script, and more. Perfect for social media bios, usernames, and posts.",
+  title: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
   alternates: {
-    canonical: "https://mytextrepeater.com/fancy-text-generator",
+    canonical: PAGE_URL,
   },
   openGraph: {
-    title: "Fancy Text Generator - Stylish Fonts & Unicode Text",
-    description: "Free fancy text generator. Transform plain text into stylish fonts like bold, italic, script, and more. Perfect for social media bios, usernames, and posts.",
-    url: "https://mytextrepeater.com/fancy-text-generator",
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+    url: PAGE_URL,
     type: "website",
     siteName: "My Text Repeater",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Fancy Text Generator - Stylish Fonts & Unicode Text",
-    description: "Free fancy text generator. Transform plain text into stylish fonts like bold, italic, script, and more. Perfect for social media bios, usernames, and posts.",
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
   },
 }
 
@@ -51,26 +55,52 @@ const faqs = [
 ]
 
 export default function FancyTextPage() {
-  const jsonLd = {
+  const softwareAppJsonLd = {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
+    "@type": "SoftwareApplication",
     name: "Fancy Text Generator",
-    description: "Free online fancy text generator to create stylish Unicode fonts.",
-    url: "https://mytextrepeater.com/fancy-text-generator",
-    applicationCategory: "UtilityApplication",
-    operatingSystem: "Any",
+    description: "Free online fancy text generator to convert plain text into stylish Unicode fonts, cursive script, bold letters, and aesthetic symbols.",
+    url: PAGE_URL,
+    applicationCategory: "UtilitiesApplication",
+    operatingSystem: "All",
+    browserRequirements: "Requires JavaScript. Requires HTML5.",
+    softwareVersion: "1.0",
     offers: {
       "@type": "Offer",
       price: "0",
       priceCurrency: "USD",
     },
+    featureList: [
+      "Over 20+ aesthetic Unicode font styles",
+      "One-click copy to clipboard",
+      "Instant real-time font conversion",
+      "Works with Instagram, TikTok, Twitter, and Discord",
+      "100% free and mobile-friendly",
+    ],
+  }
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
   }
 
   return (
     <article className="w-full">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
       <section className="border-b border-border bg-gradient-to-b from-muted/50 to-background py-12 lg:py-20">
