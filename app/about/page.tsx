@@ -8,6 +8,18 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://mytextrepeater.com/about",
   },
+  openGraph: {
+    title: "About MyTextRepeater - Free Online Text Tools",
+    description: "Learn about MyTextRepeater, your free online destination for text manipulation tools. Repeat text, convert cases, generate fancy fonts, and more.",
+    url: "https://mytextrepeater.com/about",
+    type: "website",
+    siteName: "My Text Repeater",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About MyTextRepeater - Free Online Text Tools",
+    description: "Learn about MyTextRepeater, your free online destination for text manipulation tools. Repeat text, convert cases, generate fancy fonts, and more.",
+  },
 }
 
 export default function AboutPage() {

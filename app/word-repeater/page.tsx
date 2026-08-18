@@ -17,8 +17,15 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Word Repeater — Repeat Each Word in Text Instantly",
-    description: "Free online word repeater tool to duplicate individual words in a sentence set number of times.",
+    description: "Repeat each word in your text on its own up to 10,000 times with custom separators, live word count, and instant copy or download.",
     url: "https://mytextrepeater.com/word-repeater",
+    type: "website",
+    siteName: "My Text Repeater",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Word Repeater — Repeat Each Word in Text Instantly",
+    description: "Repeat each word in your text on its own up to 10,000 times with custom separators, live word count, and instant copy or download.",
   },
 }
 

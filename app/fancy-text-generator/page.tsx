@@ -15,8 +15,15 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Fancy Text Generator - Stylish Fonts & Unicode Text",
-    description: "Transform plain text into stylish fonts with our free fancy text generator.",
+    description: "Free fancy text generator. Transform plain text into stylish fonts like bold, italic, script, and more. Perfect for social media bios, usernames, and posts.",
     url: "https://mytextrepeater.com/fancy-text-generator",
+    type: "website",
+    siteName: "My Text Repeater",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Fancy Text Generator - Stylish Fonts & Unicode Text",
+    description: "Free fancy text generator. Transform plain text into stylish fonts like bold, italic, script, and more. Perfect for social media bios, usernames, and posts.",
   },
 }
 

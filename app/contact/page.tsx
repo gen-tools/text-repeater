@@ -8,6 +8,18 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://mytextrepeater.com/contact",
   },
+  openGraph: {
+    title: "Contact Us - MyTextRepeater",
+    description: "Get in touch with the MyTextRepeater team. We welcome your questions, suggestions, and feedback about our text manipulation tools.",
+    url: "https://mytextrepeater.com/contact",
+    type: "website",
+    siteName: "My Text Repeater",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact Us - MyTextRepeater",
+    description: "Get in touch with the MyTextRepeater team. We welcome your questions, suggestions, and feedback about our text manipulation tools.",
+  },
 }
 
 export default function ContactPage() {

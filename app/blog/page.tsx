@@ -12,15 +12,16 @@ export const metadata: Metadata = {
     canonical: "https://mytextrepeater.com/blog",
   },
   openGraph: {
-    title: "Blog & Guides — My Text Repeater",
-    description: "Explore articles, tutorials, and formatting guides for text manipulation tools, social media tricks, and Unicode font effects.",
+    title: "Blog & Guides — Text Repeater, Formatting & Unicode Tips",
+    description: "Read the latest guides, tutorials, and tips on text repeating, invisible characters, Zalgo text, case conversion, and word counting tools.",
     url: "https://mytextrepeater.com/blog",
     type: "website",
+    siteName: "My Text Repeater",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Blog & Guides — My Text Repeater",
-    description: "Explore articles, tutorials, and formatting guides for text manipulation tools.",
+    title: "Blog & Guides — Text Repeater, Formatting & Unicode Tips",
+    description: "Read the latest guides, tutorials, and tips on text repeating, invisible characters, Zalgo text, case conversion, and word counting tools.",
   },
 }
 

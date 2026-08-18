@@ -16,9 +16,16 @@ export const metadata: Metadata = {
     canonical: "https://mytextrepeater.com/case-converter",
   },
   openGraph: {
-    title: "Case Converter — Convert Text Between Upper, Lower, Title & More",
-    description: "Paste your text, pick a case, and get the converted result instantly. Letter casing changes — upper, lower, title, sentence, or toggled — without touching spelling, spacing, or word order.",
+    title: "Case Converter | Small to Capital & Lowercase Tool",
+    description: "Convert small to capital letters, uppercase to lowercase, Title Case, Sentence Case, and more with our free online case converter. Copy instantly.",
     url: "https://mytextrepeater.com/case-converter",
+    type: "website",
+    siteName: "My Text Repeater",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Case Converter | Small to Capital & Lowercase Tool",
+    description: "Convert small to capital letters, uppercase to lowercase, Title Case, Sentence Case, and more with our free online case converter. Copy instantly.",
   },
 }
 

@@ -15,9 +15,16 @@ export const metadata: Metadata = {
     canonical: "https://mytextrepeater.com/emoji-repeater",
   },
   openGraph: {
-    title: "Emoji Repeater Online - Free, Instant, No App Needed",
-    description: "Repeat any emoji as many times as you want. Pick the count, separator, and copy to clipboard instantly.",
+    title: "Emoji Repeater Online | Repeat Emojis Up to 10,000 Times",
+    description: "Repeat any emojis up to 10,000 times with our emoji repeater online. Choose custom separators, copy, download, or share your repeated emojis instantly.",
     url: "https://mytextrepeater.com/emoji-repeater",
+    type: "website",
+    siteName: "My Text Repeater",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Emoji Repeater Online | Repeat Emojis Up to 10,000 Times",
+    description: "Repeat any emojis up to 10,000 times with our emoji repeater online. Choose custom separators, copy, download, or share your repeated emojis instantly.",
   },
 }
 

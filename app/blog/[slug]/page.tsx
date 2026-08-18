@@ -36,11 +36,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!post) {
     return {
-      title: "Post Not Found - My Text Repeater",
+      title: "Post Not Found | My Text Repeater",
+      description: "The requested blog post could not be found.",
     }
   }
 
-  const pageTitle = post.metaTitle ? `${post.metaTitle} | My Text Repeater` : `${post.title} | My Text Repeater`
+  const baseTitle = post.metaTitle || post.title
+  const pageTitle = baseTitle.includes("My Text Repeater")
+    ? baseTitle
+    : `${baseTitle} | My Text Repeater`
 
   return {
     title: pageTitle,
@@ -49,17 +53,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       canonical: `https://mytextrepeater.com/blog/${post.slug}`,
     },
     openGraph: {
-      title: post.metaTitle || post.title,
+      title: pageTitle,
       description: post.description,
       url: `https://mytextrepeater.com/blog/${post.slug}`,
       type: "article",
       publishedTime: post.date,
       authors: [post.author],
       tags: post.tags,
+      siteName: "My Text Repeater",
     },
     twitter: {
       card: "summary_large_image",
-      title: post.metaTitle || post.title,
+      title: pageTitle,
       description: post.description,
     },
   }

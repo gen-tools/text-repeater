@@ -8,6 +8,18 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://mytextrepeater.com/privacy",
   },
+  openGraph: {
+    title: "Privacy Policy - MyTextRepeater",
+    description: "TextRepeater privacy policy. Learn how we handle your data and protect your privacy when using our text manipulation tools.",
+    url: "https://mytextrepeater.com/privacy",
+    type: "website",
+    siteName: "My Text Repeater",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Privacy Policy - MyTextRepeater",
+    description: "TextRepeater privacy policy. Learn how we handle your data and protect your privacy when using our text manipulation tools.",
+  },
 }
 
 export default function PrivacyPage() {

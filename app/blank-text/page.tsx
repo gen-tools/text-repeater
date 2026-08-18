@@ -17,8 +17,15 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Blank Text Generator — Copy and Paste Invisible Text",
-    description: "A blank text generator produces invisible Unicode characters — such as a zero-width space, invisible symbol, or Hangul filler character — that you can copy and paste into apps like WhatsApp, Instagram, Discord, and TikTok to create an empty message, blank username, or invisible bio.",
+    description: "Generate blank text with our blank text generator. Copy and paste invisible Unicode characters for empty messages, blank usernames, bios, and more.",
     url: "https://mytextrepeater.com/blank-text",
+    type: "website",
+    siteName: "My Text Repeater",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blank Text Generator — Copy and Paste Invisible Text",
+    description: "Generate blank text with our blank text generator. Copy and paste invisible Unicode characters for empty messages, blank usernames, bios, and more.",
   },
 }
 

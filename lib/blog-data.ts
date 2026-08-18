@@ -61,7 +61,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "repeat-emojis-multiple-times",
     title: "How to Repeat Emojis Multiple Times Online",
-    metaTitle: "How to Repeat Emojis Multiple Times Online (100, 1,000+)",
+    metaTitle: "How to Repeat Emojis Multiple Times Online",
     description: "Learn how to repeat one emoji or a group of emojis online — with spaces, line breaks, or no separator — for messages, captions, and testing.",
     date: "August 14, 2026",
     readTime: "7 min read",

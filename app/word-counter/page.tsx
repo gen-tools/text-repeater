@@ -16,9 +16,16 @@ export const metadata: Metadata = {
     canonical: "https://mytextrepeater.com/word-counter",
   },
   openGraph: {
-    title: "Word Counter Online — Character Count & Text Analyzer Tool",
-    description: "Analyze word count, character count with/without spaces, reading time, speaking speed, keyword density, and Flesch readability score in real-time.",
+    title: "Word Counter & Text Analyzer | Count Words & Characters",
+    description: "Free online word counter and text analyzer to count words, characters, sentences, paragraphs, readability, reading time, and keyword density instantly.",
     url: "https://mytextrepeater.com/word-counter",
+    type: "website",
+    siteName: "My Text Repeater",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Word Counter & Text Analyzer | Count Words & Characters",
+    description: "Free online word counter and text analyzer to count words, characters, sentences, paragraphs, readability, reading time, and keyword density instantly.",
   },
 }
 

@@ -16,9 +16,16 @@ export const metadata: Metadata = {
     canonical: "https://mytextrepeater.com/",
   },
   openGraph: {
-    title: "Text Repeater Online - Free Text Multiplication Tool",
-    description: "Free online text repeater tool. Repeat any text, words, lines, or paragraphs multiple times instantly.",
+    title: "Text Repeater - Repeat Text Online Up to 10,000 Times",
+    description: "Free Text Repeater to repeat text 100 times or up to 10,000. Repeat words, sentences, emojis, and messages with custom separators. Copy or download.",
     url: "https://mytextrepeater.com/",
+    type: "website",
+    siteName: "My Text Repeater",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Text Repeater - Repeat Text Online Up to 10,000 Times",
+    description: "Free Text Repeater to repeat text 100 times or up to 10,000. Repeat words, sentences, emojis, and messages with custom separators. Copy or download.",
   },
 }
 

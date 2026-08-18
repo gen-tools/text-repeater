@@ -20,9 +20,9 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://mytextrepeater.com'),
-  title: 'Text Repeater Online - Repeat Text 10K, 100K & More Free',
-  description: 'Repeat text instantly with My Text Repeater. Duplicate words, sentences, or paragraphs any number of times for free. Fast, simple, and works on all devices.',
-  keywords: ['my text repeater', 'text repeater', 'repeat text', 'text multiplier', 'copy paste text', 'emoji repeater', 'zalgo text', 'fancy text generator'],
+  title: 'My Text Repeater - Free Online Text Manipulation Tools',
+  description: 'Free online text repeater and manipulation tools. Repeat text, words, emojis, convert cases, count words, and generate fancy fonts instantly.',
+  keywords: ['my text repeater', 'text repeater', 'repeat text', 'text multiplier', 'copy paste text', 'emoji repeater', 'zalgo text', 'fancy text generator', 'case converter', 'word counter', 'blank text'],
   authors: [{ name: 'My Text Repeater' }],
   creator: 'My Text Repeater',
   publisher: 'My Text Repeater',
@@ -36,13 +36,13 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://mytextrepeater.com',
     siteName: 'My Text Repeater',
-    title: 'My Text Repeater Online - Free Text Multiplication Tool',
-    description: 'Free online text repeater tool. Repeat text, words, lines, emojis instantly. Generate zalgo text, fancy fonts, and convert text cases.',
+    title: 'My Text Repeater - Free Online Text Manipulation Tools',
+    description: 'Free online text repeater and manipulation tools. Repeat text, words, emojis, convert cases, count words, and generate fancy fonts instantly.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'My Text Repeater Online - Free Text Multiplication Tool',
-    description: 'Free online text repeater tool. Repeat text, words, lines, emojis instantly.',
+    title: 'My Text Repeater - Free Online Text Manipulation Tools',
+    description: 'Free online text repeater and manipulation tools. Repeat text, words, emojis, convert cases, count words, and generate fancy fonts instantly.',
   },
   robots: {
     index: true,
