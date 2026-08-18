@@ -23,6 +23,7 @@ const pageNames: Record<string, string> = {
   "repeat-text-1000-times": "Repeat Text 1,000 Times",
   "how-to-repeat-a-word-or-sentence-multiple-times-online": "How to Repeat a Word or Sentence Multiple Times Online",
   "repeat-text-on-new-lines": "How to Repeat Text on New Lines Online",
+  "repeat-text-for-testing-and-qa": "How to Repeat Text for Testing and QA",
 }
 
 export function Breadcrumbs() {

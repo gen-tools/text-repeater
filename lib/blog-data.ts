@@ -14,6 +14,21 @@ export interface BlogPost {
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    slug: "repeat-text-for-testing-and-qa",
+    title: "How to Repeat Text for Testing and QA: Generate Reliable Test Data",
+    metaTitle: "How to Repeat Text for Testing and QA: Generate Reliable Test Data",
+    description: "Learn how to generate repeated, deterministic test strings for QA — character-limit testing, Unicode handling, multiline fields, and structured data.",
+    date: "August 18, 2026",
+    readTime: "8 min read",
+    author: "My Text Repeater Team",
+    category: "Guides",
+    tags: ["Testing", "QA", "Test Data", "Text Repeater", "Tutorials"],
+    featured: true,
+    content: [
+      "Repeated text is useful for QA because it's deterministic — the same input, the same count, and the same separator always produce the exact same output. That predictability matters when you're testing character limits, overflow behavior, or how a field handles a specific length of input, since you need to know exactly what went in to make sense of what came out."
+    ]
+  },
+  {
     slug: "repeat-text-on-new-lines",
     title: "How to Repeat Text on New Lines Online",
     metaTitle: "How to Repeat Text on New Lines Online",

@@ -10,6 +10,7 @@ import { RepeatText1000TimesArticle } from "@/components/blog-articles/repeat-te
 import { RepeatTextOnWhatsAppArticle } from "@/components/blog-articles/repeat-text-on-whatsapp-article"
 import { RepeatEmojisMultipleTimesArticle } from "@/components/blog-articles/repeat-emojis-multiple-times-article"
 import { HowToRepeatAWordOrSentenceArticle } from "@/components/blog-articles/how-to-repeat-a-word-or-sentence-article"
+import { RepeatTextForTestingAndQaArticle } from "@/components/blog-articles/repeat-text-for-testing-and-qa-article"
 import { RepeatTextOnNewLinesArticle } from "@/components/blog-articles/repeat-text-on-new-lines-article"
 import { WordRepeaterArticle } from "@/components/blog-articles/word-repeater-article"
 import { EmojiRepeaterArticle } from "@/components/blog-articles/emoji-repeater-article"
@@ -66,6 +67,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 function renderArticleContent(slug: string, paragraphs: string[]) {
   switch (slug) {
+    case "repeat-text-for-testing-and-qa":
+      return <RepeatTextForTestingAndQaArticle />
     case "repeat-text-on-new-lines":
       return <RepeatTextOnNewLinesArticle />
     case "how-to-repeat-a-word-or-sentence-multiple-times-online":

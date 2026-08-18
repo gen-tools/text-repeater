@@ -22,7 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const staticEntries: MetadataRoute.Sitemap = routes.map((route) => ({
     url: `${baseUrl}${route}`,
-    lastModified: new Date('2026-08-17'),
+    lastModified: new Date('2026-08-18'),
     changeFrequency: route === '' ? 'daily' : route === '/blog' ? 'daily' : 'weekly',
     priority: route === '' ? 1 : route === '/blog' ? 0.8 : route.includes('repeater') || route.includes('text') ? 0.9 : 0.7,
   }))
