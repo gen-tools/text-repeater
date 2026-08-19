@@ -14,6 +14,21 @@ export interface BlogPost {
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    slug: "repeat-text-in-google-sheets-and-excel",
+    title: "How to Repeat Text in Google Sheets and Excel",
+    metaTitle: "How to Repeat Text in Google Sheets and Excel (REPT Formula Guide)",
+    description: "Learn how to repeat text in Google Sheets and Excel using the REPT formula — cell references, row numbering, line breaks, and common formula mistakes.",
+    date: "August 19, 2026",
+    readTime: "8 min read",
+    author: "My Text Repeater Team",
+    category: "Guides",
+    tags: ["Google Sheets", "Excel", "REPT Formula", "Spreadsheets", "Text Repeater", "Tutorials"],
+    featured: true,
+    content: [
+      "Both Google Sheets and Excel use the same REPT function to repeat text inside a cell: =REPT(\"Hello \", 100). From there, the details that actually matter are spreadsheet-specific — cell references, fill-down behavior, row numbering, text wrapping for line breaks, and the difference between one giant cell and one repeated value per row."
+    ]
+  },
+  {
     slug: "repeat-text-for-testing-and-qa",
     title: "How to Repeat Text for Testing and QA: Generate Reliable Test Data",
     metaTitle: "How to Repeat Text for Testing and QA: Generate Reliable Test Data",

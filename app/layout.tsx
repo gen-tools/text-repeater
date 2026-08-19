@@ -22,8 +22,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://mytextrepeater.com'),
-  title: 'My Text Repeater - Free Online Text Manipulation Tools',
-  description: 'Free online text repeater and manipulation tools. Repeat text, words, emojis, convert cases, count words, and generate fancy fonts instantly.',
+  title: 'My Text Repeater',
+  description: 'Free Text Repeater to repeat text 100 times or up to 10,000. Repeat words, sentences, emojis, and messages with custom separators. Copy or download.',
   authors: [{ name: 'My Text Repeater' }],
   creator: 'My Text Repeater',
   publisher: 'My Text Repeater',
@@ -37,13 +37,13 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://mytextrepeater.com',
     siteName: 'My Text Repeater',
-    title: 'My Text Repeater - Free Online Text Manipulation Tools',
-    description: 'Free online text repeater and manipulation tools. Repeat text, words, emojis, convert cases, count words, and generate fancy fonts instantly.',
+    title: 'My Text Repeater',
+    description: 'Free Text Repeater to repeat text 100 times or up to 10,000. Repeat words, sentences, emojis, and messages with custom separators. Copy or download.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'My Text Repeater - Free Online Text Manipulation Tools',
-    description: 'Free online text repeater and manipulation tools. Repeat text, words, emojis, convert cases, count words, and generate fancy fonts instantly.',
+    title: 'My Text Repeater',
+    description: 'Free Text Repeater to repeat text 100 times or up to 10,000. Repeat words, sentences, emojis, and messages with custom separators. Copy or download.',
   },
   robots: {
     index: true,

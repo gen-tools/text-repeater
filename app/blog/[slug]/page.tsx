@@ -7,6 +7,7 @@ import { getBlogPostBySlug, BLOG_POSTS, getRelatedPosts } from "@/lib/blog-data"
 import { Calendar, Clock, ArrowLeft, ArrowRight, User, Tag } from "lucide-react"
 
 import { RepeatText1000TimesArticle } from "@/components/blog-articles/repeat-text-1000-times-article"
+import { RepeatTextInGoogleSheetsAndExcelArticle } from "@/components/blog-articles/repeat-text-in-google-sheets-and-excel-article"
 import { RepeatTextOnWhatsAppArticle } from "@/components/blog-articles/repeat-text-on-whatsapp-article"
 import { RepeatEmojisMultipleTimesArticle } from "@/components/blog-articles/repeat-emojis-multiple-times-article"
 import { HowToRepeatAWordOrSentenceArticle } from "@/components/blog-articles/how-to-repeat-a-word-or-sentence-article"
@@ -36,15 +37,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!post) {
     return {
-      title: "Post Not Found | My Text Repeater",
+      title: "Post Not Found",
       description: "The requested blog post could not be found.",
     }
   }
 
-  const baseTitle = post.metaTitle || post.title
-  const pageTitle = baseTitle.includes("My Text Repeater")
-    ? baseTitle
-    : `${baseTitle} | My Text Repeater`
+  const pageTitle = post.metaTitle || post.title
 
   return {
     title: pageTitle,
@@ -72,6 +70,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 function renderArticleContent(slug: string, paragraphs: string[]) {
   switch (slug) {
+    case "repeat-text-in-google-sheets-and-excel":
+      return <RepeatTextInGoogleSheetsAndExcelArticle />
     case "repeat-text-for-testing-and-qa":
       return <RepeatTextForTestingAndQaArticle />
     case "repeat-text-on-new-lines":
@@ -123,7 +123,7 @@ export default async function BlogPostPage({ params }: Props) {
 
   const articleJsonLd = {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "BlogPosting",
     headline: post.title,
     description: post.description,
     mainEntityOfPage: {
