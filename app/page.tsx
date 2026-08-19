@@ -3,11 +3,11 @@ import dynamic from "next/dynamic"
 import Image from "next/image"
 import Link from "next/link";
 import { TextRepeaterTool } from "@/components/tools/text-repeater-tool"
+import { RelatedTools } from "@/components/related-tools"
 import heroImage from "@/src/assets/images/text_repeater_hero_1784377279044.jpg"
 import { Check, Shield, Laptop, HelpCircle } from "lucide-react"
 
 const FAQAccordion = dynamic(() => import("@/components/faq-accordion").then(mod => mod.FAQAccordion), { ssr: true })
-const RelatedTools = dynamic(() => import("@/components/related-tools").then(mod => mod.RelatedTools), { ssr: true })
 
 const PAGE_TITLE = "Text Repeater - Repeat Text Online Up to 10,000 Times"
 const PAGE_DESCRIPTION = "Free Text Repeater to repeat text 100 times or up to 10,000. Repeat words, sentences, emojis, and messages with custom separators. Copy or download."

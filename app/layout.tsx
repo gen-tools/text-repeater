@@ -11,13 +11,11 @@ const geist = Geist({
   subsets: ["latin"],
   variable: "--font-geist-sans",
   display: "swap",
-  adjustFontFallback: false,
 })
 const geistMono = Geist_Mono({ 
   subsets: ["latin"],
   variable: "--font-geist-mono",
   display: "swap",
-  adjustFontFallback: false,
 })
 
 export const metadata: Metadata = {
@@ -90,14 +88,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className="bg-background">
-      <head>
+      <body className={`${geist.variable} ${geistMono.variable} font-sans antialiased`}>
         <script
+          id="fetch-polyfill"
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var f=window.fetch;function g(){return f;}function s(v){f=v;}try{Object.defineProperty(window,'fetch',{get:g,set:s,configurable:true,enumerable:true});}catch(e){}if(typeof Window!=='undefined'&&Window.prototype){try{Object.defineProperty(Window.prototype,'fetch',{get:g,set:s,configurable:true,enumerable:true});}catch(e){}}}catch(e){}})();`,
+            __html: `(function(){try{var f=window.fetch;var cur=f;Object.defineProperty(window,'fetch',{get:function(){return cur;},set:function(v){cur=v;},configurable:true,enumerable:true});if(typeof Window!=='undefined'&&Window.prototype){try{Object.defineProperty(Window.prototype,'fetch',{get:function(){return cur;},set:function(v){cur=v;},configurable:true,enumerable:true});}catch(e){}}}catch(e){}})();`,
           }}
         />
-      </head>
-      <body className={`${geist.variable} ${geistMono.variable} font-sans antialiased`}>
         <script
           key="ld-json-org"
           type="application/ld+json"
@@ -119,16 +116,20 @@ export default function RootLayout({
         />
 
         {/* Google Analytics - gtag.js */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-F7V35W7MQV"
-          strategy="lazyOnload"
-        />
-        <Script id="google-analytics" strategy="lazyOnload">
-          {`window.dataLayer = window.dataLayer || [];
+        {process.env.NODE_ENV === 'production' && (
+          <>
+            <Script
+              src="https://www.googletagmanager.com/gtag/js?id=G-F7V35W7MQV"
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', 'G-F7V35W7MQV');`}
-        </Script>
+gtag('config', 'G-F7V35W7MQV', { page_path: window.location.pathname });`}
+            </Script>
+          </>
+        )}
 
         <ThemeProvider
           attribute="class"

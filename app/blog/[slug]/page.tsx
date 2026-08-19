@@ -3,6 +3,7 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { RelatedTools } from "@/components/related-tools"
+import { ReadingProgressBar } from "@/components/reading-progress-bar"
 import { getBlogPostBySlug, BLOG_POSTS, getRelatedPosts } from "@/lib/blog-data"
 import { Calendar, Clock, ArrowLeft, ArrowRight, User, Tag } from "lucide-react"
 
@@ -178,6 +179,7 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <>
+      <ReadingProgressBar />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}

@@ -2,6 +2,7 @@ import { Metadata } from "next"
 import Link from "next/link"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { RelatedTools } from "@/components/related-tools"
+import { ReadingProgressBar } from "@/components/reading-progress-bar"
 import { BLOG_POSTS } from "@/lib/blog-data"
 import { Calendar, Clock, ArrowRight, Tag, BookOpen, User } from "lucide-react"
 
@@ -78,6 +79,7 @@ export default function BlogIndexPage() {
 
   return (
     <>
+      <ReadingProgressBar />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogJsonLd) }}
