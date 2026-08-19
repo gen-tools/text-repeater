@@ -47,7 +47,7 @@ export function Breadcrumbs() {
           <Link
             href="/"
             itemProp="item"
-            className="flex items-center gap-1 hover:text-foreground"
+            className="flex items-center gap-1 transition-colors hover:text-primary"
           >
             <Home className="h-4 w-4" />
             <span itemProp="name">Home</span>
@@ -71,7 +71,7 @@ export function Breadcrumbs() {
               <Link
                 href={`/${segments.slice(0, index + 1).join("/")}`}
                 itemProp="item"
-                className="hover:text-foreground"
+                className="transition-colors hover:text-primary"
               >
                 <span itemProp="name">{pageNames[segment] || segment}</span>
               </Link>

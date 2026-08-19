@@ -51,17 +51,17 @@ export function Navbar() {
                 key={tool.href}
                 href={tool.href}
                 className={cn(
-                  "rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground",
+                  "rounded-md px-3 py-2 text-sm font-medium transition-colors",
                   pathname === tool.href
-                    ? "bg-accent text-accent-foreground"
-                    : "text-muted-foreground"
+                    ? "bg-primary/10 text-primary font-semibold"
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
                 )}
               >
                 {tool.name}
               </Link>
             ))}
             <div className="group relative">
-              <button className="rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground">
+              <button className="rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground hover:bg-muted/50">
                 More Tools
               </button>
               <div className="invisible absolute right-0 top-full z-50 mt-1 w-48 rounded-lg border border-border bg-background p-1 opacity-0 shadow-lg transition-all group-hover:visible group-hover:opacity-100">
@@ -70,10 +70,10 @@ export function Navbar() {
                     key={tool.href}
                     href={tool.href}
                     className={cn(
-                      "block rounded-md px-3 py-2 text-sm transition-colors hover:bg-accent hover:text-accent-foreground",
+                      "block rounded-md px-3 py-2 text-sm transition-colors",
                       pathname === tool.href
-                        ? "bg-accent text-accent-foreground"
-                        : "text-muted-foreground"
+                        ? "bg-primary/10 text-primary font-semibold"
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
                     )}
                   >
                     {tool.name}
@@ -84,10 +84,10 @@ export function Navbar() {
             <Link
               href="/blog"
               className={cn(
-                "rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground",
+                "rounded-md px-3 py-2 text-sm font-medium transition-colors",
                 pathname.startsWith("/blog")
-                  ? "bg-accent text-accent-foreground"
-                  : "text-muted-foreground"
+                  ? "bg-primary/10 text-primary font-semibold"
+                  : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
               )}
             >
               Blog
@@ -133,10 +133,10 @@ export function Navbar() {
                   href={tool.href}
                   onClick={() => setIsOpen(false)}
                   className={cn(
-                    "rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground",
+                    "rounded-md px-3 py-2 text-sm font-medium transition-colors",
                     pathname === tool.href
-                      ? "bg-accent text-accent-foreground"
-                      : "text-muted-foreground"
+                      ? "bg-primary/10 text-primary font-semibold"
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
                   )}
                 >
                   {tool.name}
@@ -146,10 +146,10 @@ export function Navbar() {
                 href="/blog"
                 onClick={() => setIsOpen(false)}
                 className={cn(
-                  "rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground",
+                  "rounded-md px-3 py-2 text-sm font-medium transition-colors",
                   pathname.startsWith("/blog")
-                    ? "bg-accent text-accent-foreground"
-                    : "text-muted-foreground"
+                    ? "bg-primary/10 text-primary font-semibold"
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
                 )}
               >
                 Blog

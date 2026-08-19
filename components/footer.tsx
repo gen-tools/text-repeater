@@ -58,7 +58,7 @@ export function Footer() {
                 <li key={tool.href}>
                   <Link
                     href={tool.href}
-                    className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    className="text-sm text-muted-foreground transition-colors hover:text-primary"
                   >
                     {tool.name}
                   </Link>
@@ -74,7 +74,7 @@ export function Footer() {
                 <li key={tool.href}>
                   <Link
                     href={tool.href}
-                    className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    className="text-sm text-muted-foreground transition-colors hover:text-primary"
                   >
                     {tool.name}
                   </Link>
@@ -90,7 +90,7 @@ export function Footer() {
                 <li key={page.href}>
                   <Link
                     href={page.href}
-                    className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    className="text-sm text-muted-foreground transition-colors hover:text-primary"
                   >
                     {page.name}
                   </Link>
@@ -112,7 +112,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.ariaLabel}
-                  className="text-muted-foreground transition-colors hover:text-foreground"
+                  className="text-muted-foreground transition-colors hover:text-primary"
                 >
                   <Icon className="h-5 w-5" />
                   <span className="sr-only">{social.name}</span>
