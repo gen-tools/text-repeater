@@ -104,7 +104,7 @@ export function RepeatTextForTestingAndQaArticle() {
         Multiline input — a comment box, a message field, a textarea — behaves differently from a single-line input field, and it&apos;s worth testing separately.
       </p>
       <p>
-        A string repeated with a <Link href="/repeat-text-on-new-lines" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">line-break separator</Link>, set to a specific number of lines, checks whether a textarea correctly preserves line breaks, whether a database field stores multiline text as expected, and whether a UI displays multiline content without cutting it off or collapsing it into a single line.
+        A string repeated with a <Link href="/blog/repeat-text-on-new-lines" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">line-break separator</Link>, set to a specific number of lines, checks whether a textarea correctly preserves line breaks, whether a database field stores multiline text as expected, and whether a UI displays multiline content without cutting it off or collapsing it into a single line.
       </p>
 
       <h2 className="text-2xl sm:text-3xl font-bold text-foreground pt-4">
