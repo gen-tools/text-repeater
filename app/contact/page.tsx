@@ -13,12 +13,22 @@ export const metadata: Metadata = {
     description: "Get in touch with the MyTextRepeater team. We welcome your questions, suggestions, and feedback about our text manipulation tools.",
     url: "https://mytextrepeater.com/contact",
     type: "website",
+    locale: "en_US",
     siteName: "My Text Repeater",
+    images: [
+      {
+        url: "https://mytextrepeater.com/apple-icon.png",
+        width: 1200,
+        height: 630,
+        alt: "Contact Us - MyTextRepeater",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Contact Us - MyTextRepeater",
     description: "Get in touch with the MyTextRepeater team. We welcome your questions, suggestions, and feedback about our text manipulation tools.",
+    images: ["https://mytextrepeater.com/apple-icon.png"],
   },
 }
 

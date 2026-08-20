@@ -13,12 +13,22 @@ export const metadata: Metadata = {
     description: "Learn about MyTextRepeater, your free online destination for text manipulation tools. Repeat text, convert cases, generate fancy fonts, and more.",
     url: "https://mytextrepeater.com/about",
     type: "website",
+    locale: "en_US",
     siteName: "My Text Repeater",
+    images: [
+      {
+        url: "https://mytextrepeater.com/apple-icon.png",
+        width: 1200,
+        height: 630,
+        alt: "About MyTextRepeater",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "About MyTextRepeater - Free Online Text Tools",
     description: "Learn about MyTextRepeater, your free online destination for text manipulation tools. Repeat text, convert cases, generate fancy fonts, and more.",
+    images: ["https://mytextrepeater.com/apple-icon.png"],
   },
 }
 
