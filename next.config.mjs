@@ -51,7 +51,7 @@ const nextConfig = {
       },
       {
         // Cache static files (images, fonts, icons, manifest, favicon) aggressively
-        source: '/(icon.*|apple-icon.*|manifest.json|favicon.ico|.*\\.png|.*\\.svg|.*\\.jpg|.*\\.jpeg|.*\\.webp|.*\\.woff2)',
+        source: '/:path*.(png|svg|jpg|jpeg|webp|woff2|ico|json)',
         headers: [
           {
             key: 'Cache-Control',

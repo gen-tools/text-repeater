@@ -1,13 +1,11 @@
 import { Metadata } from "next"
-import dynamic from "next/dynamic"
 import Image from "next/image"
 import { CaseConverterTool } from "@/components/tools/case-converter-tool"
+import { FAQAccordion } from "@/components/faq-accordion"
+import { RelatedTools } from "@/components/related-tools"
 import heroImage from "@/src/assets/images/case_converter_hero_1784377369275.jpg"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { Check, HelpCircle } from "lucide-react"
-
-const FAQAccordion = dynamic(() => import("@/components/faq-accordion").then(mod => mod.FAQAccordion), { ssr: true })
-const RelatedTools = dynamic(() => import("@/components/related-tools").then(mod => mod.RelatedTools), { ssr: true })
 
 const PAGE_TITLE = "Case Converter | Small to Capital & Lowercase Tool"
 const PAGE_DESCRIPTION = "Convert small to capital letters, uppercase to lowercase, Title Case, Sentence Case, and more with our free online case converter. Copy instantly."

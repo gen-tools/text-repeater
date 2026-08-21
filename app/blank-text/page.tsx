@@ -1,13 +1,11 @@
 import { Metadata } from "next"
-import dynamic from "next/dynamic"
 import Image from "next/image"
 import { BlankTextTool } from "@/components/tools/blank-text-tool"
+import { FAQAccordion } from "@/components/faq-accordion"
+import { RelatedTools } from "@/components/related-tools"
 import heroImage from "@/src/assets/images/blank_text_hero_1784377330502.jpg"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { Check, HelpCircle } from "lucide-react"
-
-const FAQAccordion = dynamic(() => import("@/components/faq-accordion").then(mod => mod.FAQAccordion), { ssr: true })
-const RelatedTools = dynamic(() => import("@/components/related-tools").then(mod => mod.RelatedTools), { ssr: true })
 
 const PAGE_TITLE = "Blank Text Generator — Copy and Paste Invisible Text"
 const PAGE_DESCRIPTION = "Generate blank text with our blank text generator. Copy and paste invisible Unicode characters for empty messages, blank usernames, bios, and more."

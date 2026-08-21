@@ -1,10 +1,9 @@
 import { Metadata } from "next"
-import dynamic from "next/dynamic"
 import Image from "next/image"
 import { FancyTextTool } from "@/components/tools/fancy-text-tool"
+import { FAQAccordion } from "@/components/faq-accordion"
+import { RelatedTools } from "@/components/related-tools"
 import heroImage from "@/src/assets/images/fancy_text_hero_1784377747000.jpg"
-const FAQAccordion = dynamic(() => import("@/components/faq-accordion").then(mod => mod.FAQAccordion), { ssr: true })
-const RelatedTools = dynamic(() => import("@/components/related-tools").then(mod => mod.RelatedTools), { ssr: true })
 import { Breadcrumbs } from "@/components/breadcrumbs"
 
 const PAGE_TITLE = "Fancy Text Generator - Stylish Fonts & Unicode Text"

@@ -1,10 +1,9 @@
 import { Metadata } from "next"
-import dynamic from "next/dynamic"
 import Image from "next/image"
 import { ZalgoTextTool } from "@/components/tools/zalgo-text-tool"
+import { FAQAccordion } from "@/components/faq-accordion"
+import { RelatedTools } from "@/components/related-tools"
 import heroImage from "@/src/assets/images/zalgo_text_hero_1784377351127.jpg"
-const FAQAccordion = dynamic(() => import("@/components/faq-accordion").then(mod => mod.FAQAccordion), { ssr: true })
-const RelatedTools = dynamic(() => import("@/components/related-tools").then(mod => mod.RelatedTools), { ssr: true })
 import { Breadcrumbs } from "@/components/breadcrumbs"
 
 const PAGE_TITLE = "Zalgo Text Generator - Create Glitchy Cursed Text"

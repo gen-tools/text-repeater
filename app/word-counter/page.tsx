@@ -1,13 +1,11 @@
 import { Metadata } from "next"
-import dynamic from "next/dynamic"
 import Link from "next/link"
 import Image from "next/image"
 import { WordCounterTool } from "@/components/tools/word-counter-tool"
+import { FAQAccordion } from "@/components/faq-accordion"
+import { RelatedTools } from "@/components/related-tools"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import heroImage from "@/src/assets/images/word_counter_hero_1785799741311.jpg"
-
-const FAQAccordion = dynamic(() => import("@/components/faq-accordion").then(mod => mod.FAQAccordion), { ssr: true })
-const RelatedTools = dynamic(() => import("@/components/related-tools").then(mod => mod.RelatedTools), { ssr: true })
 
 const PAGE_TITLE = "Word Counter & Text Analyzer | Count Words & Characters"
 const PAGE_DESCRIPTION = "Free online word counter and text analyzer to count words, characters, sentences, paragraphs, readability, reading time, and keyword density instantly."

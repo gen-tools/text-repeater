@@ -1,13 +1,11 @@
 import { Metadata } from "next"
-import dynamic from "next/dynamic"
 import Image from "next/image"
 import { WordRepeaterTool } from "@/components/tools/word-repeater-tool"
+import { FAQAccordion } from "@/components/faq-accordion"
+import { RelatedTools } from "@/components/related-tools"
 import heroImage from "@/src/assets/images/word_repeater_hero_1784377297978.jpg"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { Check, Shield, Laptop, HelpCircle } from "lucide-react"
-
-const FAQAccordion = dynamic(() => import("@/components/faq-accordion").then(mod => mod.FAQAccordion), { ssr: true })
-const RelatedTools = dynamic(() => import("@/components/related-tools").then(mod => mod.RelatedTools), { ssr: true })
 
 const PAGE_TITLE = "Word Repeater — Repeat Each Word in Text Instantly"
 const PAGE_DESCRIPTION = "Repeat each word in your text on its own up to 10,000 times with custom separators, live word count, and instant copy or download."
