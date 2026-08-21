@@ -7,7 +7,7 @@ export function CaseConverterArticle() {
         We have all been there: you type an entire paragraph, email, or code comment, only to look up at the screen and realize your keyboard&apos;s Caps Lock key was accidentally toggled on. In the past, fixing this meant deleting your entire document and re-typing every sentence from scratch.
       </p>
       <p>
-        Our free <Link href="/case-converter" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">Case Converter tool</Link> eliminates this hassle completely. With a single click, you can transform your text into UPPERCASE, lowercase, Title Case, Sentence case, camelCase, snake_case, or Alternating Case without losing your original content or formatting.
+        Our free <Link href="/case-converter" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">Case Converter</Link> eliminates this hassle completely. With a single click, you can transform your text into UPPERCASE, lowercase, Title Case, Sentence case, camelCase, snake_case, or Alternating Case without losing your original content or formatting.
       </p>
 
       <h2 className="text-2xl sm:text-3xl font-bold text-foreground pt-4">
@@ -169,7 +169,7 @@ export function CaseConverterArticle() {
         Conclusion
       </h2>
       <p>
-        Stop re-typing text whenever Caps Lock slips up. Use our free, fast <Link href="/case-converter" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">Case Converter tool</Link> to adjust your text case in seconds!
+        Stop re-typing text whenever Caps Lock slips up. Use our free, fast <Link href="/case-converter" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">Case Converter online</Link> to adjust your text case in seconds!
       </p>
     </div>
   )
