@@ -6,6 +6,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   
   const routes = [
     '',
+    '/nanana-translator',
     '/word-counter',
     '/emoji-repeater',
     '/word-repeater',

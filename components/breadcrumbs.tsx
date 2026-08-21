@@ -6,6 +6,7 @@ import { ChevronRight, Home } from "lucide-react"
 
 const pageNames: Record<string, string> = {
   "": "Home",
+  "nanana-translator": "Nanana Translator",
   "word-counter": "Word Counter",
   "emoji-repeater": "Emoji Repeater",
   "line-repeater": "Line Repeater",

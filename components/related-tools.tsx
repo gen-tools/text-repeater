@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { ArrowRight, Type, Smile, FileText, Sparkles, Hash, CaseSensitive, BarChart3 } from "lucide-react"
+import { ArrowRight, Type, Smile, FileText, Sparkles, Hash, CaseSensitive, BarChart3, Languages } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const allTools = [
@@ -8,6 +8,12 @@ const allTools = [
     href: "/",
     description: "Repeat any text multiple times instantly",
     icon: Type,
+  },
+  {
+    name: "Nanana Translator",
+    href: "/nanana-translator",
+    description: "Generate viral Nanana-style text for Instagram",
+    icon: Languages,
   },
   {
     name: "Word Counter",

@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils"
 
 const tools = [
   { name: "Text Repeater", href: "/" },
+  { name: "Nanana Translator", href: "/nanana-translator" },
   { name: "Word Counter", href: "/word-counter" },
   { name: "Emoji Repeater", href: "/emoji-repeater" },
   { name: "Word Repeater", href: "/word-repeater" },
