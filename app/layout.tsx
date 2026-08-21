@@ -123,6 +123,13 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-F7V35W7MQV', { page_path: window.location.pathname });`}
             </Script>
+             {/* Google AdSense */}
+    <Script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4975102983560437"
+      crossOrigin="anonymous"
+      strategy="afterInteractive"
+           />
           </>
         )}
 
