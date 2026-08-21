@@ -103,8 +103,8 @@ export default function RootLayout({
               "description": "Free online text repeater tool. Repeat text, words, lines, emojis instantly. Generate zalgo text, fancy fonts, and convert text cases. Fast, free, and easy to use.",
               "email": "contact@mytextrepeater.com",
               "sameAs": [
-                "https://twitter.com/textrepeater",
-                "https://github.com/textrepeater"
+                "https://x.com/MyTextRepeate",
+                "https://www.instagram.com/mytextrepeater/"
               ]
             })
           }}
