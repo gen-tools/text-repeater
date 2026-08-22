@@ -95,6 +95,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className="bg-background">
+      <head>
+        <script
+          id="fetch-polyfill"
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var f=window.fetch;var cur=f;Object.defineProperty(window,'fetch',{get:function(){return cur;},set:function(v){cur=v;},configurable:true,enumerable:true});if(typeof Window!=='undefined'&&Window.prototype){try{Object.defineProperty(Window.prototype,'fetch',{get:function(){return cur;},set:function(v){cur=v;},configurable:true,enumerable:true});}catch(e){}}}catch(e){}})();`,
+          }}
+        />
+      </head>
       <body className={`${geist.variable} ${geistMono.variable} font-sans antialiased`} suppressHydrationWarning>
         <script
           key="ld-json-org"
