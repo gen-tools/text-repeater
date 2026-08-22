@@ -43,67 +43,36 @@ export const metadata: Metadata = {
 
 const faqs = [
   {
-    question: "What is a text repeater?",
-    answer: "A tool that duplicates text — words, lines, or paragraphs — as many times as you set, without manual copy-pasting.",
-  },
-  {
-    question: "How do I repeat text online?",
-    answer: "Paste your text, set a count and mode, then generate — the result appears instantly and you can copy it from the page.",
-  },
-  {
     question: "Can I repeat text 10,000 times?",
-    answer: "Yes, the counter supports anywhere from a couple of repeats up to 10,000 in one go.",
+    answer: "Yes. You can repeat text up to 10,000 times using the custom repeat count.",
   },
   {
-    question: "Can I repeat words or lines separately?",
-    answer: "Yes — switch modes to repeat each word on its own, keep each line intact, or repeat full paragraphs.",
+    question: "Can I repeat individual words?",
+    answer: "Yes. Select the Each Word mode to repeat words individually instead of repeating the entire text as one block.",
   },
   {
-    question: "Can I repeat text on new lines instead of one block?",
-    answer: "Yes, Each Line mode keeps every repetition on its own line rather than joining them into a single block.",
-  },
-  {
-    question: "Can I use quick presets instead of typing a number?",
-    answer: "Yes, presets like 100, 500, and 1,000 are there for common repeat counts, though you can always type a custom number instead.",
+    question: "Can I repeat text on separate lines?",
+    answer: "Yes. Use Each Line mode or choose a line break as the separator to place repetitions on separate lines.",
   },
   {
     question: "Can I repeat emojis?",
-    answer: (
-      <>
-        Yes, you can{" "}
-        <Link href="/emoji-repeater">repeat emojis</Link>{" "}
-        cleanly like any other text.
-      </>
-    ),
-    plainAnswer: "Yes, you can repeat emojis cleanly like any other text.",
+    answer: "Yes. The Text Repeater works with emojis, symbols, and other Unicode characters.",
   },
   {
-    question: "Can I use this as a WhatsApp text repeater?",
-    answer: "Yes — it works the same for WhatsApp, SMS, or any chat message as it does for plain text.",
+    question: "Can I use the Text Repeater for messages?",
+    answer: "Yes. You can repeat a word, sentence, or message and then copy the generated result to use wherever you need it.",
   },
   {
-    question: "Is there a limit to how much text I can enter?",
-    answer: "There's no fixed word limit, but very large inputs combined with a high repeat count can take a moment longer to generate.",
+    question: "Is there a limit on the amount of text I can repeat?",
+    answer: "The maximum repeat count is 10,000. The amount of output you can generate also depends on the size of your original text and the capabilities of your device and browser.",
   },
   {
-    question: "Can I copy or download the result?",
-    answer: "Both — copy it straight to your clipboard, or download it as a .txt file.",
-  },
-  {
-    question: "Is this text repeater free?",
-    answer: "Yes, with no usage limits or signup required.",
+    question: "Is the Text Repeater free?",
+    answer: "Yes. The Text Repeater is free to use and does not require an account.",
   },
   {
     question: "Does my text stay private?",
-    answer: "Yes. All processing happens locally in your browser — your text is never sent to or stored on a server.",
-  },
-  {
-    question: "Does it work offline?",
-    answer: "Yes, once the page has loaded, repeating text doesn't need an internet connection since nothing is sent to a server.",
-  },
-  {
-    question: "Does it work on mobile?",
-    answer: "Yes, it works the same in a mobile browser as it does on desktop.",
+    answer: "The text repetition process runs in your browser. Your input does not need to be uploaded to a server to generate the repeated result.",
   },
 ]
 
@@ -124,13 +93,17 @@ export default function HomePage() {
       priceCurrency: "USD",
     },
     featureList: [
-      "Repeat text multiple times up to 10,000x",
-      "Four repeat modes (Single Block, Each Line, Word by Word, Paragraphs)",
-      "Custom separators (space, newline, comma, period, custom)",
-      "Live character, word, and line counter",
+      "Repeat text up to 10,000 times",
+      "Preset repeat counts for quick use",
+      "Custom repeat counts",
+      "Four repeat modes: Entire Text, Each Word, Each Line, and Paragraphs",
+      "Custom separators including spaces, commas, and line breaks",
+      "Live character and word counts",
       "One-click copy to clipboard",
-      "Download output as TXT file",
-      "100% client-side privacy",
+      "Download repeated text as a .txt file",
+      "Support for emojis, symbols, and Unicode text",
+      "No account or signup required",
+      "Free to use in your browser",
     ],
   }
 
@@ -142,7 +115,7 @@ export default function HomePage() {
       name: faq.question,
       acceptedAnswer: {
         "@type": "Answer",
-        text: typeof faq.answer === "string" ? faq.answer : (faq.plainAnswer || "Yes, you can repeat emojis cleanly like any other text."),
+        text: typeof faq.answer === "string" ? faq.answer : faq.question,
       },
     })),
   }
@@ -165,9 +138,7 @@ export default function HomePage() {
             Text Repeater
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-muted-foreground text-pretty">
-            Text Repeater lets you repeat words, sentences, paragraphs, emojis, or any text up to 10,000 times online.
-            Enter your text, choose the repetition count and separator, then generate your repeated text instantly.
-            It's free, browser-based, and requires no signup. Copy or download your repeated text when you're done.
+            Text Repeater lets you repeat words, sentences, paragraphs, emojis, or any text up to 10,000 times online. Enter your text, choose how many times to repeat it, select a separator, and generate the result instantly. It&apos;s free to use, works directly in your browser, and does not require an account.
           </p>
         </div>
       </section>
@@ -204,7 +175,7 @@ export default function HomePage() {
             Introduction
           </h2>
           <p className="text-foreground/90 leading-relaxed text-base">
-            Type your text once, set a repeat count, and get the result instantly. Repeat a single word 100 times, a full message 1,000 times, or push it all the way to 10,000 — pick a quick preset or type your own number, and it builds the output in one click instead of pasting the same line over and over by hand. It runs entirely in your browser, so there&apos;s nothing to install and nothing to send anywhere.
+            Repeat text quickly without copying and pasting it by hand. Choose how many times to repeat a word, sentence, message, emoji, line, or paragraph, with options for up to 10,000 repetitions. Generate the result instantly, then copy it to your clipboard or download it as a text file.
           </p>
         </div>
       </section>
@@ -217,10 +188,22 @@ export default function HomePage() {
           </h2>
           <ol className="space-y-4">
             {[
-              { title: "Enter your text", desc: "Type or paste the word, sentence, emoji, or paragraph you want to repeat." },
-              { title: "Set your repeat count", desc: "Use a quick preset (10, 50, 100, 500, 1,000) or type any number up to 10,000." },
-              { title: "Choose a repeat mode", desc: "Entire Text, Each Word, Each Line, or Paragraphs, depending on how you want the output structured." },
-              { title: "Copy or download", desc: "One click copies the result to your clipboard, or save it straight to a .txt file." },
+              {
+                title: "1. Enter your text",
+                desc: "Type or paste the word, sentence, message, emoji, or paragraph you want to repeat.",
+              },
+              {
+                title: "2. Choose the repeat count",
+                desc: "Select a preset such as 10, 50, 100, 500, or 1,000, or enter your own number up to 10,000.",
+              },
+              {
+                title: "3. Select a repeat mode",
+                desc: "Choose how the text should be repeated. You can repeat the entire text, each word, each line, or each paragraph.",
+              },
+              {
+                title: "4. Copy or download the result",
+                desc: "Generate your repeated text instantly, then copy the result to your clipboard or download it as a .txt file.",
+              },
             ].map((step, idx) => (
               <li key={idx} className="flex gap-4 rounded-xl border border-border bg-card p-4 shadow-sm items-start">
                 <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary font-bold text-primary-foreground text-sm">
@@ -236,59 +219,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Who Uses This Text Repeater? */}
-      <section className="py-16 border-t border-border bg-muted/30 cv-auto">
-        <div className="container mx-auto px-4 max-w-3xl">
-          <h2 className="mb-6 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            Who Uses This Text Repeater?
-          </h2>
-          <div className="grid gap-4 sm:grid-cols-2">
-            {[
-              {
-                icon: "💬",
-                title: "WhatsApp & Messaging",
-                desc: "Repeat a message or emoji string for WhatsApp, iMessage, or any chat app — handy when you need to send the same line more than once."
-              },
-              {
-                icon: "📱",
-                title: "Social Media",
-                desc: "Repeat emojis or short phrases for Instagram captions, TikTok bios, or X posts."
-              },
-              {
-                icon: "✍️",
-                title: "Content & Placeholder Text",
-                desc: "Generate repeated dividers, sample copy, or line-by-line placeholder text for drafts and mockups."
-              },
-              {
-                icon: "💻",
-                title: "Testing & Development",
-                desc: "Build a predictable, repeated string to stress-test input fields, forms, or character limits."
-              },
-              {
-                icon: "📚",
-                title: "Learning & Practice",
-                desc: "Repeat a word or phrase for vocabulary drills and memorization — useful for students and teachers building worksheets."
-              },
-              {
-                icon: "😄",
-                title: "Pranks & Fun",
-                desc: "Repeat a funny line a few hundred times and send it to a friend — a harmless way to get a laugh out of a group chat."
-              }
-            ].map((useCase, idx) => (
-              <div key={idx} className="rounded-xl border border-border bg-card p-5 shadow-sm space-y-1.5">
-                <div className="flex items-center gap-2 font-semibold text-foreground text-base">
-                  <span className="text-xl">{useCase.icon}</span>
-                  <span>{useCase.title}</span>
-                </div>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {useCase.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* What Is a Text Repeater? */}
       <section className="py-16 border-t border-border bg-background cv-auto">
         <div className="container mx-auto px-4 max-w-3xl">
@@ -297,10 +227,13 @@ export default function HomePage() {
           </h2>
           <div className="space-y-4 text-foreground/90 leading-relaxed text-base">
             <p>
-              A text repeater duplicates any text a set number of times, instantly, without copying and pasting by hand. Type something once, choose how many times it should repeat, and the result is ready to copy or download in seconds — no software, no account. It&apos;s sometimes searched for as a &quot;text generator&quot; or &quot;message repeater,&quot; but the job is the same: turn one line into as many copies as you need.
+              A text repeater is a simple tool that creates multiple copies of the same text automatically. Instead of copying and pasting the same word, sentence, message, or paragraph again and again, enter it once and choose how many times you want it repeated.
             </p>
             <p>
-              This one gives you four modes: repeat the whole entry as a block, repeat each word on its own line, repeat line by line, or repeat full paragraphs. Add a separator — a space, comma, or line break — if you want the repetitions split apart. For example, repeating &quot;Happy Birthday!&quot; 5 times in Each Line mode gives you five separate lines, ready to paste straight into a message or a document.
+              This Text Repeater supports four repeat modes: Entire Text, Each Word, Each Line, and Paragraphs. You can also choose a custom separator such as a space, comma, or line break to control how the repeated output is formatted.
+            </p>
+            <p>
+              For example, enter <code className="rounded bg-muted px-1.5 py-0.5 text-sm font-mono text-foreground">Happy Birthday!</code>, choose a repeat count of 5, and select Each Line to generate five separate lines that are ready to copy.
             </p>
           </div>
         </div>
@@ -313,37 +246,28 @@ export default function HomePage() {
             Features
           </h2>
           <ul className="grid gap-3 sm:grid-cols-2">
-         {[
-           <>Repeat text up to 10,000 times instantly</>,
-           <>Quick presets (10, 50, 100, 500, 1,000) or a custom count</>,
-           <>Four repeat modes: Entire Text, Each Word, Each Line, Paragraphs</>,
-           <>Custom separators: space, comma, newline, or any character</>,
-           <>
-           Live character and{" "}
-           <Link
-           href="/word-counter"
-           className="text-primary hover:underline"
-            >
-           word count
-         </Link>{" "}
-          as you type
-        </>,
-           <>One-click copy to clipboard</>,
-           <>Download the result as a .txt file</>,
-           <>Works with emojis, symbols, and full Unicode text</>,
-           <>Doubles as a WhatsApp message repeater for chats that need the same line sent twice</>,
-           <>No signup, no download, completely free</>,
-           <>Runs smoothly on desktop, mobile, and tablet</>,
-          ].map((feature, idx) => (
-       <li
-         key={idx}
-         className="flex items-start gap-3 rounded-lg border border-border bg-card p-3 text-sm text-foreground/90"
-         >
-         <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-         <span>{feature}</span>
-          </li>
-        ))}
-       </ul>
+            {[
+              "Repeat text up to 10,000 times",
+              "Preset repeat counts for quick use",
+              "Custom repeat counts",
+              "Four repeat modes: Entire Text, Each Word, Each Line, and Paragraphs",
+              "Custom separators including spaces, commas, and line breaks",
+              "Live character and word counts",
+              "One-click copy to clipboard",
+              "Download repeated text as a .txt file",
+              "Support for emojis, symbols, and Unicode text",
+              "No account or signup required",
+              "Free to use in your browser",
+            ].map((feature, idx) => (
+              <li
+                key={idx}
+                className="flex items-start gap-3 rounded-lg border border-border bg-card p-3 text-sm text-foreground/90"
+              >
+                <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                <span>{feature}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
@@ -356,20 +280,9 @@ export default function HomePage() {
               Privacy & Security
             </h2>
           </div>
-          <ul className="space-y-3 text-foreground/90 leading-relaxed">
-            {[
-              "Text repetition happens locally in your browser",
-              "Nothing you type is uploaded to a server",
-              "Nothing is stored once you close the page",
-              "No account or signup required",
-              "Works without an internet connection once the page has loaded",
-            ].map((item, idx) => (
-              <li key={idx} className="flex items-start gap-3 rounded-lg border border-border bg-card p-3.5 text-sm">
-                <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
+          <p className="text-foreground/90 leading-relaxed bg-card p-5 rounded-xl border border-border shadow-sm text-base">
+            Your text is processed locally in your browser while you use the Text Repeater. The tool does not require an account, and your input is not uploaded to a server for text generation.
+          </p>
         </div>
       </section>
 
@@ -382,8 +295,8 @@ export default function HomePage() {
               Device & Browser Compatibility
             </h2>
           </div>
-          <p className="text-foreground/90 leading-relaxed bg-card p-5 rounded-xl border border-border shadow-sm">
-            Works on desktop, laptop, Android, iPhone, and iPad, in Chrome, Firefox, Edge, and Safari. There&apos;s nothing to install — it runs the same way in the browser tab, regardless of device.
+          <p className="text-foreground/90 leading-relaxed bg-card p-5 rounded-xl border border-border shadow-sm text-base">
+            Text Repeater works on modern desktop and mobile browsers, including Chrome, Firefox, Edge, and Safari. Nothing needs to be installed.
           </p>
         </div>
       </section>
