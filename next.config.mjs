@@ -50,6 +50,16 @@ const nextConfig = {
         ],
       },
       {
+        // Cache next.js immutable static assets
+        source: '/_next/static/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
         // Cache static files (images, fonts, icons, manifest, favicon) aggressively
         source: '/:path*.(png|svg|jpg|jpeg|webp|woff2|ico|json)',
         headers: [

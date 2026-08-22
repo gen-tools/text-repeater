@@ -11,11 +11,15 @@ const geist = Geist({
   subsets: ["latin"],
   variable: "--font-geist-sans",
   display: "swap",
+  preload: true,
+  fallback: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
 })
 const geistMono = Geist_Mono({ 
   subsets: ["latin"],
   variable: "--font-geist-mono",
   display: "swap",
+  preload: true,
+  fallback: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
 })
 
 export const metadata: Metadata = {
@@ -113,26 +117,31 @@ export default function RootLayout({
           }}
         />
 
-        {/* Google Analytics - gtag.js */}
+        {/* Resource preconnect hints for third-party scripts */}
+        <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://googleads.g.doubleclick.net" />
+
+        {/* Google Analytics - gtag.js (lazyOnload for mobile speed) */}
         {process.env.NODE_ENV === 'production' && (
           <>
             <Script
               src="https://www.googletagmanager.com/gtag/js?id=G-F7V35W7MQV"
-              strategy="afterInteractive"
+              strategy="lazyOnload"
             />
-            <Script id="google-analytics" strategy="afterInteractive">
+            <Script id="google-analytics" strategy="lazyOnload">
               {`window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-F7V35W7MQV', { page_path: window.location.pathname });`}
             </Script>
-             {/* Google AdSense */}
-    <Script
-      async
-      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4975102983560437"
-      crossOrigin="anonymous"
-      strategy="afterInteractive"
-           />
+            {/* Google AdSense (lazyOnload to protect FCP and LCP) */}
+            <Script
+              id="google-adsense"
+              src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4975102983560437"
+              crossOrigin="anonymous"
+              strategy="lazyOnload"
+            />
           </>
         )}
 

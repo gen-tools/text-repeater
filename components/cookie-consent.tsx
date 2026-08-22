@@ -27,8 +27,20 @@ export function CookieConsent({ onAcceptAll, onReject, onSaveSettings }: CookieC
   useEffect(() => {
     const consent = localStorage.getItem("cookie-consent")
     if (!consent) {
-      const timer = setTimeout(() => setIsVisible(true), 500)
-      return () => clearTimeout(timer)
+      if (typeof window !== "undefined" && "requestIdleCallback" in window) {
+        const handle = (window as unknown as { requestIdleCallback: (cb: () => void, opts?: { timeout: number }) => number }).requestIdleCallback(
+          () => setIsVisible(true),
+          { timeout: 2500 }
+        )
+        return () => {
+          if ("cancelIdleCallback" in window) {
+            (window as unknown as { cancelIdleCallback: (id: number) => void }).cancelIdleCallback(handle)
+          }
+        }
+      } else {
+        const timer = setTimeout(() => setIsVisible(true), 2000)
+        return () => clearTimeout(timer)
+      }
     }
   }, [])
 
