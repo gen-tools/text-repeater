@@ -114,6 +114,11 @@ const nextConfig = {
         destination: '/zalgo-text-generator',
         permanent: true,
       },
+      {
+        source: '/fancy-text',
+        destination: '/fancy-text-generator',
+        permanent: true,
+      },
     ]
   },
 }
