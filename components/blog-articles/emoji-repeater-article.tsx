@@ -7,7 +7,7 @@ export function EmojiRepeaterArticle() {
         In modern digital communication, emojis are far more than mere punctuation — they express emotion, create visual flair, drive social media engagement, and add playful personality to posts across Instagram, TikTok, WhatsApp, Discord, and Telegram.
       </p>
       <p>
-        However, if you have ever tried tapping the same emoji button on your mobile keyboard 100 or 1,000 times to create an intense reaction comment, you know how frustratingly slow it is. That is where our dedicated <Link href="/emoji-repeater" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">Emoji Repeater tool</Link> comes in: multiply any single emoji or emoji combination up to 10,000 times in less than a second.
+        However, if you have ever tried tapping the same emoji button on your mobile keyboard 100 or 1,000 times to create an intense reaction comment, you know how frustratingly slow it is. That is where our dedicated <Link href="/emoji-repeater" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">Emoji Repeater</Link> comes in: multiply any single emoji or emoji combination up to 10,000 times in less than a second.
       </p>
 
       <h2 className="text-2xl sm:text-3xl font-bold text-foreground pt-4">
@@ -28,7 +28,7 @@ export function EmojiRepeaterArticle() {
       </p>
       <ol className="list-decimal list-inside space-y-2.5 pl-2 font-normal">
         <li>
-          Open the <Link href="/emoji-repeater" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">Emoji Repeater tool</Link> on your desktop or mobile browser.
+          Open the Emoji Repeater on your desktop or mobile browser.
         </li>
         <li>
           Paste or select your target emojis (e.g., 🔥, 😂, ❤️, 🚀, or a sequence like 🔥🚀💯).
@@ -177,7 +177,7 @@ export function EmojiRepeaterArticle() {
         Conclusion
       </h2>
       <p>
-        Elevate your social media messages and comment reactions effortlessly. Try out our free <Link href="/emoji-repeater" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">Emoji Repeater tool</Link> today to generate thousands of emojis in seconds!
+        Elevate your social media messages and comment reactions effortlessly. Try out our free tool to <Link href="/emoji-repeater" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">multiply emojis online</Link> in seconds!
       </p>
     </div>
   )

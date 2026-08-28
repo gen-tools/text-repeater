@@ -7,7 +7,7 @@ export function WordCounterArticle() {
         Whether you are a student writing an academic essay, an author drafting a book chapter, a digital marketer crafting SEO meta descriptions, or a social media manager composing tweets and Instagram captions, staying within strict word and character limits is vital.
       </p>
       <p>
-        Our real-time <Link href="/word-counter" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">Word Counter tool</Link> provides instant, accurate text statistics as you type or paste your document. Analyze total word count, character count with and without spaces, sentence count, paragraph count, and estimated reading time with zero lag.
+        Our real-time <Link href="/word-counter" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">Word Counter</Link> provides instant, accurate text statistics as you type or paste your document. Analyze total word count, character count with and without spaces, sentence count, paragraph count, and estimated reading time with zero lag.
       </p>
 
       <h2 className="text-2xl sm:text-3xl font-bold text-foreground pt-4">
@@ -79,7 +79,7 @@ export function WordCounterArticle() {
       </ul>
 
       <p>
-        Pasting your copy into our <Link href="/word-counter" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">Word Counter</Link> before publishing ensures your headlines and captions never get cut off with awkward ellipses (...).
+        Pasting your copy into our Word Counter before publishing ensures your headlines and captions never get cut off with awkward ellipses (...).
       </p>
 
       <h2 className="text-2xl sm:text-3xl font-bold text-foreground pt-4">
@@ -155,7 +155,7 @@ export function WordCounterArticle() {
         Conclusion
       </h2>
       <p>
-        Never guess document length or hit unexpected character limits again. Bookmark our free <Link href="/word-counter" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">Word Counter tool</Link> for instant writing analytics!
+        Never guess document length or hit unexpected character limits again. Bookmark our free tool to <Link href="/word-counter" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">count words and characters online</Link> for instant writing analytics!
       </p>
     </div>
   )

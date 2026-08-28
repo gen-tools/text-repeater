@@ -271,7 +271,7 @@ export default function TermsPage() {
                 <ul className="space-y-1">
                   <li>
                     <Link href="/privacy" className="text-primary hover:underline inline-flex items-center gap-1">
-                      <ShieldCheck className="h-3.5 w-3.5" /> Privacy Policy
+                      <ShieldCheck className="h-3.5 w-3.5" /> Privacy & Data Policy
                     </Link>
                   </li>
                   <li>

@@ -8,7 +8,7 @@ import { Breadcrumbs } from "@/components/breadcrumbs"
 
 const PAGE_TITLE = "Zalgo Text Generator - Create Glitchy Cursed Text"
 const PAGE_DESCRIPTION = "Free zalgo text generator. Create creepy, glitchy, cursed text effects with combining Unicode characters. Perfect for Halloween, horror themes, and memes."
-const PAGE_URL = "https://mytextrepeater.com/zalgo-text"
+const PAGE_URL = "https://mytextrepeater.com/zalgo-text-generator"
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -183,7 +183,7 @@ export default function ZalgoTextPage() {
 
       <section className="border-t border-border bg-muted/30">
         <div className="container mx-auto px-4">
-          <RelatedTools currentPath="/zalgo-text" />
+          <RelatedTools currentPath="/zalgo-text-generator" />
         </div>
       </section>
 

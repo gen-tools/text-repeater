@@ -8,8 +8,8 @@ const tools = [
   { name: "Word Counter", href: "/word-counter" },
   { name: "Emoji Repeater", href: "/emoji-repeater" },
   { name: "Word Repeater", href: "/word-repeater" },
-  { name: "Blank Text", href: "/blank-text" },
-  { name: "Zalgo Text", href: "/zalgo-text" },
+  { name: "Blank Text Generator", href: "/blank-text-generator" },
+  { name: "Zalgo Text Generator", href: "/zalgo-text-generator" },
   { name: "Fancy Text Generator", href: "/fancy-text-generator" },
   { name: "Case Converter", href: "/case-converter" },
 ]

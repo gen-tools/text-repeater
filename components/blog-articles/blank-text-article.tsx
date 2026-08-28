@@ -7,7 +7,7 @@ export function BlankTextArticle() {
         Have you ever tried to send an empty message on WhatsApp, create an invisible Instagram bio, or save an empty nickname in video games like PUBG, Free Fire, or Roblox — only to find that pressing the spacebar doesn&apos;t work?
       </p>
       <p>
-        Most modern web applications and social platforms automatically run string trimming functions (such as JavaScript&apos;s <code>.trim()</code>) that strip out standard white spaces. Our free <Link href="/blank-text" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">Blank Text Generator</Link> bypasses these restrictions using specialized non-breaking invisible Unicode characters that register as valid data while remaining completely invisible to the human eye.
+        Most modern web applications and social platforms automatically run string trimming functions (such as JavaScript&apos;s <code>.trim()</code>) that strip out standard white spaces. Our free <Link href="/blank-text-generator" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">Blank Text Generator</Link> bypasses these restrictions using specialized non-breaking invisible Unicode characters that register as valid data while remaining completely invisible to the human eye.
       </p>
 
       <h2 className="text-2xl sm:text-3xl font-bold text-foreground pt-4">
@@ -71,7 +71,7 @@ export function BlankTextArticle() {
         Step-by-Step Guide: How to Copy and Paste Blank Text
       </h2>
       <p>
-        Our <Link href="/blank-text" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">Blank Text Generator</Link> offers two ultra-simple ways to copy invisible space:
+        Our Blank Text Generator offers two ultra-simple ways to copy invisible space:
       </p>
 
       <h3 className="text-xl font-bold text-foreground pt-2">
@@ -120,7 +120,7 @@ export function BlankTextArticle() {
         4. Combining Blank Text with Other Generators
       </h3>
       <p>
-        You can combine invisible spacing with our main <Link href="/" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">Text Repeater</Link> to generate massive multi-line invisible walls, or use it alongside our <Link href="/zalgo-text" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">Zalgo Text Generator</Link> to separate corrupted glitch art blocks safely.
+        You can combine invisible spacing with our main <Link href="/" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">Text Repeater</Link> to generate massive multi-line invisible walls, or use it alongside our <Link href="/zalgo-text-generator" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">Zalgo Text Generator</Link> to separate corrupted glitch art blocks safely.
       </p>
 
       <h2 className="text-2xl sm:text-3xl font-bold text-foreground pt-4">
@@ -160,7 +160,7 @@ export function BlankTextArticle() {
         Conclusion
       </h2>
       <p>
-        Don&apos;t let restrictive form fields limit your bio formatting or chat messaging. Use our free <Link href="/blank-text" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">Blank Text Generator</Link> to copy invisible space instantly!
+        Don&apos;t let restrictive form fields limit your bio formatting or chat messaging. Use our free tool to <Link href="/blank-text-generator" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">copy invisible blank characters</Link> instantly!
       </p>
     </div>
   )

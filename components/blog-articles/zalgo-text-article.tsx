@@ -7,7 +7,7 @@ export function ZalgoTextArticle() {
         Zalgo text — often described as &quot;cursed text,&quot; &quot;glitch text,&quot; or &quot;demonic typography&quot; — is one of the most recognizable visual memes on the internet. With character marks dripping downward, soaring upward, and slashing through letters, Zalgo text looks like corrupted code or a digital glitch straight out of a horror movie.
       </p>
       <p>
-        Despite its distorted appearance, Zalgo text is not a glitch, virus, or image file. It consists entirely of valid Unicode characters. Our free <Link href="/zalgo-text" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">Zalgo Text Generator</Link> allows you to convert plain text into creepy glitch art in seconds with adjustable intensity levels (Mini, Normal, and Crazy).
+        Despite its distorted appearance, Zalgo text is not a glitch, virus, or image file. It consists entirely of valid Unicode characters. Our free <Link href="/zalgo-text-generator" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">Zalgo Text Generator</Link> allows you to convert plain text into creepy glitch art in seconds with adjustable intensity levels (Mini, Normal, and Crazy).
       </p>
 
       <h2 className="text-2xl sm:text-3xl font-bold text-foreground pt-4">
@@ -85,7 +85,7 @@ export function ZalgoTextArticle() {
       </p>
       <ol className="list-decimal list-inside space-y-2.5 pl-2 font-normal">
         <li>
-          Open the <Link href="/zalgo-text" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">Zalgo Text Generator</Link>.
+          Open the Zalgo Text Generator in your browser.
         </li>
         <li>
           Enter your target word or message in the input field.
@@ -112,7 +112,7 @@ export function ZalgoTextArticle() {
           Pre-format your text into aesthetic Unicode fonts using our <Link href="/fancy-text-generator" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">Fancy Text Generator</Link> before adding Zalgo glitch layers.
         </li>
         <li>
-          Separate dense Zalgo blocks with clean spacing using our <Link href="/blank-text" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">Blank Text Generator</Link> to prevent layout clipping.
+          Separate dense Zalgo blocks with clean spacing using our <Link href="/blank-text-generator" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">Blank Text Generator</Link> to prevent layout clipping.
         </li>
       </ul>
 
@@ -153,7 +153,7 @@ export function ZalgoTextArticle() {
         Conclusion
       </h2>
       <p>
-        Unleash creepy, corrupted glitch typography for your profiles and memes. Try out our free <Link href="/zalgo-text" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">Zalgo Text Generator</Link> today!
+        Unleash creepy, corrupted glitch typography for your profiles and memes. Try out our free tool to <Link href="/zalgo-text-generator" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">generate corrupted glitch text</Link> today!
       </p>
     </div>
   )

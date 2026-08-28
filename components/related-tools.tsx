@@ -36,13 +36,13 @@ const allTools = [
   },
   {
     name: "Blank Text Generator",
-    href: "/blank-text",
+    href: "/blank-text-generator",
     description: "Generate invisible characters and empty text",
     icon: Hash,
   },
   {
     name: "Zalgo Text Generator",
-    href: "/zalgo-text",
+    href: "/zalgo-text-generator",
     description: "Create creepy glitch text effects",
     icon: Sparkles,
   },

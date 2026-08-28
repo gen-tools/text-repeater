@@ -42,8 +42,8 @@ const availableTools = [
   { name: "Case Converter", href: "/case-converter", desc: "Convert text between UPPERCASE, lowercase, Title Case, camelCase, snake_case, and more." },
   { name: "Word Counter", href: "/word-counter", desc: "Analyze word count, character count, reading time, and sentence statistics in real time." },
   { name: "Fancy Text Generator", href: "/fancy-text-generator", desc: "Transform standard text into stylish Unicode fonts for bios, usernames, and captions." },
-  { name: "Zalgo Text Generator", href: "/zalgo-text", desc: "Create glitchy, cursed, and chaotic text effects using Unicode combining marks." },
-  { name: "Blank Text Generator", href: "/blank-text", desc: "Generate invisible spaces and empty Unicode characters for messages and statuses." },
+  { name: "Zalgo Text Generator", href: "/zalgo-text-generator", desc: "Create glitchy, cursed, and chaotic text effects using Unicode combining marks." },
+  { name: "Blank Text Generator", href: "/blank-text-generator", desc: "Generate invisible spaces and empty Unicode characters for messages and statuses." },
 ]
 
 export default function AboutPage() {

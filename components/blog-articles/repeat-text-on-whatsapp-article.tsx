@@ -395,7 +395,7 @@ Please reply`}</code>
         Try It Yourself
       </h2>
       <p>
-        Next time you need to repeat a word, phrase, or emoji for WhatsApp, skip the manual retyping. Use the <Link href="/" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">Text Repeater tool</Link> to generate your text in a few seconds, check the count, and paste it straight into your chat.
+        Next time you need to repeat a word, phrase, or emoji for WhatsApp, skip the manual retyping. Use our free tool to <Link href="/" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">generate your repeated text</Link> in a few seconds, check the count, and paste it straight into your chat.
       </p>
     </div>
   )

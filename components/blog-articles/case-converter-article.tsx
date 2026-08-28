@@ -74,7 +74,7 @@ export function CaseConverterArticle() {
       </p>
       <ol className="list-decimal list-inside space-y-2.5 pl-2 font-normal">
         <li>
-          Open the <Link href="/case-converter" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">Case Converter tool</Link>.
+          Open the Case Converter tool in your browser.
         </li>
         <li>
           Paste your raw text into the input field.
@@ -169,7 +169,7 @@ export function CaseConverterArticle() {
         Conclusion
       </h2>
       <p>
-        Stop re-typing text whenever Caps Lock slips up. Use our free, fast <Link href="/case-converter" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">Case Converter online</Link> to adjust your text case in seconds!
+        Stop re-typing text whenever Caps Lock slips up. Use our free tool to <Link href="/case-converter" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">convert text case online</Link> in seconds!
       </p>
     </div>
   )

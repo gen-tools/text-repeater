@@ -9,7 +9,7 @@ import { Check, HelpCircle } from "lucide-react"
 
 const PAGE_TITLE = "Blank Text Generator — Copy and Paste Invisible Text"
 const PAGE_DESCRIPTION = "Generate blank text with our blank text generator. Copy and paste invisible Unicode characters for empty messages, blank usernames, bios, and more."
-const PAGE_URL = "https://mytextrepeater.com/blank-text"
+const PAGE_URL = "https://mytextrepeater.com/blank-text-generator"
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -515,7 +515,7 @@ export default function BlankTextPage() {
       {/* Related Tools */}
       <section className="border-t border-border bg-muted/30 py-16 cv-auto" id="related-tools-section">
         <div className="container mx-auto px-4">
-          <RelatedTools currentPath="/blank-text" />
+          <RelatedTools currentPath="/blank-text-generator" />
         </div>
       </section>
     </article>

@@ -7,7 +7,7 @@ export function WordRepeaterArticle() {
         Whether you are a developer testing input forms, a student creating memorization lists, or a content creator crafting attention-grabbing social media captions, manually typing or copy-pasting the same word repeatedly is a tedious waste of time. A single misclick or loss of concentration can leave you with an inaccurate count or messy formatting.
       </p>
       <p>
-        The <Link href="/word-repeater" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">Word Repeater tool</Link> solves this problem instantly. Designed specifically for word-level duplication, it allows you to repeat any single word or phrase up to 10,000 times in milliseconds, formatted with exact spaces, new lines, commas, or custom separators.
+        The <Link href="/word-repeater" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">Word Repeater</Link> solves this problem instantly. Designed specifically for word-level duplication, it allows you to repeat any single word or phrase up to 10,000 times in milliseconds, formatted with exact spaces, new lines, commas, or custom separators.
       </p>
 
       <h2 className="text-2xl sm:text-3xl font-bold text-foreground pt-4">
@@ -28,7 +28,7 @@ export function WordRepeaterArticle() {
       </p>
       <ol className="list-decimal list-inside space-y-2.5 pl-2 font-normal">
         <li>
-          Navigate to the <Link href="/word-repeater" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">Word Repeater tool</Link>.
+          Navigate to the Word Repeater in your browser.
         </li>
         <li>
           Type or paste your target word (e.g., &quot;Success&quot;, &quot;Focus&quot;, or &quot;YES!&quot;) into the input box.
@@ -219,7 +219,7 @@ export function WordRepeaterArticle() {
         Conclusion
       </h2>
       <p>
-        Stop spending minutes copying and pasting words by hand. Use the free <Link href="/word-repeater" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">Word Repeater tool</Link> to generate exact, perfectly formatted word repetitions instantly for testing, messaging, or creative writing projects.
+        Stop spending minutes copying and pasting words by hand. Use our free tool to <Link href="/word-repeater" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">repeat words online</Link> and generate exact, perfectly formatted word repetitions instantly for testing, messaging, or creative writing projects.
       </p>
     </div>
   )

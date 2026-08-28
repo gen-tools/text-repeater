@@ -79,7 +79,7 @@ export function FancyTextArticle() {
       </p>
       <ol className="list-decimal list-inside space-y-2.5 pl-2 font-normal">
         <li>
-          Navigate to the <Link href="/fancy-text-generator" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">Fancy Text Generator</Link>.
+          Navigate to the Fancy Text Generator in your browser.
         </li>
         <li>
           Type your desired text (e.g., your name, handle, or bio statement) into the input field.
@@ -113,7 +113,7 @@ export function FancyTextArticle() {
       </p>
       <ul className="list-disc list-inside space-y-2 pl-2">
         <li>
-          Combine fancy text with corrupted glitch art using our <Link href="/zalgo-text" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">Zalgo Text Generator</Link> for dark, horror, or gaming themes.
+          Combine fancy text with corrupted glitch art using our <Link href="/zalgo-text-generator" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">Zalgo Text Generator</Link> for dark, horror, or gaming themes.
         </li>
         <li>
           Pre-format your text capitalization using the <Link href="/case-converter" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">Case Converter</Link> before applying fancy font transformations.
@@ -157,7 +157,7 @@ export function FancyTextArticle() {
         Conclusion
       </h2>
       <p>
-        Upgrade your social media presence with aesthetic typography. Try out our free <Link href="/fancy-text-generator" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">Fancy Text Generator</Link> to create cool fonts instantly!
+        Upgrade your social media presence with aesthetic typography. Try out our free tool to <Link href="/fancy-text-generator" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">generate fancy fonts online</Link> instantly!
       </p>
     </div>
   )

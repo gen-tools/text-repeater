@@ -23,7 +23,7 @@ export function RepeatText1000TimesArticle() {
       <p>Here&apos;s what the process actually looks like:</p>
       <ol className="list-decimal list-inside space-y-2.5 pl-2 font-normal">
         <li>
-          Open the <Link href="/" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">Text Repeater tool</Link> in your browser.
+          Open the Text Repeater in your browser.
         </li>
         <li>
           Paste or type the text you want repeated. Could be a word, a full sentence, an emoji, a single line, or a paragraph.
@@ -116,7 +116,7 @@ export function RepeatText1000TimesArticle() {
         Repeating Text With Spaces, New Lines, Commas, or Custom Separators
       </h2>
       <p>
-        Whatever separator you pick changes both the look of the output and its final size. The <Link href="/" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">Text Repeater tool</Link> isn&apos;t locked to just spaces and line breaks either — you can set a custom separator too.
+        Whatever separator you pick changes both the look of the output and its final size. The Text Repeater isn&apos;t locked to just spaces and line breaks either — you can set a custom separator too.
       </p>
       <p>A few common choices, and when they make sense:</p>
       <ul className="list-disc list-inside space-y-2 pl-2">
@@ -514,7 +514,7 @@ console.log(repeated);`}</code>
         Try It Yourself
       </h2>
       <p>
-        Repeating text 1,000 times shouldn&apos;t take more than a few seconds once you&apos;re got the right setup. Head over to the <Link href="/" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">Text Repeater tool</Link>, paste your text, set your count, pick a separator, and get an exact result ready to use — no manual counting involved.
+        Repeating text 1,000 times shouldn&apos;t take more than a few seconds once you&apos;re got the right setup. Head over to our <Link href="/" className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80">online text multiplier</Link>, paste your text, set your count, pick a separator, and get an exact result ready to use — no manual counting involved.
       </p>
     </div>
   )
