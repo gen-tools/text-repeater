@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Twitter, PinIcon } from "lucide-react"
+import { Twitter, PinIcon, Instagram } from "lucide-react"
 import { BrandIcon } from "@/components/brand-icon"
 
 const tools = [
@@ -23,6 +23,12 @@ const pages = [
 ]
 
 const socialLinks = [
+  {
+    name: "Instagram",
+    href: "https://www.instagram.com/mytextrepeater/",
+    icon: Instagram,
+    ariaLabel: "Follow us on Instagram",
+  },
   {
     name: "X (Twitter)",
     href: "https://x.com/MyTextRepeate",

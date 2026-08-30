@@ -119,7 +119,8 @@ export default function RootLayout({
               "email": "contact@mytextrepeater.com",
               "sameAs": [
                 "https://x.com/MyTextRepeate",
-                "https://www.instagram.com/mytextrepeater/"
+                "https://www.instagram.com/mytextrepeater/",
+                "https://www.pinterest.com/mytextrepeater/"
               ]
             })
           }}
