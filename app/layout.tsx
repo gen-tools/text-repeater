@@ -96,6 +96,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="bg-background">
       <head>
+        {/* Preconnect & DNS-prefetch hints for third-party scripts to minimize TTFB & connection latency */}
+        <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://googleads.g.doubleclick.net" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://adservice.google.com" />
         <script
           id="fetch-polyfill"
           dangerouslySetInnerHTML={{
@@ -125,11 +131,6 @@ export default function RootLayout({
             })
           }}
         />
-
-        {/* Resource preconnect hints for third-party scripts */}
-        <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://googleads.g.doubleclick.net" />
 
         {/* Google Analytics - gtag.js (lazyOnload for mobile speed) */}
         {process.env.NODE_ENV === 'production' && (

@@ -11,25 +11,22 @@ export function EmojiRepeaterTool() {
   const [inputEmoji, setInputEmoji] = React.useState("")
   const [repeatCount, setRepeatCount] = React.useState(10)
   const [separator, setSeparator] = React.useState("")
-  const [output, setOutput] = React.useState("")
   const { showToast, copyToClipboard } = useCopyToast()
 
   const deferredInputEmoji = React.useDeferredValue(inputEmoji)
   const deferredRepeatCount = React.useDeferredValue(repeatCount)
   const deferredSeparator = React.useDeferredValue(separator)
 
-  React.useEffect(() => {
+  const output = React.useMemo(() => {
     if (!deferredInputEmoji) {
-      setOutput("")
-      return
+      return ""
     }
-    const result = Array(deferredRepeatCount).fill(deferredInputEmoji).join(deferredSeparator)
-    setOutput(result)
+    return Array(deferredRepeatCount).fill(deferredInputEmoji).join(deferredSeparator)
   }, [deferredInputEmoji, deferredRepeatCount, deferredSeparator])
 
   const handleClear = React.useCallback(() => {
     setInputEmoji("")
-    setOutput("")
+    setSeparator("")
   }, [])
 
   const handleDownload = React.useCallback(() => {

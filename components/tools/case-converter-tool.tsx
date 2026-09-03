@@ -51,20 +51,17 @@ export function CaseConverterTool() {
   const [inputText, setInputText] = React.useState("")
   const deferredInputText = React.useDeferredValue(inputText)
   const [selectedCase, setSelectedCase] = React.useState<CaseType>("upper")
-  const [output, setOutput] = React.useState("")
   const { showToast, copyToClipboard } = useCopyToast()
 
-  React.useEffect(() => {
+  const output = React.useMemo(() => {
     if (!deferredInputText) {
-      setOutput("")
-      return
+      return ""
     }
-    setOutput(convertCase(deferredInputText, selectedCase))
+    return convertCase(deferredInputText, selectedCase)
   }, [deferredInputText, selectedCase])
 
   const handleClear = React.useCallback(() => {
     setInputText("")
-    setOutput("")
   }, [])
 
   return (

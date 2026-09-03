@@ -18,18 +18,15 @@ const blankTypes: { value: BlankType; label: string; char: string; description: 
 export function BlankTextTool() {
   const [blankType, setBlankType] = React.useState<BlankType>("zeroWidth")
   const [repeatCount, setRepeatCount] = React.useState(10)
-  const [output, setOutput] = React.useState("")
   const { showToast, copyToClipboard } = useCopyToast()
 
-  React.useEffect(() => {
+  const output = React.useMemo(() => {
     const selectedType = blankTypes.find(t => t.value === blankType)
-    if (selectedType) {
-      setOutput(Array(repeatCount).fill(selectedType.char).join(""))
-    }
+    if (!selectedType) return ""
+    return Array(repeatCount).fill(selectedType.char).join("")
   }, [blankType, repeatCount])
 
   const handleClear = React.useCallback(() => {
-    setOutput("")
     setRepeatCount(10)
   }, [])
 

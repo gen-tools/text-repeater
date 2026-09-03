@@ -82,7 +82,6 @@ export function NananaTranslatorTool() {
   const [selectedLengthPreset, setSelectedLengthPreset] = React.useState<number>(50)
   const [customLength, setCustomLength] = React.useState<number>(120)
   const [customPattern, setCustomPattern] = React.useState("NA")
-  const [output, setOutput] = React.useState("")
   const [selectedQuickPick, setSelectedQuickPick] = React.useState<string | null>(null)
   const [salt, setSalt] = React.useState(0) // Allows quick remix/regenerate if user wants a variation
   const { showToast, copyToClipboard } = useCopyToast()
@@ -93,41 +92,35 @@ export function NananaTranslatorTool() {
   const charCount = inputText.length
   const wordCount = inputText.trim() ? inputText.trim().split(/\s+/).length : 0
 
-  React.useEffect(() => {
+  const output = React.useMemo(() => {
     if (selectedQuickPick) {
       const matched = popularNananaMessages.find((m) => m.label === selectedQuickPick)
       if (matched && inputText === matched.phrase) {
-        setOutput(matched.pattern)
-        return
+        return matched.pattern
       }
     }
 
     if (!deferredInput.trim()) {
-      setOutput("")
-      return
+      return ""
     }
 
     const modifiedInput = salt > 0 ? `${deferredInput}__salt${salt}` : deferredInput
-    const generated = generateNananaText({
+    return generateNananaText({
       text: modifiedInput,
       style: selectedStyle,
       length: activeLength,
       customPattern,
     })
-
-    setOutput(generated)
-  }, [deferredInput, inputText, selectedStyle, activeLength, customPattern, salt, selectedQuickPick])
+  }, [selectedQuickPick, inputText, deferredInput, salt, selectedStyle, activeLength, customPattern])
 
   const handleQuickPick = React.useCallback((item: PopularNananaMessage) => {
     setSelectedQuickPick(item.label)
     setInputText(item.phrase)
-    setOutput(item.pattern)
   }, [])
 
   const handleClear = React.useCallback(() => {
     setSelectedQuickPick(null)
     setInputText("")
-    setOutput("")
   }, [])
 
   const handleDownload = React.useCallback(() => {

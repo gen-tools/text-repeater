@@ -21,6 +21,9 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production' ? { exclude: ['error', 'warn'] } : false,
+  },
   experimental: {
     optimizePackageImports: [
       'lucide-react',
@@ -35,6 +38,10 @@ const nextConfig = {
       '@radix-ui/react-slot',
       '@radix-ui/react-dropdown-menu',
       '@radix-ui/react-popover',
+      '@radix-ui/react-tooltip',
+      '@radix-ui/react-tabs',
+      '@radix-ui/react-select',
+      '@radix-ui/react-scroll-area',
     ],
   },
   images: {
@@ -57,6 +64,10 @@ const nextConfig = {
           {
             key: 'Content-Security-Policy',
             value: contentSecurityPolicy,
+          },
+          {
+            key: 'X-DNS-Prefetch-Control',
+            value: 'on',
           },
           {
             key: 'X-Frame-Options',
@@ -92,7 +103,7 @@ const nextConfig = {
       },
       {
         // Cache static files (images, fonts, icons, manifest, favicon) aggressively
-        source: '/:path*.(png|svg|jpg|jpeg|webp|woff2|ico|json)',
+        source: '/:all*(png|svg|jpg|jpeg|webp|avif|woff2|woff|ttf|ico|json|txt)',
         headers: [
           {
             key: 'Cache-Control',

@@ -58,6 +58,7 @@ function countWordSyllables(word: string): number {
 
 export function WordCounterTool() {
   const [inputText, setInputText] = React.useState("")
+  const deferredInputText = React.useDeferredValue(inputText)
   const [readingSpeed, setReadingSpeed] = React.useState(225) // WPM
   const [speakingSpeed, setSpeakingSpeed] = React.useState(150) // WPM
   const [ignoreStopWords, setIgnoreStopWords] = React.useState(true)
@@ -72,7 +73,7 @@ export function WordCounterTool() {
 
   // Calculations
   const stats = React.useMemo(() => {
-    const text = inputText
+    const text = deferredInputText
     const trimmed = text.trim()
 
     // Words
@@ -213,7 +214,7 @@ export function WordCounterTool() {
       spacesCount,
       topKeywords
     }
-  }, [inputText, readingSpeed, speakingSpeed, ignoreStopWords])
+  }, [deferredInputText, readingSpeed, speakingSpeed, ignoreStopWords])
 
   // Formatting actions
   const applyAction = (type: string) => {

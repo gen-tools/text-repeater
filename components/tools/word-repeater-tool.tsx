@@ -9,17 +9,15 @@ export function WordRepeaterTool() {
   const [inputText, setInputText] = React.useState("")
   const [repeatCount, setRepeatCount] = React.useState(3)
   const [wordSeparator, setWordSeparator] = React.useState(" ")
-  const [output, setOutput] = React.useState("")
   const { showToast, copyToClipboard } = useCopyToast()
 
   const deferredInputText = React.useDeferredValue(inputText)
   const deferredRepeatCount = React.useDeferredValue(repeatCount)
   const deferredWordSeparator = React.useDeferredValue(wordSeparator)
 
-  React.useEffect(() => {
+  const output = React.useMemo(() => {
     if (!deferredInputText.trim()) {
-      setOutput("")
-      return
+      return ""
     }
     
     const words = deferredInputText.trim().split(/\s+/)
@@ -27,12 +25,11 @@ export function WordRepeaterTool() {
       Array(deferredRepeatCount).fill(word).join(deferredWordSeparator)
     )
     
-    setOutput(repeatedWords.join(" "))
+    return repeatedWords.join(" ")
   }, [deferredInputText, deferredRepeatCount, deferredWordSeparator])
 
   const handleClear = React.useCallback(() => {
     setInputText("")
-    setOutput("")
   }, [])
 
   const handleDownload = React.useCallback(() => {

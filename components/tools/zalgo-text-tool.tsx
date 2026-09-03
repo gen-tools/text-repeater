@@ -34,7 +34,6 @@ export function ZalgoTextTool() {
   const [inputText, setInputText] = React.useState("")
   const deferredInputText = React.useDeferredValue(inputText)
   const [intensity, setIntensity] = React.useState<Intensity>("normal")
-  const [output, setOutput] = React.useState("")
   const { showToast, copyToClipboard } = useCopyToast()
 
   const getRandomChar = (arr: string[]) => arr[Math.floor(Math.random() * arr.length)]
@@ -60,17 +59,15 @@ export function ZalgoTextTool() {
     }).join("")
   }, [])
 
-  React.useEffect(() => {
+  const output = React.useMemo(() => {
     if (!deferredInputText) {
-      setOutput("")
-      return
+      return ""
     }
-    setOutput(generateZalgo(deferredInputText, intensity))
+    return generateZalgo(deferredInputText, intensity)
   }, [deferredInputText, intensity, generateZalgo])
 
   const handleClear = React.useCallback(() => {
     setInputText("")
-    setOutput("")
   }, [])
 
   return (

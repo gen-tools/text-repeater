@@ -12,7 +12,6 @@ export function TextRepeaterTool() {
   const [repeatCount, setRepeatCount] = React.useState(5)
   const [repeatMode, setRepeatMode] = React.useState<RepeatMode>("characters")
   const [separator, setSeparator] = React.useState("")
-  const [output, setOutput] = React.useState("")
   const { showToast, copyToClipboard } = useCopyToast()
 
   const deferredInputText = React.useDeferredValue(inputText)
@@ -22,38 +21,34 @@ export function TextRepeaterTool() {
   const charCount = inputText.length
   const wordCount = inputText.trim() ? inputText.trim().split(/\s+/).length : 0
 
-  React.useEffect(() => {
+  const output = React.useMemo(() => {
     if (!deferredInputText) {
-      setOutput("")
-      return
+      return ""
     }
 
     const sep = deferredSeparator || (repeatMode === "paragraphs" ? "\n\n" : repeatMode === "lines" ? "\n" : "")
-    let result = ""
 
     switch (repeatMode) {
       case "characters":
-        result = Array(deferredRepeatCount).fill(deferredInputText).join(sep)
-        break
-      case "words":
+        return Array(deferredRepeatCount).fill(deferredInputText).join(sep)
+      case "words": {
         const words = deferredInputText.trim().split(/\s+/)
-        result = words.map(word => Array(deferredRepeatCount).fill(word).join(sep)).join(" ")
-        break
-      case "lines":
+        return words.map(word => Array(deferredRepeatCount).fill(word).join(sep)).join(" ")
+      }
+      case "lines": {
         const lines = deferredInputText.split("\n")
-        result = lines.map(line => Array(deferredRepeatCount).fill(line).join(sep)).join("\n")
-        break
+        return lines.map(line => Array(deferredRepeatCount).fill(line).join(sep)).join("\n")
+      }
       case "paragraphs":
-        result = Array(deferredRepeatCount).fill(deferredInputText).join(sep)
-        break
+        return Array(deferredRepeatCount).fill(deferredInputText).join(sep)
+      default:
+        return ""
     }
-
-    setOutput(result)
   }, [deferredInputText, deferredRepeatCount, repeatMode, deferredSeparator])
 
   const handleClear = React.useCallback(() => {
     setInputText("")
-    setOutput("")
+    setSeparator("")
   }, [])
 
   const handleDownload = React.useCallback(() => {
