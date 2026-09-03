@@ -3,7 +3,7 @@ import Image from "next/image"
 import { ZalgoTextTool } from "@/components/tools/zalgo-text-tool"
 import { FAQAccordion } from "@/components/faq-accordion"
 import { RelatedTools } from "@/components/related-tools"
-import heroImage from "@/src/assets/images/zalgo_text_hero_1784377351127.jpg"
+import heroImage from "@/src/assets/images/zalgo_text_hero_1784377351127.webp"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 
 const PAGE_TITLE = "Zalgo Text Generator - Create Glitchy Cursed Text"

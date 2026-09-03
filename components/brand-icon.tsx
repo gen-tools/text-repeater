@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils"
 export function BrandIcon({ className }: { className?: string }) {
   return (
     <Image
-      src="/icon.svg"
+      src="/brand-logo-56.png"
       alt="My Text Repeater"
       width={28}
       height={28}

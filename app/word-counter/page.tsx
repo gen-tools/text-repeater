@@ -5,7 +5,7 @@ import { WordCounterTool } from "@/components/tools/word-counter-tool"
 import { FAQAccordion } from "@/components/faq-accordion"
 import { RelatedTools } from "@/components/related-tools"
 import { Breadcrumbs } from "@/components/breadcrumbs"
-import heroImage from "@/src/assets/images/word_counter_hero_1785799741311.jpg"
+import heroImage from "@/src/assets/images/word_counter_hero_1785799741311.webp"
 
 const PAGE_TITLE = "Word Counter & Text Analyzer | Count Words & Characters"
 const PAGE_DESCRIPTION = "Free online word counter and text analyzer to count words, characters, sentences, paragraphs, readability, reading time, and keyword density instantly."

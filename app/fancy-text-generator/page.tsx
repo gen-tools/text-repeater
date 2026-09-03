@@ -3,7 +3,7 @@ import Image from "next/image"
 import { FancyTextTool } from "@/components/tools/fancy-text-tool"
 import { FAQAccordion } from "@/components/faq-accordion"
 import { RelatedTools } from "@/components/related-tools"
-import heroImage from "@/src/assets/images/fancy_text_hero_1784377747000.jpg"
+import heroImage from "@/src/assets/images/fancy_text_hero_1784377747000.webp"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 
 const PAGE_TITLE = "Fancy Text Generator - Stylish Fonts & Unicode Text"

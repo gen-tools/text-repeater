@@ -4,7 +4,7 @@ import Link from "next/link";
 import { EmojiRepeaterTool } from "@/components/tools/emoji-repeater-tool"
 import { FAQAccordion } from "@/components/faq-accordion"
 import { RelatedTools } from "@/components/related-tools"
-import heroImage from "@/src/assets/images/emoji_repeater_hero_1784377315127.jpg"
+import heroImage from "@/src/assets/images/emoji_repeater_hero_1784377315127.webp"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 
 const PAGE_TITLE = "Emoji Repeater Online | Repeat Emojis Up to 10,000 Times"

@@ -3,7 +3,7 @@ import Image from "next/image"
 import { WordRepeaterTool } from "@/components/tools/word-repeater-tool"
 import { FAQAccordion } from "@/components/faq-accordion"
 import { RelatedTools } from "@/components/related-tools"
-import heroImage from "@/src/assets/images/word_repeater_hero_1784377297978.jpg"
+import heroImage from "@/src/assets/images/word_repeater_hero_1784377297978.webp"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { Check, Shield, Laptop, HelpCircle } from "lucide-react"
 

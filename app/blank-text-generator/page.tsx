@@ -3,7 +3,7 @@ import Image from "next/image"
 import { BlankTextTool } from "@/components/tools/blank-text-tool"
 import { FAQAccordion } from "@/components/faq-accordion"
 import { RelatedTools } from "@/components/related-tools"
-import heroImage from "@/src/assets/images/blank_text_hero_1784377330502.jpg"
+import heroImage from "@/src/assets/images/blank_text_hero_1784377330502.webp"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { Check, HelpCircle } from "lucide-react"
 

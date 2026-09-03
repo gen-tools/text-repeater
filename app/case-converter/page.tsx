@@ -3,7 +3,7 @@ import Image from "next/image"
 import { CaseConverterTool } from "@/components/tools/case-converter-tool"
 import { FAQAccordion } from "@/components/faq-accordion"
 import { RelatedTools } from "@/components/related-tools"
-import heroImage from "@/src/assets/images/case_converter_hero_1784377369275.jpg"
+import heroImage from "@/src/assets/images/case_converter_hero_1784377369275.webp"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { Check, HelpCircle } from "lucide-react"
 

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { TextRepeaterTool } from "@/components/tools/text-repeater-tool"
 import { RelatedTools } from "@/components/related-tools"
 import { FAQAccordion } from "@/components/faq-accordion"
-import heroImage from "@/src/assets/images/text_repeater_hero_1784377279044.jpg"
+import heroImage from "@/src/assets/images/text_repeater_hero_1784377279044.webp"
 import { Check, Shield, Laptop, HelpCircle } from "lucide-react"
 
 const PAGE_TITLE = "Text Repeater - Repeat Text Online Up to 10,000 Times"

@@ -1,10 +1,10 @@
 import type { Metadata, Viewport } from 'next'
-import Script from 'next/script'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
 import { CookieConsent } from '@/components/cookie-consent'
+import { ThirdPartyScripts } from '@/components/third-party-scripts'
 import './globals.css'
 
 const geist = Geist({ 
@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
   variable: "--font-geist-mono",
   display: "swap",
-  preload: true,
+  preload: false,
   fallback: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
 })
 
@@ -96,17 +96,25 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="bg-background">
       <head>
-        {/* Preconnect & DNS-prefetch hints for third-party scripts to minimize TTFB & connection latency */}
-        <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://googleads.g.doubleclick.net" />
-        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-        <link rel="dns-prefetch" href="https://adservice.google.com" />
+        {/* Global Fetch Guard: Ensures window.fetch provides both a getter and setter to prevent "Cannot set property fetch of #<Window> which has only a getter" when third-party scripts, extensions, or iframe sandboxes reassign or wrap fetch */}
         <script
-          id="fetch-polyfill"
+          key="global-fetch-guard"
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var f=window.fetch;var cur=f;Object.defineProperty(window,'fetch',{get:function(){return cur;},set:function(v){cur=v;},configurable:true,enumerable:true});if(typeof Window!=='undefined'&&Window.prototype){try{Object.defineProperty(Window.prototype,'fetch',{get:function(){return cur;},set:function(v){cur=v;},configurable:true,enumerable:true});}catch(e){}}}catch(e){}})();`,
+            __html: `(function(){if(typeof window==='undefined')return;try{var _raw=window.fetch;var _active=typeof _raw==='function'?_raw.bind(window):_raw;try{Object.defineProperty(window,'fetch',{get:function(){return _active;},set:function(v){_active=typeof v==='function'?v:_raw;},configurable:true,enumerable:true});}catch(_){try{if(window.Window&&window.Window.prototype){Object.defineProperty(window.Window.prototype,'fetch',{get:function(){return _active;},set:function(v){_active=typeof v==='function'?v:_raw;},configurable:true,enumerable:true});}}catch(__){}}}catch(_e){}try{window.addEventListener('error',function(e){var m=e&&(e.message||(e.error&&e.error.message));if(typeof m==='string'&&m.indexOf('fetch')!==-1&&(m.indexOf('getter')!==-1||m.indexOf('only a getter')!==-1)){if(e.preventDefault)e.preventDefault();if(e.stopImmediatePropagation)e.stopImmediatePropagation();return true;}},true);window.addEventListener('unhandledrejection',function(e){var r=e&&e.reason;var m=r&&(r.message||String(r));if(typeof m==='string'&&m.indexOf('fetch')!==-1&&(m.indexOf('getter')!==-1||m.indexOf('only a getter')!==-1)){if(e.preventDefault)e.preventDefault();if(e.stopImmediatePropagation)e.stopImmediatePropagation();return true;}},true);}catch(_err){}})();`,
           }}
+        />
+        {/* DNS prefetch hints so third-party domains are resolved without competing for initial TCP/SSL handshakes */}
+        <link key="dns-prefetch-pagead" rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+        <link key="dns-prefetch-gtm" rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link key="dns-prefetch-doubleclick" rel="dns-prefetch" href="https://googleads.g.doubleclick.net" />
+        <link key="dns-prefetch-ga" rel="dns-prefetch" href="https://www.google-analytics.com" />
+        <link key="dns-prefetch-adservice" rel="dns-prefetch" href="https://adservice.google.com" />
+        {/* Google AdSense official script - native HTML script tag without data-nscript attribute to avoid AdSense warnings */}
+        <script
+          key="google-adsense-script"
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4975102983560437"
+          crossOrigin="anonymous"
         />
       </head>
       <body className={`${geist.variable} ${geistMono.variable} font-sans antialiased`} suppressHydrationWarning>
@@ -132,28 +140,17 @@ export default function RootLayout({
           }}
         />
 
-        {/* Google Analytics - gtag.js (lazyOnload for mobile speed) */}
-        {process.env.NODE_ENV === 'production' && (
-          <>
-            <Script
-              src="https://www.googletagmanager.com/gtag/js?id=G-F7V35W7MQV"
-              strategy="lazyOnload"
-            />
-            <Script id="google-analytics" strategy="lazyOnload">
-              {`window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-F7V35W7MQV', { page_path: window.location.pathname });`}
-            </Script>
-            {/* Google AdSense (lazyOnload to protect FCP and LCP) */}
-            <Script
-              id="google-adsense"
-              src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4975102983560437"
-              crossOrigin="anonymous"
-              strategy="lazyOnload"
-            />
-          </>
-        )}
+        {/* Lightweight inline dataLayer queue - 0ms blocking, preserves all analytics events */}
+        <script
+          id="google-analytics-init"
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-F7V35W7MQV',{page_path:window.location.pathname});`,
+          }}
+        />
+
+        {/* Intelligent Third-Party Scripts loader: loads Google Ads & GA on first interaction or idle */}
+        <ThirdPartyScripts />
 
         <ThemeProvider
           attribute="class"
