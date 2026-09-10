@@ -5,10 +5,10 @@ import { FAQAccordion } from "@/components/faq-accordion"
 import { RelatedTools } from "@/components/related-tools"
 import heroImage from "@/src/assets/images/word_repeater_hero_1784377297978.webp"
 import { Breadcrumbs } from "@/components/breadcrumbs"
-import { Check, Shield, Laptop, HelpCircle } from "lucide-react"
+import { Check, Laptop, HelpCircle, AlertCircle, Sparkles, MessageSquare, CheckCircle2, ArrowRight } from "lucide-react"
 
 const PAGE_TITLE = "Word Repeater — Repeat Each Word in Text Instantly"
-const PAGE_DESCRIPTION = "Repeat each word in your text on its own up to 10,000 times with custom separators, live word count, and instant copy or download."
+const PAGE_DESCRIPTION = "Word Repeater repeats each word in your text individually, one at a time, instead of copying the whole sentence as a single block up to 10,000 times."
 const PAGE_URL = "https://mytextrepeater.com/word-repeater"
 
 export const metadata: Metadata = {
@@ -44,55 +44,43 @@ export const metadata: Metadata = {
 const faqs = [
   {
     question: "What is a word repeater?",
-    answer: "It's a tool that repeats each word in your text individually, a set number of times, rather than copying the entire sentence as one block.",
+    answer: "It's a tool that repeats each word in your text on its own, one at a time, rather than copying the entire sentence as a single block.",
   },
   {
     question: "How is this different from a regular text repeater?",
-    answer: "A text repeater duplicates your whole input as-is. This tool breaks your input into words first, then repeats each word on its own before moving to the next — so \"hello world\" becomes \"hello hello hello world world world\" instead of \"hello world hello world hello world.\"",
+    answer: "A text repeater duplicates the whole line as one unit; this repeats each individual word before moving to the next, which produces a stutter effect instead of an echo.",
   },
   {
     question: "Can I repeat just one word?",
-    answer: "Yes. Type a single word instead of a full sentence, and only that word gets repeated.",
+    answer: "Yes, enter a single word and it repeats exactly as many times as you set, with your chosen separator between each copy.",
   },
   {
-    question: "Can I repeat emojis?",
-    answer: "Yes, emojis are treated the same as any other word and repeat cleanly without breaking.",
+    question: "Can I repeat emojis with this?",
+    answer: "Yes, emojis repeat the same way as any word, with full support for standard Unicode emoji.",
   },
   {
     question: "Can I customize the separator between repeated words?",
-    answer: "Yes — space, comma, hyphen, underscore, line break, or any custom character you type in.",
+    answer: "Yes, choose from space, comma, hyphen, underscore, line break, or enter your own character.",
   },
   {
-    question: "Can I copy the output?",
-    answer: "Yes, a one-click copy button sends the result straight to your clipboard.",
+    question: "Can I download the output instead of just copying it?",
+    answer: "Yes, save the result as a .txt file directly from the tool.",
   },
   {
-    question: "Can I download the output?",
-    answer: "Yes, there's a download option that saves the result as a .txt file.",
-  },
-  {
-    question: "Is it free?",
-    answer: "Yes, there's no cost and no paywalled features.",
+    question: "Is it free to use?",
+    answer: "Yes, there's no cost, account, or signup required.",
   },
   {
     question: "Does it work on mobile?",
-    answer: "Yes, it works the same way on Android and iPhone browsers as it does on desktop.",
+    answer: "Yes, it works the same way on Android, iPhone, and tablet browsers as it does on desktop.",
   },
   {
     question: "Is my text stored anywhere?",
-    answer: "No. Processing happens locally in your browser, and nothing is uploaded or saved on our end.",
+    answer: "No, everything runs locally in your browser and isn't uploaded or saved after you close the page.",
   },
   {
-    question: "How many repetitions are supported?",
+    question: "How many repetitions are supported per word?",
     answer: "Up to 10,000 repetitions per word.",
-  },
-  {
-    question: "Can I repeat words on separate lines instead of side by side?",
-    answer: "Yes — set the separator to a line break and each repetition stacks vertically instead of running across the line.",
-  },
-  {
-    question: "Do I need an account?",
-    answer: "No signup or login is required at any point.",
   },
 ]
 
@@ -101,7 +89,7 @@ export default function WordRepeaterPage() {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     name: "Word Repeater",
-    description: "Free online word repeater tool to repeat individual words in your text with custom delimiters up to 10,000 times.",
+    description: "Free online word repeater tool that repeats each word in your text individually up to 10,000 times with custom separators.",
     url: PAGE_URL,
     applicationCategory: "UtilitiesApplication",
     operatingSystem: "All",
@@ -113,11 +101,15 @@ export default function WordRepeaterPage() {
       priceCurrency: "USD",
     },
     featureList: [
-      "Repeat each word individually up to 10,000 times",
-      "Custom word separators (space, comma, dash, newline, custom)",
-      "Live word and character statistics",
-      "Instant copy and download as text file",
-      "Completely free with zero server storage",
+      "Repeats every word individually, not the whole line as one block",
+      "Up to 10,000 repetitions per word",
+      "Custom separators — space, comma, hyphen, underscore, line break, or your own character",
+      "Live word count and live character count",
+      "One-click copy to clipboard",
+      "Download the result as a .txt file",
+      "Full emoji and Unicode support",
+      "Works on mobile and desktop, no separate app",
+      "No signup, runs entirely in your browser",
     ],
   }
 
@@ -153,8 +145,8 @@ export default function WordRepeaterPage() {
             <h1 className="mb-4 text-3xl font-bold tracking-tight text-balance sm:text-4xl lg:text-5xl" id="main-heading">
               Word Repeater
             </h1>
-            <p className="mx-auto max-w-2xl text-lg text-muted-foreground text-pretty" id="intro-subtitle">
-              Repeat each word in your text on its own, one at a time, instead of copying the whole sentence as a single block.
+            <p className="mx-auto max-w-2xl text-lg text-muted-foreground text-pretty leading-relaxed" id="intro-subtitle">
+              Word Repeater repeats each word in your text individually, one at a time, instead of copying the whole sentence as a single block. Type &quot;hello world&quot; with a count of 3, and you get &quot;hello hello hello world world world&quot; — each word cycles through its repeats before the next word starts.
             </p>
           </div>
         </div>
@@ -185,261 +177,296 @@ export default function WordRepeaterPage() {
         </div>
       </section>
 
-      {/* Introduction Section */}
-      <section className="border-t border-border bg-muted/30 py-16 cv-auto">
-        <div className="container mx-auto px-4 max-w-3xl">
-          <h2 className="mb-6 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            Introduction
-          </h2>
-          <p className="text-foreground/90 leading-relaxed text-base">
-            A word repeater repeats each word in your text on its own, one at a time, instead of copying the whole sentence as a single block. Type &quot;hello world&quot; and set the count to 3, and you get &quot;hello hello hello world world world&quot; — every word gets its own repeat cycle before the next word starts. Writers use it for stutter and stammer effects in dialogue, social media users use it to add emphasis inside a caption, and developers use it to build word-level test strings. It&apos;s free, works instantly in your browser, and doesn&apos;t require an account.
-          </p>
-        </div>
-      </section>
-
-      {/* What "Repeating Each Word" Actually Means */}
-      <section className="py-16 border-t border-border bg-background cv-auto">
-        <div className="container mx-auto px-4 max-w-3xl">
-          <h2 className="mb-6 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            What &quot;Repeating Each Word&quot; Actually Means
-          </h2>
-          <p className="mb-6 text-foreground/90 leading-relaxed">
-            Most repeater tools only know how to do one thing: take your whole sentence and copy it as a block. This one works differently — it goes word by word, repeating each one before moving to the next.
-          </p>
-
-          <div className="rounded-xl border border-border bg-card p-6 my-6 shadow-sm font-mono text-sm space-y-2 text-foreground/90">
-            <p><strong>Input:</strong> Hello World</p>
-            <p><strong>Output:</strong> Hello Hello Hello World World World</p>
-          </div>
-
-          <p className="text-foreground/90 leading-relaxed">
-            That difference sounds small until you need it. Repeating a full sentence gives you an echo. Repeating each word individually gives you a stutter — and those two effects read completely differently on the page.
-          </p>
-        </div>
-      </section>
-
-      {/* How to Repeat Each Word */}
-      <section className="py-16 border-t border-border bg-muted/30 cv-auto">
-        <div className="container mx-auto px-4 max-w-3xl">
-          <h2 className="mb-6 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            How to Repeat Each Word
-          </h2>
-          <ol className="space-y-4 mb-6">
-            {[
-              { title: "Enter your text", desc: "Paste or type the word, phrase, or sentence you want to work with." },
-              { title: "Choose the repeat count", desc: "Decide how many times each word should repeat before moving to the next one." },
-              { title: "Select a separator", desc: "Pick a space, hyphen, underscore, comma, or line break to place between each repetition." },
-              { title: "Generate the output", desc: "The repeated version appears immediately, with a live word count next to it." },
-              { title: "Copy or download", desc: "Send the result to your clipboard or save it as a .txt file." },
-            ].map((step, idx) => (
-              <li key={idx} className="flex gap-4 rounded-xl border border-border bg-card p-4 shadow-sm items-start">
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary font-bold text-primary-foreground text-sm">
-                  {idx + 1}
-                </span>
-                <div>
-                  <h3 className="font-semibold text-foreground">{step.title}</h3>
-                  <p className="text-sm text-muted-foreground mt-0.5">{step.desc}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-
-          <p className="text-foreground/90 leading-relaxed">
-            Switching the separator to a line break turns the same input into a vertical stack instead of a horizontal run — useful when you want the repetition to read top to bottom rather than left to right.
-          </p>
-        </div>
-      </section>
-
       {/* Features */}
-      <section className="py-16 border-t border-border bg-background cv-auto">
-        <div className="container mx-auto px-4 max-w-3xl">
-          <h2 className="mb-6 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+      <section className="py-16 border-t border-border bg-muted/30 cv-auto">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <h2 className="mb-8 text-2xl font-bold tracking-tight text-foreground sm:text-3xl text-center">
             Features
           </h2>
           <ul className="grid gap-3 sm:grid-cols-2">
             {[
-              "Repeats every word individually — each word gets its own repeat cycle instead of the whole line copying as one piece.",
-              "Supports up to 10,000 repetitions per word — enough for dense test strings or long stylistic effects without hitting a wall.",
-              "Custom separators — space, comma, hyphen, underscore, new line, or any character you choose between repetitions.",
-              "Live word count — see how many words are in your output before you copy anything.",
-              "Live character count — useful when you're working against a platform's character limit.",
-              "One-click copy — the finished text goes straight to your clipboard.",
-              "Download as .TXT — save the output as a file instead of copying it.",
-              "Full emoji support — repeat emojis the same way you'd repeat any word, without them breaking or dropping out.",
-              "Unicode support — text in other languages and scripts repeats correctly, not just plain English characters.",
-              "Works on mobile and desktop — the same tool, no separate app or version.",
-              "Runs in your browser — nothing to install, nothing to configure.",
-              "No signup — open the page and start typing.",
-              "Fast generation — output appears as soon as you click generate, even at high repeat counts.",
+              "Repeats every word individually, not the whole line as one block",
+              "Up to 10,000 repetitions per word",
+              "Custom separators — space, comma, hyphen, underscore, line break, or your own character",
+              "Live word count and live character count",
+              "One-click copy to clipboard",
+              "Download the result as a .txt file",
+              "Full emoji and Unicode support",
+              "Works on mobile and desktop, no separate app",
+              "No signup, runs entirely in your browser",
             ].map((feature, idx) => (
-              <li key={idx} className="flex items-start gap-3 rounded-lg border border-border bg-card/60 p-3 text-sm text-foreground/90">
+              <li
+                key={idx}
+                className="flex items-start gap-3 rounded-xl border border-border bg-card p-4 text-sm text-foreground/90 shadow-sm transition-all hover:border-primary/40"
+              >
                 <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                <span>{feature}</span>
+                <span className="font-medium">{feature}</span>
               </li>
             ))}
           </ul>
         </div>
       </section>
 
-      {/* What People Actually Use This For */}
-      <section className="py-16 border-t border-border bg-muted/30 cv-auto">
-        <div className="container mx-auto px-4 max-w-3xl">
-          <h2 className="mb-6 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            What People Actually Use This For
-          </h2>
-          <div className="space-y-6">
-            <div className="rounded-xl border border-border bg-card p-5 shadow-sm">
-              <h3 className="mb-2 text-lg font-semibold text-foreground">The stutter effect</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Writers use word-by-word repetition to mimic a stammer, a nervous pause, or hesitant speech in dialogue. &quot;I I I can&apos;t believe this&quot; reads nothing like a repeated full sentence would — the repetition sits inside the line instead of duplicating it.
-              </p>
-            </div>
-
-            <div className="rounded-xl border border-border bg-card p-5 shadow-sm">
-              <h3 className="mb-2 text-lg font-semibold text-foreground">Emphasis in captions and comments</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Repeating one key word inside a longer sentence — &quot;this is SO SO SO good&quot; — pulls attention to that word specifically. Repeating the entire caption instead would bury the emphasis rather than sharpen it.
-              </p>
-            </div>
-
-            <div className="rounded-xl border border-border bg-card p-5 shadow-sm">
-              <h3 className="mb-2 text-lg font-semibold text-foreground">Song lyrics and spoken word</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Word-level repetition shows up constantly in lyrics, chants, and spoken-word pieces. Building that pattern by hand, word by word, is slow; generating it takes seconds.
-              </p>
-            </div>
-
-            <div className="rounded-xl border border-border bg-card p-5 shadow-sm">
-              <h3 className="mb-2 text-lg font-semibold text-foreground">Text-based patterns</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Designers sometimes tile a single repeated word across a line as a visual filler or background pattern rather than something meant to be read as a sentence.
-              </p>
-            </div>
-
-            <div className="rounded-xl border border-border bg-card p-5 shadow-sm">
-              <h3 className="mb-2 text-lg font-semibold text-foreground">QA and developer testing</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Developers use word-level repetition to build structured test strings where each token needs to repeat a set number of times — a different shape of test data than a whole-block repeater produces, useful for checking how a field or parser handles repeated tokens.
-              </p>
-            </div>
-
-            <div className="rounded-xl border border-border bg-card p-5 shadow-sm">
-              <h3 className="mb-2 text-lg font-semibold text-foreground">Social platforms</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                WhatsApp, Discord, Instagram, and TikTok all show up as places where a single repeated word inside a message or caption gets used for comic timing or emphasis, rather than repeating the whole post.
-              </p>
-            </div>
-
-            <div className="rounded-xl border border-border bg-card p-5 shadow-sm">
-              <h3 className="mb-2 text-lg font-semibold text-foreground">Language learning</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Students repeating individual vocabulary words — rather than full sentences — often find it closer to how flashcard drills actually work, since the focus stays on one word at a time.
-              </p>
-            </div>
-
-            <div className="rounded-xl border border-border bg-card p-5 shadow-sm">
-              <h3 className="mb-2 text-lg font-semibold text-foreground">Teachers building practice material</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                A worksheet that repeats target words individually, without full sentences padding out the page, is quicker to build here than by typing each repetition by hand.
-              </p>
-            </div>
-
-            <div className="rounded-xl border border-border bg-card p-5 shadow-sm">
-              <h3 className="mb-2 text-lg font-semibold text-foreground">Placeholder and draft content</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Writers occasionally need a single repeated word as filler text while blocking out a layout, without generating full paragraphs of lorem-ipsum-style content.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* More Examples */}
+      {/* How to Repeat Each Word */}
       <section className="py-16 border-t border-border bg-background cv-auto">
         <div className="container mx-auto px-4 max-w-3xl">
-          <h2 className="mb-6 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            More Examples
+          <h2 className="mb-8 text-2xl font-bold tracking-tight text-foreground sm:text-3xl text-center">
+            How to Repeat Each Word
           </h2>
+          <ol className="space-y-4 mb-6">
+            {[
+              {
+                title: "Enter your text.",
+                desc: "Paste or type the word, phrase, or sentence you want to work with.",
+              },
+              {
+                title: "Choose the repeat count.",
+                desc: "Set how many times each word should repeat before the next one starts.",
+              },
+              {
+                title: "Select a separator.",
+                desc: "Space, hyphen, underscore, comma, or line break — whatever fits the effect you're going for.",
+              },
+              {
+                title: "Generate the output.",
+                desc: "The result appears immediately, with a live word count alongside it.",
+              },
+              {
+                title: "Copy or download.",
+                desc: "Send it to your clipboard, or save it as a .txt file.",
+              },
+            ].map((step, idx) => (
+              <li
+                key={idx}
+                className="flex gap-4 rounded-xl border border-border bg-card p-5 shadow-sm items-start transition-all hover:border-primary/40"
+              >
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary font-bold text-primary-foreground text-sm">
+                  {idx + 1}
+                </span>
+                <div>
+                  <h3 className="font-semibold text-foreground text-base">{step.title}</h3>
+                  <p className="text-sm text-muted-foreground mt-1 leading-relaxed">{step.desc}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
 
-          <div className="grid gap-6 sm:grid-cols-2">
-            <div className="rounded-xl border border-border bg-card p-5 shadow-sm">
-              <h3 className="font-semibold text-foreground mb-3">Multiple words</h3>
-              <div className="bg-muted/50 p-3 rounded-lg font-mono text-xs space-y-1 text-foreground/90">
-                <p><strong>Input:</strong> SEO Tools</p>
-                <p><strong>Repeat:</strong> 3</p>
-                <p><strong>Output:</strong> SEO SEO SEO</p>
-                <p className="pl-[52px]">Tools Tools Tools</p>
-              </div>
-            </div>
-
-            <div className="rounded-xl border border-border bg-card p-5 shadow-sm">
-              <h3 className="font-semibold text-foreground mb-3">Emoji repetition</h3>
-              <div className="bg-muted/50 p-3 rounded-lg font-mono text-xs space-y-1 text-foreground/90">
-                <p><strong>Input:</strong> 🔥</p>
-                <p><strong>Repeat:</strong> 5</p>
-                <p><strong>Output:</strong> 🔥🔥🔥🔥🔥</p>
-              </div>
-            </div>
-
-            <div className="rounded-xl border border-border bg-card p-5 shadow-sm">
-              <h3 className="font-semibold text-foreground mb-3">Short sentence, separator changed to a hyphen</h3>
-              <div className="bg-muted/50 p-3 rounded-lg font-mono text-xs space-y-1 text-foreground/90">
-                <p><strong>Input:</strong> Not today</p>
-                <p><strong>Repeat:</strong> 2</p>
-                <p><strong>Output:</strong> Not-Not today-today</p>
-              </div>
-            </div>
-
-            <div className="rounded-xl border border-border bg-card p-5 shadow-sm">
-              <h3 className="font-semibold text-foreground mb-3">Line-break separator</h3>
-              <div className="bg-muted/50 p-3 rounded-lg font-mono text-xs space-y-1 text-foreground/90">
-                <p><strong>Input:</strong> Wait</p>
-                <p><strong>Repeat:</strong> 3</p>
-                <p><strong>Output:</strong> Wait</p>
-                <p className="pl-[52px]">Wait</p>
-                <p className="pl-[52px]">Wait</p>
-              </div>
-            </div>
+          <div className="rounded-xl border border-primary/20 bg-primary/5 p-5 text-foreground/90 text-sm leading-relaxed">
+            Switching the separator to a line break turns a horizontal run into a vertical stack — useful when the repetition needs to read top to bottom instead of left to right.
           </div>
         </div>
       </section>
 
-      {/* Privacy */}
+      {/* What Is a Word Repeater? */}
       <section className="py-16 border-t border-border bg-muted/30 cv-auto">
         <div className="container mx-auto px-4 max-w-3xl">
-          <div className="flex items-center gap-3 mb-6">
-            <Shield className="h-7 w-7 text-primary" />
-            <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-              Privacy
-            </h2>
-          </div>
-          <div className="rounded-xl border border-border bg-card p-5 shadow-sm">
-            <p className="text-foreground/90 leading-relaxed text-sm">
-              Everything happens locally in your browser. Your text isn&apos;t uploaded to a server, isn&apos;t stored anywhere after you close the page, and doesn&apos;t require an account to generate or download. There&apos;s nothing to log in for and nothing saved on our end once you leave.
+          <h2 className="mb-6 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+            What Is a Word Repeater?
+          </h2>
+          <div className="space-y-4 text-foreground/90 leading-relaxed text-base">
+            <p>
+              Most repeater tools do one thing: copy your whole sentence as a block. A word repeater works differently — it goes word by word, repeating each one individually before moving to the next.
+            </p>
+
+            <div className="rounded-xl border border-border bg-card p-5 shadow-sm font-mono text-sm space-y-2 text-foreground/90">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="text-muted-foreground font-semibold">Input:</span>
+                <span>Hello World</span>
+                <ArrowRight className="h-4 w-4 text-primary shrink-0" />
+                <span className="text-muted-foreground font-semibold">Output:</span>
+                <span className="text-primary font-medium">Hello Hello Hello World World World</span>
+              </div>
+            </div>
+
+            <p>
+              That distinction matters more than it looks. Repeating a full sentence produces an echo. Repeating each word individually produces a stutter — and the two read completely differently once they&apos;re on the page. A short sentence with a hyphen separator, for example, turns <em>Not today</em> into <em>Not-Not today-today</em> — a different rhythm than a line-break version of the same input, which stacks each repeated word on its own line instead.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Works On */}
+      {/* Why It Works */}
+      <section className="py-16 border-t border-border bg-background cv-auto">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <h2 className="mb-6 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+            Why It Works
+          </h2>
+          <div className="rounded-2xl border border-border bg-card p-6 sm:p-8 shadow-sm">
+            <p className="text-foreground/90 leading-relaxed text-base">
+              The word-level approach exists because sentence-level repeaters can&apos;t produce it — there&apos;s no way to get a stutter effect or word-specific emphasis out of a tool that only duplicates the whole block. This tool keeps the repeat logic isolated to each word, so separators, counts, and line breaks all apply per-word rather than per-sentence, and the output stays predictable even at high repeat counts or with emoji and multi-language text mixed in.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Word Repeater vs. a Standard Text Repeater */}
+      <section className="py-16 border-t border-border bg-muted/30 cv-auto">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <h2 className="mb-8 text-2xl font-bold tracking-tight text-foreground sm:text-3xl text-center">
+            Word Repeater vs. a Standard Text Repeater
+          </h2>
+          <div className="overflow-x-auto rounded-2xl border border-border bg-card shadow-sm">
+            <table className="w-full border-collapse text-left text-sm">
+              <thead>
+                <tr className="border-b border-border bg-muted/50">
+                  <th className="p-4 font-semibold text-foreground">Feature</th>
+                  <th className="p-4 font-semibold text-muted-foreground">Standard Text Repeater</th>
+                  <th className="p-4 font-semibold text-primary bg-primary/5 border-l border-primary/20">
+                    <div className="flex items-center gap-1.5">
+                      <Sparkles className="h-4 w-4 text-primary" />
+                      <span>Word Repeater</span>
+                    </div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border text-foreground/90">
+                <tr className="hover:bg-muted/20 transition-colors">
+                  <td className="p-4 font-medium text-foreground">Repeats</td>
+                  <td className="p-4 text-muted-foreground">Whole sentence as one block</td>
+                  <td className="p-4 font-medium text-foreground bg-primary/5 border-l border-primary/20">
+                    Each word individually
+                  </td>
+                </tr>
+                <tr className="hover:bg-muted/20 transition-colors">
+                  <td className="p-4 font-medium text-foreground">Effect</td>
+                  <td className="p-4 text-muted-foreground">Echo (same line repeated)</td>
+                  <td className="p-4 font-medium text-foreground bg-primary/5 border-l border-primary/20">
+                    Stutter or per-word emphasis
+                  </td>
+                </tr>
+                <tr className="hover:bg-muted/20 transition-colors">
+                  <td className="p-4 font-medium text-foreground">Separator applies to</td>
+                  <td className="p-4 text-muted-foreground">Between full repeats</td>
+                  <td className="p-4 font-medium text-foreground bg-primary/5 border-l border-primary/20">
+                    Between each word&apos;s repeats
+                  </td>
+                </tr>
+                <tr className="hover:bg-muted/20 transition-colors">
+                  <td className="p-4 font-medium text-foreground">Best for</td>
+                  <td className="p-4 text-muted-foreground">Bulk duplication, testing, spam</td>
+                  <td className="p-4 font-medium text-foreground bg-primary/5 border-l border-primary/20">
+                    Dialogue, emphasis, stylistic effects
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* Supported Platforms */}
       <section className="py-16 border-t border-border bg-background cv-auto">
         <div className="container mx-auto px-4 max-w-3xl">
           <div className="flex items-center gap-3 mb-6">
             <Laptop className="h-7 w-7 text-primary" />
             <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-              Works On
+              Supported Platforms
             </h2>
           </div>
-          <div className="rounded-xl border border-border bg-card p-5 shadow-sm">
-            <p className="text-foreground/90 leading-relaxed text-sm">
-              Desktop, laptop, Android, iPhone, and tablet — in Chrome, Firefox, Safari, or Edge. No separate mobile app and no installation step; the browser version is the only version.
-            </p>
+          <p className="text-foreground/90 leading-relaxed bg-card p-6 rounded-2xl border border-border shadow-sm text-base">
+            Works on desktop, laptop, Android, iPhone, and tablet, in Chrome, Firefox, Safari, or Edge. No separate mobile app — the browser version is the only version.
+          </p>
+        </div>
+      </section>
+
+      {/* Common Use Cases */}
+      <section className="py-16 border-t border-border bg-muted/30 cv-auto">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <div className="flex items-center gap-3 mb-8">
+            <MessageSquare className="h-7 w-7 text-primary" />
+            <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+              Common Use Cases
+            </h2>
+          </div>
+          <ul className="space-y-4">
+            {[
+              {
+                title: "Stutter effect in writing",
+                desc: "\"I I I can't believe this\" reads as hesitant speech; a full-sentence repeat can't produce this at all.",
+              },
+              {
+                title: "Emphasis in captions and comments",
+                desc: "\"this is SO SO SO good\" pulls focus onto one word without duplicating the whole caption.",
+              },
+              {
+                title: "Song lyrics and spoken word",
+                desc: "word-level repetition patterns that would take a while to type by hand generate instantly.",
+              },
+              {
+                title: "QA and developer testing",
+                desc: "structured test strings where each token needs a set number of repeats, a different shape of test data than a whole-block repeater produces.",
+              },
+              {
+                title: "Language learning drills",
+                desc: "repeating individual vocabulary words mirrors flashcard-style practice more closely than repeating full sentences.",
+              },
+              {
+                title: "Placeholder text for layouts",
+                desc: "a single repeated word as filler, without generating full lorem-ipsum-style paragraphs.",
+              },
+            ].map((item, idx) => (
+              <li
+                key={idx}
+                className="rounded-xl border border-border bg-card p-5 shadow-sm transition-all hover:border-primary/40 flex items-start gap-4"
+              >
+                <div className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+                  <CheckCircle2 className="h-4 w-4" />
+                </div>
+                <div className="text-base text-foreground/90 leading-relaxed">
+                  <strong className="font-semibold text-foreground">{item.title}</strong> — {item.desc}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* Troubleshooting */}
+      <section className="py-16 border-t border-border bg-background cv-auto">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <div className="flex items-center gap-3 mb-8">
+            <AlertCircle className="h-7 w-7 text-primary" />
+            <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+              Troubleshooting
+            </h2>
+          </div>
+          <div className="space-y-4">
+            {[
+              {
+                title: "Output looks the same as a regular text repeater.",
+                desc: "Double-check your input has more than one word — with a single word, per-word and whole-sentence repetition produce identical results.",
+              },
+              {
+                title: "Separator isn't appearing between words.",
+                desc: "Confirm you've selected a separator rather than leaving the default; some separator characters (like a plain space) can be easy to miss visually.",
+              },
+              {
+                title: "High repeat counts feel slow to generate.",
+                desc: "Very large word counts multiplied by high repeat counts can take a moment to render, especially on mobile.",
+              },
+              {
+                title: "Emoji repeating oddly.",
+                desc: "Some multi-character emoji (flags, skin-tone modifiers) can behave differently than single-character emoji — try a simpler emoji to confirm the separator and count are working as expected.",
+              },
+            ].map((item, idx) => (
+              <div
+                key={idx}
+                className="rounded-xl border border-border bg-card p-5 shadow-sm"
+              >
+                <h3 className="font-semibold text-foreground text-base mb-1">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {item.desc}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Frequently Asked Questions */}
-      <section className="py-16 border-t border-border bg-background cv-auto" id="faq-section">
+      <section className="py-16 border-t border-border bg-muted/30 cv-auto" id="faq-section">
         <div className="container mx-auto px-4 max-w-3xl">
           <div className="flex items-center gap-3 mb-8 justify-center">
             <HelpCircle className="h-7 w-7 text-primary" />
@@ -452,7 +479,7 @@ export default function WordRepeaterPage() {
       </section>
 
       {/* Related Tools */}
-      <section className="border-t border-border bg-muted/30 py-16 cv-auto" id="related-tools-section">
+      <section className="border-t border-border bg-background py-16 cv-auto" id="related-tools-section">
         <div className="container mx-auto px-4">
           <RelatedTools currentPath="/word-repeater" />
         </div>
@@ -460,3 +487,4 @@ export default function WordRepeaterPage() {
     </article>
   )
 }
+

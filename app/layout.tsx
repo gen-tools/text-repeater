@@ -109,19 +109,6 @@ export default function RootLayout({
         <link key="dns-prefetch-doubleclick" rel="dns-prefetch" href="https://googleads.g.doubleclick.net" />
         <link key="dns-prefetch-ga" rel="dns-prefetch" href="https://www.google-analytics.com" />
         <link key="dns-prefetch-adservice" rel="dns-prefetch" href="https://adservice.google.com" />
-        {/* Google AdSense official script - native HTML script tag without data-nscript attribute to avoid AdSense warnings */}
-        <script
-          key="google-adsense-script"
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4975102983560437"
-          crossOrigin="anonymous"
-        />
-        {/* Google Analytics GA4 official script */}
-        <script
-          key="google-analytics-script"
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-F7V35W7MQV"
-        />
       </head>
       <body className={`${geist.variable} ${geistMono.variable} font-sans antialiased`} suppressHydrationWarning>
         <script

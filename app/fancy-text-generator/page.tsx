@@ -5,9 +5,10 @@ import { FAQAccordion } from "@/components/faq-accordion"
 import { RelatedTools } from "@/components/related-tools"
 import heroImage from "@/src/assets/images/fancy_text_hero_1784377747000.webp"
 import { Breadcrumbs } from "@/components/breadcrumbs"
+import { Check, Laptop, HelpCircle, AlertCircle, Sparkles, MessageSquare, CheckCircle2 } from "lucide-react"
 
-const PAGE_TITLE = "Fancy Text Generator - Stylish Fonts & Unicode Text"
-const PAGE_DESCRIPTION = "Free fancy text generator. Transform plain text into stylish fonts like bold, italic, script, and more. Perfect for social media bios, usernames, and posts."
+const PAGE_TITLE = "Fancy Text Generator — Stylish Fonts & Unicode Text"
+const PAGE_DESCRIPTION = "Fancy Text Generator turns plain text into stylized Unicode fonts — Bold, Bubble, Cursive, and more — that you can copy and paste anywhere."
 const PAGE_URL = "https://mytextrepeater.com/fancy-text-generator"
 
 export const metadata: Metadata = {
@@ -43,23 +44,31 @@ export const metadata: Metadata = {
 const faqs = [
   {
     question: "What is a fancy text generator?",
-    answer: "A fancy text generator transforms regular text into stylish Unicode characters that look like different fonts. These special characters can be used anywhere that supports Unicode, including social media profiles, messages, and posts.",
+    answer: "It's a tool that converts your regular text into stylized versions using Unicode characters that visually resemble bold, bubble, cursive, and other font styles.",
   },
   {
-    question: "How do fancy fonts work?",
-    answer: "Fancy fonts use special Unicode characters that resemble styled text. Instead of actually changing the font, we replace regular letters with Unicode symbols that look like bold, italic, script, and other font styles.",
+    question: "Will the fancy text work on Instagram?",
+    answer: "Yes, since the output is still standard Unicode text, it pastes correctly into Instagram bios, captions, and comments.",
   },
   {
-    question: "Will fancy text work on social media?",
-    answer: "Yes! Since fancy text uses Unicode characters rather than actual fonts, it works on most social media platforms including Instagram, Twitter, Facebook, TikTok, and Discord where custom fonts are not normally supported.",
+    question: "Is there a limit to how much text I can style?",
+    answer: "No, there's no character limit on what you can enter.",
   },
   {
-    question: "What font styles are available?",
-    answer: "We offer multiple styles including Bold, Italic, Bold Italic, Script, Fraktur, Double-Struck, Monospace, Circled, Squared, Fullwidth, Small Caps, and Upside Down text.",
+    question: "Can I use this for a username or gamer tag?",
+    answer: "Yes, styled text works in most username fields that accept standard Unicode characters.",
   },
   {
-    question: "Are there any limitations?",
-    answer: "Some Unicode characters may not display correctly on all devices or fonts. Also, some platforms may not support all Unicode characters, so certain styles might not appear as expected everywhere.",
+    question: "Do I need to install a font to see the styles?",
+    answer: "No, nothing needs to be installed — the styling comes from the characters themselves, not a font file.",
+  },
+  {
+    question: "Is it free to use?",
+    answer: "Yes, there's no cost, account, or signup required.",
+  },
+  {
+    question: "Will my text be saved or uploaded anywhere?",
+    answer: "No, everything is processed locally in your browser and isn't sent to a server.",
   },
 ]
 
@@ -68,7 +77,7 @@ export default function FancyTextPage() {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     name: "Fancy Text Generator",
-    description: "Free online fancy text generator to convert plain text into stylish Unicode fonts, cursive script, bold letters, and aesthetic symbols.",
+    description: "Free online fancy text generator to turn plain text into stylized Unicode fonts that you can copy and paste anywhere.",
     url: PAGE_URL,
     applicationCategory: "UtilitiesApplication",
     operatingSystem: "All",
@@ -80,11 +89,13 @@ export default function FancyTextPage() {
       priceCurrency: "USD",
     },
     featureList: [
-      "Over 20+ aesthetic Unicode font styles",
-      "One-click copy to clipboard",
-      "Instant real-time font conversion",
-      "Works with Instagram, TikTok, Twitter, and Discord",
-      "100% free and mobile-friendly",
+      "Multiple font style categories to choose from, including Bold, Bubble, and Cursive",
+      "No character limit on input",
+      "One-click copy to clipboard for each style",
+      "Works with letters, numbers, and most symbols",
+      "No account or signup required",
+      "Runs entirely in your browser — nothing uploaded to a server",
+      "Works on desktop and mobile",
     ],
   }
 
@@ -102,7 +113,7 @@ export default function FancyTextPage() {
   }
 
   return (
-    <article className="w-full">
+    <article className="w-full" id="fancy-text-page">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppJsonLd) }}
@@ -112,22 +123,23 @@ export default function FancyTextPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
-      <section className="border-b border-border bg-gradient-to-b from-muted/50 to-background py-12 lg:py-20">
+      {/* Hero Header Section */}
+      <section className="border-b border-border bg-gradient-to-b from-muted/50 to-background py-12 lg:py-20" id="hero-section">
         <div className="container mx-auto px-4">
           <Breadcrumbs />
           <div className="text-center">
-            <h1 className="mb-4 text-4xl font-bold tracking-tight text-balance lg:text-5xl">
+            <h1 className="mb-4 text-3xl font-bold tracking-tight text-balance sm:text-4xl lg:text-5xl" id="main-heading">
               Fancy Text Generator
             </h1>
-            <p className="mx-auto max-w-2xl text-lg text-muted-foreground text-pretty">
-              Transform your plain text into stylish fonts instantly. Choose from bold, italic, script, 
-              and many more styles. Perfect for social media bios, usernames, and standing out online.
+            <p className="mx-auto max-w-2xl text-lg text-muted-foreground text-pretty leading-relaxed" id="intro-subtitle">
+              Fancy Text Generator turns plain text into stylized Unicode fonts — Bold, Bubble, Cursive, and more — that you can copy and paste anywhere, including Instagram bios, captions, and usernames. No character limit, no signup, and it works instantly in your browser.
             </p>
           </div>
         </div>
       </section>
 
-      <section className="py-12">
+      {/* Tool Section */}
+      <section className="py-12" id="tool-section">
         <div className="container mx-auto px-4">
           <FancyTextTool />
         </div>
@@ -151,39 +163,281 @@ export default function FancyTextPage() {
         </div>
       </section>
 
-      <section className="border-t border-border bg-muted/30 py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="mb-8 text-2xl font-bold">Popular Uses</h2>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {/* Features */}
+      <section className="py-16 border-t border-border bg-muted/30 cv-auto">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <h2 className="mb-8 text-2xl font-bold tracking-tight text-foreground sm:text-3xl text-center">
+            Features
+          </h2>
+          <ul className="grid gap-3 sm:grid-cols-2">
             {[
-              { title: "Instagram Bio", desc: "Make your Instagram profile stand out with stylish text in your bio." },
-              { title: "Twitter/X Posts", desc: "Create eye-catching tweets with unique font styles." },
-              { title: "Discord Usernames", desc: "Stand out in Discord servers with fancy styled names." },
-              { title: "Gaming Profiles", desc: "Create unique gamertags and profile names." },
-              { title: "Facebook Posts", desc: "Add visual interest to your Facebook content." },
-              { title: "Email Signatures", desc: "Make your email signature memorable with styled text." },
-            ].map((item) => (
-              <div key={item.title} className="rounded-xl border border-border bg-card p-6">
-                <h3 className="mb-2 font-semibold">{item.title}</h3>
-                <p className="text-sm text-muted-foreground">{item.desc}</p>
+              "Multiple font style categories to choose from, including Bold, Bubble, and Cursive",
+              "No character limit on input",
+              "One-click copy to clipboard for each style",
+              "Works with letters, numbers, and most symbols",
+              "No account or signup required",
+              "Runs entirely in your browser — nothing uploaded to a server",
+              "Works on desktop and mobile",
+            ].map((feature, idx) => (
+              <li
+                key={idx}
+                className="flex items-start gap-3 rounded-xl border border-border bg-card p-4 text-sm text-foreground/90 shadow-sm transition-all hover:border-primary/40"
+              >
+                <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                <span className="font-medium">{feature}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* How to Use the Fancy Text Generator */}
+      <section className="py-16 border-t border-border bg-background cv-auto">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <h2 className="mb-8 text-2xl font-bold tracking-tight text-foreground sm:text-3xl text-center">
+            How to Use the Fancy Text Generator
+          </h2>
+          <ol className="space-y-4">
+            {[
+              {
+                title: "Enter your text.",
+                desc: "Type or paste the word, name, or phrase you want to style.",
+              },
+              {
+                title: "Browse the style categories.",
+                desc: "Scroll through the available fonts — Bold, Bubble, Cursive, and others — to see your text rendered in each.",
+              },
+              {
+                title: "Pick the one you like.",
+                desc: "Every style updates live as you type, so you can compare options side by side.",
+              },
+              {
+                title: "Copy the result.",
+                desc: "Click to copy the styled version, then paste it wherever you need it.",
+              },
+            ].map((step, idx) => (
+              <li
+                key={idx}
+                className="flex gap-4 rounded-xl border border-border bg-card p-5 shadow-sm items-start transition-all hover:border-primary/40"
+              >
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary font-bold text-primary-foreground text-sm">
+                  {idx + 1}
+                </span>
+                <div>
+                  <h3 className="font-semibold text-foreground text-base">{step.title}</h3>
+                  <p className="text-sm text-muted-foreground mt-1 leading-relaxed">{step.desc}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* What Is a Fancy Text Generator? */}
+      <section className="py-16 border-t border-border bg-muted/30 cv-auto">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <h2 className="mb-6 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+            What Is a Fancy Text Generator?
+          </h2>
+          <div className="space-y-4 text-foreground/90 leading-relaxed text-base">
+            <p>
+              A fancy text generator doesn&apos;t apply a font in the traditional sense — there&apos;s no font file being loaded. Instead, it swaps your regular letters for visually similar Unicode characters that happen to render in a bold, bubbled, cursive, or otherwise stylized form. Because these are still standard Unicode characters, the styled text pastes correctly into places that don&apos;t let you change fonts directly, like an Instagram bio, a username field, or a chat app.
+            </p>
+            <p>
+              That&apos;s the real reason a cool fancy text generator gets used for social profiles specifically — platforms like Instagram don&apos;t offer built-in font choices in bios or captions, so styled Unicode text is one of the few ways to make a name or caption visually stand out without an image or graphic.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Why It Works */}
+      <section className="py-16 border-t border-border bg-background cv-auto">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <h2 className="mb-6 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+            Why It Works
+          </h2>
+          <div className="rounded-2xl border border-border bg-card p-6 sm:p-8 shadow-sm">
+            <p className="text-foreground/90 leading-relaxed text-base">
+              Manually finding and typing Unicode lookalike characters for an entire name or sentence is impractical — most people don&apos;t know the actual character codes, and copying them one at a time from a reference chart is slow. This tool maps your input to each style&apos;s character set automatically, so you get a fully styled version instantly, in as many categories as you want to compare, without needing to know anything about Unicode yourself.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Fancy Text Generator vs. Manual Styling */}
+      <section className="py-16 border-t border-border bg-muted/30 cv-auto">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <h2 className="mb-8 text-2xl font-bold tracking-tight text-foreground sm:text-3xl text-center">
+            Fancy Text Generator vs. Manual Styling
+          </h2>
+          <div className="overflow-x-auto rounded-2xl border border-border bg-card shadow-sm">
+            <table className="w-full border-collapse text-left text-sm">
+              <thead>
+                <tr className="border-b border-border bg-muted/50">
+                  <th className="p-4 font-semibold text-foreground">Feature</th>
+                  <th className="p-4 font-semibold text-muted-foreground">Manual Unicode Lookup</th>
+                  <th className="p-4 font-semibold text-muted-foreground">Image/Graphic Text</th>
+                  <th className="p-4 font-semibold text-primary bg-primary/5 border-l border-primary/20">
+                    <div className="flex items-center gap-1.5">
+                      <Sparkles className="h-4 w-4 text-primary" />
+                      <span>Fancy Text Generator</span>
+                    </div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border text-foreground/90">
+                <tr className="hover:bg-muted/20 transition-colors">
+                  <td className="p-4 font-medium text-foreground">Speed</td>
+                  <td className="p-4 text-muted-foreground">Slow, character by character</td>
+                  <td className="p-4 text-muted-foreground">Requires design tools</td>
+                  <td className="p-4 font-medium text-foreground bg-primary/5 border-l border-primary/20">
+                    Instant
+                  </td>
+                </tr>
+                <tr className="hover:bg-muted/20 transition-colors">
+                  <td className="p-4 font-medium text-foreground">Pastes as real text</td>
+                  <td className="p-4 text-muted-foreground">Yes, but tedious to build</td>
+                  <td className="p-4 text-muted-foreground">No — it&apos;s an image</td>
+                  <td className="p-4 font-medium text-foreground bg-primary/5 border-l border-primary/20">
+                    Yes
+                  </td>
+                </tr>
+                <tr className="hover:bg-muted/20 transition-colors">
+                  <td className="p-4 font-medium text-foreground">Works in bios/usernames</td>
+                  <td className="p-4 text-muted-foreground">Yes, if built correctly</td>
+                  <td className="p-4 text-muted-foreground">No</td>
+                  <td className="p-4 font-medium text-foreground bg-primary/5 border-l border-primary/20">
+                    Yes
+                  </td>
+                </tr>
+                <tr className="hover:bg-muted/20 transition-colors">
+                  <td className="p-4 font-medium text-foreground">Multiple styles to compare</td>
+                  <td className="p-4 text-muted-foreground">No</td>
+                  <td className="p-4 text-muted-foreground">N/A</td>
+                  <td className="p-4 font-medium text-foreground bg-primary/5 border-l border-primary/20">
+                    Yes, side by side
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* Supported Platforms */}
+      <section className="py-16 border-t border-border bg-background cv-auto">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <div className="flex items-center gap-3 mb-6">
+            <Laptop className="h-7 w-7 text-primary" />
+            <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+              Supported Platforms
+            </h2>
+          </div>
+          <p className="text-foreground/90 leading-relaxed bg-card p-6 rounded-2xl border border-border shadow-sm text-base">
+            Works in any modern browser — Chrome, Firefox, Edge, Safari — on both desktop and mobile.
+          </p>
+        </div>
+      </section>
+
+      {/* Common Use Cases */}
+      <section className="border-t border-border bg-muted/30 py-16 cv-auto">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <div className="flex items-center gap-3 mb-8">
+            <MessageSquare className="h-7 w-7 text-primary" />
+            <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+              Common Use Cases
+            </h2>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {[
+              {
+                title: "Instagram bios and captions",
+                desc: "a fancy text generator for Instagram is one of the few ways to add visual style to a bio or caption without an image.",
+              },
+              {
+                title: "Usernames and gamer tags",
+                desc: "stylized names that stand out in game lobbies, Discord, or social profiles.",
+              },
+              {
+                title: "Social media posts",
+                desc: "pulling attention to a caption or comment with a distinct look.",
+              },
+              {
+                title: "Digital art and design drafts",
+                desc: "quick stylized text for mockups without opening a design tool.",
+              },
+            ].map((item, idx) => (
+              <div
+                key={idx}
+                className="rounded-xl border border-border bg-card p-5 shadow-sm transition-all hover:border-primary/40 flex items-start gap-4"
+              >
+                <div className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+                  <CheckCircle2 className="h-4 w-4" />
+                </div>
+                <div className="text-base text-foreground/90 leading-relaxed">
+                  <strong className="font-semibold text-foreground">{item.title}</strong> — {item.desc}
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="mb-12 text-center text-3xl font-bold">
-            Frequently Asked Questions
-          </h2>
-          <div className="mx-auto max-w-3xl">
-            <FAQAccordion items={faqs} />
+      {/* Troubleshooting */}
+      <section className="py-16 border-t border-border bg-background cv-auto">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <div className="flex items-center gap-3 mb-8">
+            <AlertCircle className="h-7 w-7 text-primary" />
+            <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+              Troubleshooting
+            </h2>
+          </div>
+          <div className="space-y-4">
+            {[
+              {
+                title: "Styled text shows as boxes or question marks.",
+                desc: "This usually means the app or device displaying it doesn't support that particular Unicode range — try a different style category, since not all platforms render every style consistently.",
+              },
+              {
+                title: "Copy button isn't working.",
+                desc: "Some browsers block clipboard access until you've clicked elsewhere on the page first; click anywhere on the page, then try again.",
+              },
+              {
+                title: "Text looks different after pasting.",
+                desc: "Some platforms (especially older apps) may strip or substitute unsupported Unicode characters — this is a platform limitation, not a generation issue.",
+              },
+            ].map((item, idx) => (
+              <div
+                key={idx}
+                className="rounded-xl border border-border bg-card p-5 shadow-sm"
+              >
+                <h3 className="font-semibold text-foreground text-base mb-1">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {item.desc}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="border-t border-border bg-muted/30">
+      {/* Frequently Asked Questions */}
+      <section className="py-16 border-t border-border bg-muted/30 cv-auto" id="faq-section">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <div className="flex items-center gap-3 mb-8 justify-center">
+            <HelpCircle className="h-7 w-7 text-primary" />
+            <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl text-center">
+              Frequently Asked Questions
+            </h2>
+          </div>
+          <FAQAccordion items={faqs} />
+        </div>
+      </section>
+
+      {/* Related Tools */}
+      <section className="border-t border-border bg-background py-16 cv-auto" id="related-tools-section">
         <div className="container mx-auto px-4">
           <RelatedTools currentPath="/fancy-text-generator" />
         </div>
@@ -191,3 +445,4 @@ export default function FancyTextPage() {
     </article>
   )
 }
+
