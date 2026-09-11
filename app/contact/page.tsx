@@ -94,10 +94,10 @@ export default function ContactPage() {
               <div className="pt-2 border-t border-primary/20">
                 <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-1">Direct Admin Email</span>
                 <a
-                  href="mailto:sa0663787@gmail.com"
+                  href="mailto:contact@mytextrepeater.com"
                   className="font-semibold text-primary hover:underline break-all text-sm sm:text-base block"
                 >
-                  sa0663787@gmail.com
+                  contact@mytextrepeater.com
                 </a>
               </div>
             </div>

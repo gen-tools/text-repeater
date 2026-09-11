@@ -372,10 +372,6 @@ export default function PrivacyPage() {
                 >
                   contact@mytextrepeater.com
                 </a>
-                <div className="text-xs text-muted-foreground space-y-0.5 pt-1">
-                  <div>Admin: <a href="mailto:shahazaibseo038@gmail.com" className="hover:underline text-foreground">shahazaibseo038@gmail.com</a></div>
-                  <div>Alternate: <a href="mailto:sa0663787@gmail.com" className="hover:underline text-foreground">sa0663787@gmail.com</a></div>
-                </div>
               </div>
 
               <div className="rounded-xl border border-border bg-muted/20 p-5 text-xs text-muted-foreground space-y-2">
