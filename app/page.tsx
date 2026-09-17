@@ -6,8 +6,8 @@ import { FAQAccordion } from "@/components/faq-accordion"
 import heroImage from "@/src/assets/images/text_repeater_hero_1784377279044.webp"
 import { Check, Laptop, HelpCircle, AlertCircle, Sparkles, MessageSquare, Wrench, CheckCircle2 } from "lucide-react"
 
-const PAGE_TITLE = "Text Repeater Online | Copy & Paste Up to 10,000 Times"
-const PAGE_DESCRIPTION = "Repeat text online up to 10,000 times with our free Text Repeater. Repeat words, sentences, lines or paragraphs instantly."
+const PAGE_TITLE = "Text Repeater | Repeat Any Text Up to 10,000 Times"
+const PAGE_DESCRIPTION = "Need to repeat text fast? Use our Text Repeater to repeat words, messages, lines, paragraphs and emojis up to 10,000 times. Free, simple and instant."
 const PAGE_URL = "https://mytextrepeater.com/"
 
 export const metadata: Metadata = {
