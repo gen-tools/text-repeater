@@ -8,7 +8,7 @@ interface ReadingProgressBarProps {
 }
 
 export function ReadingProgressBar({ className }: ReadingProgressBarProps) {
-  const [progress, setProgress] = React.useState(0)
+  const barRef = React.useRef<HTMLDivElement>(null)
 
   React.useEffect(() => {
     let ticking = false
@@ -19,11 +19,9 @@ export function ReadingProgressBar({ className }: ReadingProgressBarProps) {
       const clientHeight = document.documentElement.clientHeight || window.innerHeight || 0
       const totalScrollable = scrollHeight - clientHeight
 
-      if (totalScrollable > 0) {
-        const currentProgress = Math.min(100, Math.max(0, (scrollTop / totalScrollable) * 100))
-        setProgress(currentProgress)
-      } else {
-        setProgress(0)
+      if (barRef.current) {
+        const ratio = totalScrollable > 0 ? Math.min(1, Math.max(0, scrollTop / totalScrollable)) : 0
+        barRef.current.style.transform = `scaleX(${ratio})`
       }
       ticking = false
     }
@@ -50,18 +48,16 @@ export function ReadingProgressBar({ className }: ReadingProgressBarProps) {
       id="reading-progress-bar-container"
       role="progressbar"
       aria-label="Reading progress"
-      aria-valuenow={Math.round(progress)}
-      aria-valuemin={0}
-      aria-valuemax={100}
       className={cn(
         "fixed top-16 left-0 right-0 z-50 h-1 w-full bg-border/40 backdrop-blur-sm pointer-events-none",
         className
       )}
     >
       <div
+        ref={barRef}
         id="reading-progress-bar-fill"
-        className="h-full bg-[#1BA3F4] transition-[width] duration-75 ease-out shadow-[0_0_10px_rgba(27,163,244,0.7)]"
-        style={{ width: `${progress}%` }}
+        className="h-full w-full bg-[#1BA3F4] origin-left will-change-transform shadow-[0_0_10px_rgba(27,163,244,0.7)]"
+        style={{ transform: "scaleX(0)" }}
       />
     </div>
   )

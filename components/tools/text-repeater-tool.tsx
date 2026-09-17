@@ -5,6 +5,7 @@ import { Copy, Download, Trash2, Share2, RotateCcw, Check, Sparkles } from "luci
 import { Button } from "@/components/ui/button"
 import { CopyToast, useCopyToast } from "@/components/copy-toast"
 import { getStoredItem, setStoredItem } from "@/lib/indexed-db"
+import { repeatText, countLines } from "@/lib/utils"
 
 type RepeatMode = "characters" | "words" | "lines" | "paragraphs"
 
@@ -163,25 +164,24 @@ export function TextRepeaterTool() {
 
     switch (repeatMode) {
       case "characters":
-        return Array(deferredRepeatCount).fill(deferredInputText).join(sep)
+        return repeatText(deferredInputText, deferredRepeatCount, sep)
       case "words": {
         const words = deferredInputText.trim().split(/\s+/)
-        return words.map(word => Array(deferredRepeatCount).fill(word).join(sep)).join(" ")
+        return words.map(word => repeatText(word, deferredRepeatCount, sep)).join(" ")
       }
       case "lines": {
         const lines = deferredInputText.split("\n")
-        return lines.map(line => Array(deferredRepeatCount).fill(line).join(sep)).join("\n")
+        return lines.map(line => repeatText(line, deferredRepeatCount, sep)).join("\n")
       }
       case "paragraphs":
-        return Array(deferredRepeatCount).fill(deferredInputText).join(sep)
+        return repeatText(deferredInputText, deferredRepeatCount, sep)
       default:
         return ""
     }
   }, [deferredInputText, deferredRepeatCount, repeatMode, deferredSeparator])
 
   const outputLines = React.useMemo(() => {
-    if (!output) return 0
-    return output.split("\n").length
+    return countLines(output)
   }, [output])
 
   const handleClear = React.useCallback(() => {

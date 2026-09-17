@@ -44,7 +44,8 @@ export function ThirdPartyScripts() {
       }
     }
 
-    const events = ["touchstart", "pointerdown", "scroll", "keydown", "mousemove"]
+    // Trigger on intentional user interactions (touch, click, typing, wheel scroll)
+    const events = ["touchstart", "pointerdown", "keydown", "wheel", "scroll"]
 
     const cleanupListeners = () => {
       events.forEach((evt) => {

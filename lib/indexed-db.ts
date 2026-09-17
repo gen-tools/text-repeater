@@ -103,15 +103,31 @@ export async function getStoredItem<T>(key: string): Promise<T | null> {
   }
 }
 
+// In-memory write cache to prevent redundant writes and avoid unnecessary disk/IndexedDB I/O
+const writeCache = new Map<string, string>()
+
 /**
  * Store an item in IndexedDB and localStorage (for fast synchronous backup).
  */
 export async function setStoredItem<T>(key: string, value: T): Promise<void> {
   if (!isBrowser()) return
 
+  let serialized: string
+  try {
+    serialized = JSON.stringify(value)
+  } catch {
+    return
+  }
+
+  // Deduplicate redundant writes: if the value hasn't changed, skip disk/db operations
+  if (writeCache.get(key) === serialized) {
+    return
+  }
+  writeCache.set(key, serialized)
+
   // Backup in localStorage immediately
   try {
-    window.localStorage.setItem(`tr_${key}`, JSON.stringify(value))
+    window.localStorage.setItem(`tr_${key}`, serialized)
   } catch {
     // Ignore quota or disabled errors
   }

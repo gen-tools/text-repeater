@@ -1,9 +1,10 @@
 "use client"
 
 import * as React from "react"
-import { Copy, Trash2 } from "lucide-react"
+import { Copy, Trash2, RotateCcw, Check, Sparkles, RefreshCw } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { CopyToast, useCopyToast } from "@/components/copy-toast"
+import { getStoredItem, setStoredItem } from "@/lib/indexed-db"
 
 const zalgoChars = {
   up: [
@@ -30,11 +31,106 @@ const zalgoChars = {
 
 type Intensity = "mini" | "normal" | "crazy"
 
+const DEFAULT_DEMO_TEXT = "Zalgo cursed glitch text generator"
+
 export function ZalgoTextTool() {
-  const [inputText, setInputText] = React.useState("")
-  const deferredInputText = React.useDeferredValue(inputText)
+  const [inputText, setInputText] = React.useState(DEFAULT_DEMO_TEXT)
   const [intensity, setIntensity] = React.useState<Intensity>("normal")
+  const [isLoadedFromDB, setIsLoadedFromDB] = React.useState(false)
+  const [isSaved, setIsSaved] = React.useState(false)
+  const [seed, setSeed] = React.useState(0)
   const { showToast, copyToClipboard } = useCopyToast()
+
+  // Load from IndexedDB on mount
+  React.useEffect(() => {
+    let isMounted = true
+
+    async function loadSavedData() {
+      try {
+        const savedText = await getStoredItem<string>("zalgo_text_input")
+        if (!isMounted) return
+
+        if (typeof savedText === "string") {
+          setInputText(savedText)
+        } else {
+          setInputText(DEFAULT_DEMO_TEXT)
+        }
+
+        const savedIntensity = await getStoredItem<Intensity>("zalgo_text_intensity")
+        if (isMounted && savedIntensity && ["mini", "normal", "crazy"].includes(savedIntensity)) {
+          setIntensity(savedIntensity)
+        }
+      } catch (err) {
+        console.error("Error reading zalgo text from IndexedDB:", err)
+      } finally {
+        if (isMounted) {
+          setIsLoadedFromDB(true)
+        }
+      }
+    }
+
+    loadSavedData()
+
+    return () => {
+      isMounted = false
+    }
+  }, [])
+
+  // Auto-save input to IndexedDB
+  React.useEffect(() => {
+    if (!isLoadedFromDB) return
+
+    const timer = setTimeout(async () => {
+      try {
+        await setStoredItem("zalgo_text_input", inputText)
+        setIsSaved(true)
+        const hideTimer = setTimeout(() => setIsSaved(false), 1500)
+        return () => clearTimeout(hideTimer)
+      } catch (err) {
+        console.error("Failed to save zalgo text to IndexedDB:", err)
+      }
+    }, 250)
+
+    return () => clearTimeout(timer)
+  }, [inputText, isLoadedFromDB])
+
+  // Auto-save intensity to IndexedDB
+  React.useEffect(() => {
+    if (!isLoadedFromDB) return
+
+    const timer = setTimeout(async () => {
+      try {
+        await setStoredItem("zalgo_text_intensity", intensity)
+      } catch (err) {
+        console.error("Failed to save zalgo intensity to IndexedDB:", err)
+      }
+    }, 300)
+
+    return () => clearTimeout(timer)
+  }, [intensity, isLoadedFromDB])
+
+  // Save on tab exit
+  React.useEffect(() => {
+    const handleSaveImmediately = () => {
+      setStoredItem("zalgo_text_input", inputText)
+      setStoredItem("zalgo_text_intensity", intensity)
+    }
+
+    window.addEventListener("beforeunload", handleSaveImmediately)
+    const handleVisibility = () => {
+      if (document.visibilityState === "hidden") {
+        handleSaveImmediately()
+      }
+    }
+    document.addEventListener("visibilitychange", handleVisibility)
+
+    return () => {
+      window.removeEventListener("beforeunload", handleSaveImmediately)
+      document.removeEventListener("visibilitychange", handleVisibility)
+    }
+  }, [inputText, intensity])
+
+  const deferredInputText = React.useDeferredValue(inputText)
 
   const getRandomChar = (arr: string[]) => arr[Math.floor(Math.random() * arr.length)]
 
@@ -63,64 +159,129 @@ export function ZalgoTextTool() {
     if (!deferredInputText) {
       return ""
     }
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+    seed
     return generateZalgo(deferredInputText, intensity)
-  }, [deferredInputText, intensity, generateZalgo])
+  }, [deferredInputText, intensity, generateZalgo, seed])
 
   const handleClear = React.useCallback(() => {
     setInputText("")
+    setStoredItem("zalgo_text_input", "")
+  }, [])
+
+  const handleResetDemo = React.useCallback(() => {
+    setInputText(DEFAULT_DEMO_TEXT)
+    setIntensity("normal")
+    setStoredItem("zalgo_text_input", DEFAULT_DEMO_TEXT)
+    setStoredItem("zalgo_text_intensity", "normal")
+  }, [])
+
+  const handleRegenerate = React.useCallback(() => {
+    setSeed(s => s + 1)
   }, [])
 
   return (
     <div className="space-y-6">
       {/* Intensity Selection */}
-      <div className="rounded-xl border border-border bg-card p-6">
-        <p className="mb-4 text-sm font-medium">Select zalgo intensity:</p>
+      <div className="rounded-2xl border border-border bg-card p-5 shadow-sm">
+        <div className="flex items-center justify-between mb-3">
+          <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground sm:text-sm">Select Zalgo Glitch Intensity:</p>
+          <span className="text-xs text-muted-foreground hidden sm:inline">Controls cursed character density</span>
+        </div>
         <div className="flex flex-wrap gap-3">
           {(["mini", "normal", "crazy"] as Intensity[]).map((level) => (
             <button
               key={level}
               onClick={() => setIntensity(level)}
-              className={`rounded-lg border px-6 py-3 font-medium capitalize transition-all ${
+              className={`rounded-xl border px-5 py-2.5 font-medium capitalize text-sm sm:text-base transition-all ${
                 intensity === level
-                  ? "border-primary bg-primary/10"
-                  : "border-border hover:border-primary/50"
+                  ? "border-primary bg-primary text-primary-foreground shadow-sm"
+                  : "border-border bg-background hover:border-primary/50 text-foreground"
               }`}
             >
-              {level}
+              {level === "mini" && "Subtle (Mini)"}
+              {level === "normal" && "Classic (Normal)"}
+              {level === "crazy" && "Extreme (Crazy)"}
             </button>
           ))}
         </div>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-2">
-        <div className="space-y-4">
-          <label htmlFor="input-text" className="block text-sm font-medium">
-            Enter your text
-          </label>
+        {/* Input Section */}
+        <div className="space-y-3">
+          <div className="flex items-center justify-between">
+            <label htmlFor="input-text" className="text-xs font-bold uppercase tracking-wider text-muted-foreground sm:text-sm">
+              Input Text
+            </label>
+            <div className="flex items-center gap-2">
+              {isSaved && (
+                <span className="inline-flex items-center gap-1 text-xs text-primary transition-opacity animate-in fade-in">
+                  <Check className="h-3 w-3" />
+                  Saved
+                </span>
+              )}
+              {inputText !== DEFAULT_DEMO_TEXT && (
+                <button
+                  type="button"
+                  onClick={handleResetDemo}
+                  className="text-xs text-muted-foreground hover:text-primary transition-colors inline-flex items-center gap-1"
+                  title="Load example text"
+                >
+                  <Sparkles className="h-3 w-3" />
+                  Example
+                </button>
+              )}
+            </div>
+          </div>
           <textarea
             id="input-text"
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
             placeholder="Type text to zalgo-ify..."
-            className="h-48 w-full resize-none rounded-xl border border-input bg-background p-4 text-base focus:outline-none focus:ring-2 focus:ring-ring"
+            className="h-48 w-full resize-none rounded-xl border border-input bg-background p-4 text-base focus:outline-none focus:ring-2 focus:ring-ring shadow-sm"
           />
+          <div className="flex items-center justify-between text-xs sm:text-sm text-muted-foreground">
+            <span>{inputText.length} characters</span>
+            <span className="text-xs opacity-75 hidden sm:inline">Saved in IndexedDB</span>
+          </div>
         </div>
 
-        <div className="space-y-4">
-          <label htmlFor="output-text" className="block text-sm font-medium">
-            Zalgo output
-          </label>
+        {/* Output Section */}
+        <div className="space-y-3">
+          <div className="flex items-center justify-between">
+            <label htmlFor="output-text" className="text-xs font-bold uppercase tracking-wider text-muted-foreground sm:text-sm">
+              Zalgo Output
+            </label>
+            {output && (
+              <button
+                type="button"
+                onClick={handleRegenerate}
+                className="text-xs text-muted-foreground hover:text-primary transition-colors inline-flex items-center gap-1"
+                title="Randomize glitch patterns"
+              >
+                <RefreshCw className="h-3 w-3" />
+                Randomize
+              </button>
+            )}
+          </div>
           <textarea
             id="output-text"
             value={output}
             readOnly
             placeholder="Your zalgo text will appear here..."
-            className="h-48 w-full resize-none rounded-xl border border-input bg-muted/50 p-4 text-base focus:outline-none"
+            className="h-48 w-full resize-none rounded-xl border border-input bg-muted/40 p-4 font-mono text-sm sm:text-base leading-relaxed focus:outline-none shadow-sm"
           />
+          <div className="flex items-center justify-between text-xs sm:text-sm text-muted-foreground">
+            <div>{output.length} characters with accents</div>
+            <span className="text-xs text-muted-foreground/80 hidden sm:inline">
+              Ctrl + Enter to quick copy
+            </span>
+          </div>
         </div>
       </div>
 
-      <div className="flex flex-wrap gap-3">
+      <div className="flex flex-wrap items-center gap-3">
         <Button
           onClick={() => copyToClipboard(output)}
           disabled={!output}
@@ -133,15 +294,24 @@ export function ZalgoTextTool() {
         <Button
           onClick={handleClear}
           variant="outline"
-          className="flex-1 rounded-xl sm:flex-none"
+          className="rounded-xl text-destructive hover:bg-destructive/10 hover:text-destructive"
           size="lg"
         >
           <Trash2 className="mr-2 h-4 w-4" />
           Clear
         </Button>
+        <Button
+          onClick={handleResetDemo}
+          variant="ghost"
+          className="rounded-xl text-muted-foreground hover:text-foreground"
+          size="lg"
+        >
+          <RotateCcw className="mr-2 h-4 w-4" />
+          Reset to Example
+        </Button>
       </div>
 
-      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-background p-4 sm:hidden">
+      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-background/95 backdrop-blur p-4 sm:hidden">
         <Button
           onClick={() => copyToClipboard(output)}
           disabled={!output}

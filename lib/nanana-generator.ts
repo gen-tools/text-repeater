@@ -72,13 +72,15 @@ export function generateNananaText(options: NananaOptions): string {
     case "mixed": {
       // Deterministically varied casing driven by input character codes
       const variations = ["NA", "na", "Na", "nA", "NANA", "nana", "NaNa", "nAnA"]
-      let result = ""
+      const chunks: string[] = new Array(targetRepeats)
+      const inputLen = inputChars.length
+      const seedMod = seed % 11
       for (let i = 0; i < targetRepeats; i++) {
-        const charCode = inputChars[i % inputChars.length]?.charCodeAt(0) || 65
-        const variationIndex = (charCode + i * 7 + (seed % 11)) % variations.length
-        result += variations[variationIndex]
+        const charCode = inputChars[i % inputLen]?.charCodeAt(0) || 65
+        const variationIndex = (charCode + i * 7 + seedMod) % 8
+        chunks[i] = variations[variationIndex]
       }
-      return result
+      return chunks.join("")
     }
 
     case "spaced": {
@@ -129,11 +131,7 @@ export function generateNananaText(options: NananaOptions): string {
     case "custom": {
       // Custom pattern token
       const baseToken = customPattern.trim() || "NA"
-      const chunks: string[] = []
-      for (let i = 0; i < targetRepeats; i++) {
-        chunks.push(baseToken)
-      }
-      return chunks.join("")
+      return baseToken.repeat(targetRepeats)
     }
 
     default:

@@ -1,10 +1,13 @@
 "use client"
 
 import * as React from "react"
-import { Copy, Download, Trash2, Share2, Sparkles, RefreshCw } from "lucide-react"
+import { Copy, Download, Trash2, Share2, Sparkles, RefreshCw, RotateCcw, Check } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { CopyToast, useCopyToast } from "@/components/copy-toast"
 import { generateNananaText, type NananaStyle } from "@/lib/nanana-generator"
+import { getStoredItem, setStoredItem } from "@/lib/indexed-db"
+
+const DEFAULT_DEMO_TEXT = "I LOVE YOU"
 
 const styleOptions: { id: NananaStyle; label: string; description: string; sample: string }[] = [
   {
@@ -77,14 +80,108 @@ const popularNananaMessages: PopularNananaMessage[] = [
 ]
 
 export function NananaTranslatorTool() {
-  const [inputText, setInputText] = React.useState("")
+  const [inputText, setInputText] = React.useState(DEFAULT_DEMO_TEXT)
   const [selectedStyle, setSelectedStyle] = React.useState<NananaStyle>("mixed")
   const [selectedLengthPreset, setSelectedLengthPreset] = React.useState<number>(50)
   const [customLength, setCustomLength] = React.useState<number>(120)
   const [customPattern, setCustomPattern] = React.useState("NA")
-  const [selectedQuickPick, setSelectedQuickPick] = React.useState<string | null>(null)
+  const [selectedQuickPick, setSelectedQuickPick] = React.useState<string | null>("I LOVE YOU")
   const [salt, setSalt] = React.useState(0) // Allows quick remix/regenerate if user wants a variation
+  const [isLoadedFromDB, setIsLoadedFromDB] = React.useState(false)
+  const [isSaved, setIsSaved] = React.useState(false)
   const { showToast, copyToClipboard } = useCopyToast()
+
+  // Load from IndexedDB on mount
+  React.useEffect(() => {
+    let isMounted = true
+
+    async function loadSavedData() {
+      try {
+        const savedText = await getStoredItem<string>("nanana_input")
+        if (!isMounted) return
+
+        if (typeof savedText === "string") {
+          setInputText(savedText)
+          const matched = popularNananaMessages.find((m) => m.phrase === savedText)
+          setSelectedQuickPick(matched ? matched.label : null)
+        } else {
+          setInputText(DEFAULT_DEMO_TEXT)
+          setSelectedQuickPick("I LOVE YOU")
+        }
+
+        const savedStyle = await getStoredItem<NananaStyle>("nanana_style")
+        if (isMounted && savedStyle && styleOptions.some(s => s.id === savedStyle)) {
+          setSelectedStyle(savedStyle)
+        }
+
+        const savedLength = await getStoredItem<number>("nanana_length")
+        if (isMounted && typeof savedLength === "number") {
+          if (lengthPresets.some(p => p.value === savedLength)) {
+            setSelectedLengthPreset(savedLength)
+          } else if (savedLength > 0 && savedLength <= 5000) {
+            setSelectedLengthPreset(-1)
+            setCustomLength(savedLength)
+          }
+        }
+      } catch (err) {
+        console.error("Error reading nanana translator from IndexedDB:", err)
+      } finally {
+        if (isMounted) {
+          setIsLoadedFromDB(true)
+        }
+      }
+    }
+
+    loadSavedData()
+
+    return () => {
+      isMounted = false
+    }
+  }, [])
+
+  // Auto-save settings to IndexedDB
+  React.useEffect(() => {
+    if (!isLoadedFromDB) return
+
+    const timer = setTimeout(async () => {
+      try {
+        await Promise.all([
+          setStoredItem("nanana_input", inputText),
+          setStoredItem("nanana_style", selectedStyle),
+          setStoredItem("nanana_length", selectedLengthPreset === -1 ? customLength : selectedLengthPreset),
+        ])
+        setIsSaved(true)
+        const hideTimer = setTimeout(() => setIsSaved(false), 1500)
+        return () => clearTimeout(hideTimer)
+      } catch (err) {
+        console.error("Failed to save nanana settings to IndexedDB:", err)
+      }
+    }, 300)
+
+    return () => clearTimeout(timer)
+  }, [inputText, selectedStyle, selectedLengthPreset, customLength, isLoadedFromDB])
+
+  // Save on tab exit
+  React.useEffect(() => {
+    const handleSaveImmediately = () => {
+      setStoredItem("nanana_input", inputText)
+      setStoredItem("nanana_style", selectedStyle)
+      setStoredItem("nanana_length", selectedLengthPreset === -1 ? customLength : selectedLengthPreset)
+    }
+
+    window.addEventListener("beforeunload", handleSaveImmediately)
+    const handleVisibility = () => {
+      if (document.visibilityState === "hidden") {
+        handleSaveImmediately()
+      }
+    }
+    document.addEventListener("visibilitychange", handleVisibility)
+
+    return () => {
+      window.removeEventListener("beforeunload", handleSaveImmediately)
+      document.removeEventListener("visibilitychange", handleVisibility)
+    }
+  }, [inputText, selectedStyle, selectedLengthPreset, customLength])
 
   const deferredInput = React.useDeferredValue(inputText)
   const activeLength = selectedLengthPreset === -1 ? customLength : selectedLengthPreset
@@ -121,6 +218,17 @@ export function NananaTranslatorTool() {
   const handleClear = React.useCallback(() => {
     setSelectedQuickPick(null)
     setInputText("")
+    setStoredItem("nanana_input", "")
+  }, [])
+
+  const handleResetDemo = React.useCallback(() => {
+    setInputText(DEFAULT_DEMO_TEXT)
+    setSelectedQuickPick("I LOVE YOU")
+    setSelectedStyle("mixed")
+    setSelectedLengthPreset(50)
+    setStoredItem("nanana_input", DEFAULT_DEMO_TEXT)
+    setStoredItem("nanana_style", "mixed")
+    setStoredItem("nanana_length", 50)
   }, [])
 
   const handleDownload = React.useCallback(() => {
@@ -224,20 +332,39 @@ export function NananaTranslatorTool() {
         {/* Input Section */}
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <label htmlFor="input-text" className="block text-sm font-medium">
+            <label htmlFor="input-text" className="text-xs font-bold uppercase tracking-wider text-muted-foreground sm:text-sm">
               Enter your text
             </label>
-            {inputText && (
-              <button
-                type="button"
-                onClick={handleClear}
-                className="text-xs text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1"
-                aria-label="Clear input text"
-              >
-                <Trash2 className="h-3.5 w-3.5" />
-                Clear
-              </button>
-            )}
+            <div className="flex items-center gap-2">
+              {isSaved && (
+                <span className="inline-flex items-center gap-1 text-xs text-primary transition-opacity animate-in fade-in">
+                  <Check className="h-3 w-3" />
+                  Saved
+                </span>
+              )}
+              {inputText !== DEFAULT_DEMO_TEXT && (
+                <button
+                  type="button"
+                  onClick={handleResetDemo}
+                  className="text-xs text-muted-foreground hover:text-primary transition-colors inline-flex items-center gap-1"
+                  title="Reset to example"
+                >
+                  <Sparkles className="h-3 w-3" />
+                  Example
+                </button>
+              )}
+              {inputText && (
+                <button
+                  type="button"
+                  onClick={handleClear}
+                  className="text-xs text-muted-foreground hover:text-destructive transition-colors flex items-center gap-1"
+                  aria-label="Clear input text"
+                >
+                  <Trash2 className="h-3.5 w-3.5" />
+                  Clear
+                </button>
+              )}
+            </div>
           </div>
           <textarea
             id="input-text"

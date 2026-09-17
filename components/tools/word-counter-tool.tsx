@@ -20,6 +20,7 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { CopyToast, useCopyToast } from "@/components/copy-toast"
+import { getStoredItem, setStoredItem } from "@/lib/indexed-db"
 
 const COMMON_STOP_WORDS = new Set([
   "the", "be", "to", "of", "and", "a", "in", "that", "have", "i",
@@ -56,8 +57,12 @@ function countWordSyllables(word: string): number {
   return syllables ? syllables.length : 1
 }
 
+const DEFAULT_DEMO_TEXT = SAMPLE_TEXTS[0].content
+
 export function WordCounterTool() {
-  const [inputText, setInputText] = React.useState("")
+  const [inputText, setInputText] = React.useState(DEFAULT_DEMO_TEXT)
+  const [isLoadedFromDB, setIsLoadedFromDB] = React.useState(false)
+  const [isSaved, setIsSaved] = React.useState(false)
   const deferredInputText = React.useDeferredValue(inputText)
   const [readingSpeed, setReadingSpeed] = React.useState(225) // WPM
   const [speakingSpeed, setSpeakingSpeed] = React.useState(150) // WPM
@@ -66,9 +71,84 @@ export function WordCounterTool() {
 
   const { showToast, copyToClipboard } = useCopyToast()
 
+  // Load from IndexedDB on mount
+  React.useEffect(() => {
+    let isMounted = true
+
+    async function loadSavedData() {
+      try {
+        const savedText = await getStoredItem<string>("word_counter_input")
+        if (!isMounted) return
+
+        if (typeof savedText === "string") {
+          setInputText(savedText)
+        } else {
+          setInputText(DEFAULT_DEMO_TEXT)
+        }
+      } catch (err) {
+        console.error("Error reading word counter from IndexedDB:", err)
+      } finally {
+        if (isMounted) {
+          setIsLoadedFromDB(true)
+        }
+      }
+    }
+
+    loadSavedData()
+
+    return () => {
+      isMounted = false
+    }
+  }, [])
+
+  // Auto-save input to IndexedDB
+  React.useEffect(() => {
+    if (!isLoadedFromDB) return
+
+    const timer = setTimeout(async () => {
+      try {
+        await setStoredItem("word_counter_input", inputText)
+        setIsSaved(true)
+        const hideTimer = setTimeout(() => setIsSaved(false), 1500)
+        return () => clearTimeout(hideTimer)
+      } catch (err) {
+        console.error("Failed to save word counter to IndexedDB:", err)
+      }
+    }, 250)
+
+    return () => clearTimeout(timer)
+  }, [inputText, isLoadedFromDB])
+
+  // Save on tab exit
+  React.useEffect(() => {
+    const handleSaveImmediately = () => {
+      setStoredItem("word_counter_input", inputText)
+    }
+
+    window.addEventListener("beforeunload", handleSaveImmediately)
+    const handleVisibility = () => {
+      if (document.visibilityState === "hidden") {
+        handleSaveImmediately()
+      }
+    }
+    document.addEventListener("visibilitychange", handleVisibility)
+
+    return () => {
+      window.removeEventListener("beforeunload", handleSaveImmediately)
+      document.removeEventListener("visibilitychange", handleVisibility)
+    }
+  }, [inputText])
+
   const handleClear = React.useCallback(() => {
     setInputText("")
     setExtractedInfo(null)
+    setStoredItem("word_counter_input", "")
+  }, [])
+
+  const handleResetDemo = React.useCallback(() => {
+    setInputText(DEFAULT_DEMO_TEXT)
+    setExtractedInfo(null)
+    setStoredItem("word_counter_input", DEFAULT_DEMO_TEXT)
   }, [])
 
   // Calculations
@@ -80,9 +160,31 @@ export function WordCounterTool() {
     const wordList = trimmed ? trimmed.split(/\s+/).filter(Boolean) : []
     const wordsCount = wordList.length
 
-    // Characters
+    // Characters and detailed breakdown via high-speed charCode scan
     const charWithSpaces = text.length
-    const charNoSpaces = text.replace(/\s/g, "").length
+    let lettersCount = 0
+    let numbersCount = 0
+    let symbolsCount = 0
+    let spacesCount = 0
+    let linesCount = text.length === 0 ? 0 : 1
+
+    for (let i = 0; i < text.length; i++) {
+      const code = text.charCodeAt(i)
+      if ((code >= 65 && code <= 90) || (code >= 97 && code <= 122)) {
+        lettersCount++
+      } else if (code >= 48 && code <= 57) {
+        numbersCount++
+      } else if (code === 32 || code === 9 || code === 13) {
+        spacesCount++
+      } else if (code === 10) {
+        spacesCount++
+        linesCount++
+      } else {
+        symbolsCount++
+      }
+    }
+
+    const charNoSpaces = charWithSpaces - spacesCount
 
     // Sentences
     const sentencesList = trimmed ? trimmed.split(/[.!?]+/).filter(s => s.trim().length > 0) : []
@@ -91,24 +193,9 @@ export function WordCounterTool() {
     // Paragraphs
     const paragraphsCount = trimmed ? trimmed.split(/\n+/).filter(p => p.trim().length > 0).length : 0
 
-    // Lines
-    const linesCount = text.length === 0 ? 0 : text.split(/\r\n|\r|\n/).length
-
     // Syllables
     let totalSyllables = 0
     let longestWord = ""
-    let lettersCount = 0
-    let numbersCount = 0
-    let symbolsCount = 0
-    let spacesCount = 0
-
-    for (let i = 0; i < text.length; i++) {
-      const char = text[i]
-      if (/[a-zA-Z]/.test(char)) lettersCount++
-      else if (/[0-9]/.test(char)) numbersCount++
-      else if (/\s/.test(char)) spacesCount++
-      else symbolsCount++
-    }
 
     wordList.forEach(w => {
       const cleanW = w.replace(/[^a-zA-Z]/g, "")
@@ -345,16 +432,34 @@ Longest Word,${stats.longestWord}
           ))}
         </div>
 
-        {inputText && (
-          <Button
-            onClick={handleClear}
-            variant="ghost"
-            size="sm"
-            className="text-muted-foreground hover:text-destructive text-xs"
-          >
-            <Trash2 className="mr-1.5 h-3.5 w-3.5" /> Clear Text
-          </Button>
-        )}
+        <div className="flex items-center gap-2">
+          {isSaved && (
+            <span className="inline-flex items-center gap-1 text-xs text-primary transition-opacity animate-in fade-in">
+              <Check className="h-3 w-3" />
+              Saved
+            </span>
+          )}
+          {inputText !== DEFAULT_DEMO_TEXT && (
+            <Button
+              onClick={handleResetDemo}
+              variant="ghost"
+              size="sm"
+              className="text-muted-foreground hover:text-foreground text-xs"
+            >
+              <RotateCcw className="mr-1.5 h-3.5 w-3.5" /> Reset to Example
+            </Button>
+          )}
+          {inputText && (
+            <Button
+              onClick={handleClear}
+              variant="ghost"
+              size="sm"
+              className="text-muted-foreground hover:text-destructive text-xs"
+            >
+              <Trash2 className="mr-1.5 h-3.5 w-3.5" /> Clear Text
+            </Button>
+          )}
+        </div>
       </div>
 
       {/* Primary Input Box & Live Summary */}
