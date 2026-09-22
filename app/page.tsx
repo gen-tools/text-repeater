@@ -6,13 +6,16 @@ import { FAQAccordion } from "@/components/faq-accordion"
 import heroImage from "@/src/assets/images/text_repeater_hero_1784377279044.webp"
 import { Check, Laptop, HelpCircle, AlertCircle, Sparkles, MessageSquare, Wrench, CheckCircle2 } from "lucide-react"
 
-const PAGE_TITLE = "Text Repeater | Repeat Any Text Up to 10,000 Times"
-const PAGE_DESCRIPTION = "Need to repeat text fast? Use our Text Repeater to repeat words, messages, lines, paragraphs and emojis up to 10,000 times. Free, simple and instant."
-const PAGE_URL = "https://mytextrepeater.com/"
+const PAGE_TITLE = "Text Repeater Online | Copy & Paste Up to 10,000 Times"
+const PAGE_DESCRIPTION = "Repeat text online up to 10,000 times with our free Text Repeater. Repeat words, sentences, lines or paragraphs instantly."
+const PAGE_URL = "https://mytextrepeater.com"
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
+  authors: [{ name: "My Text Repeater Editorial Team", url: "https://mytextrepeater.com" }],
+  creator: "My Text Repeater Editorial Team",
+  publisher: "My Text Repeater",
   alternates: {
     canonical: PAGE_URL,
   },
@@ -63,7 +66,7 @@ const faqs = [
   },
   {
     question: "Will my text be saved or uploaded?",
-    answer: "No. Everything is processed locally on your device. Nothing is sent to our server.",
+    answer: "Your text is never uploaded to any server and stays strictly inside your browser. It is saved locally so you don't lose your work, and you can remove it anytime with the Clear saved text button.",
   },
   {
     question: "Is this free to use?",
@@ -78,14 +81,38 @@ const faqs = [
 export default function HomePage() {
   const softwareAppJsonLd = {
     "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
+    "@type": ["SoftwareApplication", "WebApplication"],
+    "@id": "https://mytextrepeater.com/#software",
     name: "Text Repeater",
     description: "Text Repeater is a free online tool that repeats any word, sentence, emoji, or paragraph as many times as you need up to 10,000 repetitions in seconds. Type your text once, set a repeat count, and copy or download the result. No signup, no app install, and nothing leaves your browser.",
-    url: "https://mytextrepeater.com/",
+    url: "https://mytextrepeater.com",
     applicationCategory: "UtilitiesApplication",
     operatingSystem: "All",
     browserRequirements: "Requires JavaScript. Requires HTML5.",
     softwareVersion: "1.0",
+    datePublished: "2025-01-01",
+    dateModified: "2026-09-21",
+    inLanguage: "en-US",
+    isAccessibleForFree: true,
+    author: {
+      "@type": "Organization",
+      name: "My Text Repeater Editorial Team",
+      url: "https://mytextrepeater.com",
+    },
+    creator: {
+      "@type": "Organization",
+      name: "My Text Repeater Editorial Team",
+      url: "https://mytextrepeater.com",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "My Text Repeater",
+      url: "https://mytextrepeater.com",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://mytextrepeater.com/icon.svg",
+      },
+    },
     offers: {
       "@type": "Offer",
       price: "0",
@@ -101,8 +128,43 @@ export default function HomePage() {
       "Download the result as a .txt file for later use",
       "Works with emojis, symbols, and all Unicode characters including Hindi",
       "No account or installation required",
-      "Runs entirely in your browser for privacy",
+      "Runs entirely in your browser for privacy — client-side verified with zero server uploads",
     ],
+  }
+
+  const webPageJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://mytextrepeater.com/#webpage",
+    url: "https://mytextrepeater.com",
+    name: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+    datePublished: "2025-01-01",
+    dateModified: "2026-09-21",
+    inLanguage: "en-US",
+    isPartOf: {
+      "@type": "WebSite",
+      "@id": "https://mytextrepeater.com/#website",
+      url: "https://mytextrepeater.com",
+      name: "My Text Repeater",
+    },
+    author: {
+      "@type": "Organization",
+      name: "My Text Repeater Editorial Team",
+      url: "https://mytextrepeater.com",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "My Text Repeater",
+      url: "https://mytextrepeater.com",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://mytextrepeater.com/icon.svg",
+      },
+    },
+    about: {
+      "@id": "https://mytextrepeater.com/#software",
+    },
   }
 
   const faqJsonLd = {
@@ -123,6 +185,10 @@ export default function HomePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }}
       />
       <script
         type="application/ld+json"
@@ -240,6 +306,146 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Worked Examples for Each Repeat Mode */}
+      <section className="py-16 border-t border-border bg-muted/20 cv-auto">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl mb-3">
+              Worked Examples for Each Repeat Mode
+            </h2>
+            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+              See exact inputs, settings, and resulting outputs for all four repetition modes supported by the tool.
+            </p>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-2">
+            {/* Mode 1: Entire Text */}
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-sm flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="text-lg font-bold text-foreground">1. Entire Text Mode</h3>
+                  <span className="rounded-md bg-primary/10 px-2 py-0.5 text-xs font-semibold text-primary">Default</span>
+                </div>
+                <p className="text-xs sm:text-sm text-muted-foreground mb-4 leading-relaxed">
+                  Duplicates the complete input string as a single unit as many times as specified.
+                </p>
+                
+                <div className="space-y-3 text-xs sm:text-sm">
+                  <div>
+                    <span className="font-semibold text-foreground block mb-1 text-xs uppercase tracking-wider text-muted-foreground">Input Text</span>
+                    <pre className="rounded-lg border border-border bg-muted/50 p-2.5 font-mono text-xs text-foreground whitespace-pre-wrap">Great job!</pre>
+                  </div>
+                  <div>
+                    <span className="font-semibold text-foreground block mb-1 text-xs uppercase tracking-wider text-muted-foreground">Settings</span>
+                    <div className="flex flex-wrap gap-2 text-xs">
+                      <span className="rounded bg-muted px-2 py-1 font-mono text-foreground">Count: 3</span>
+                      <span className="rounded bg-muted px-2 py-1 font-mono text-foreground">Separator: Line Break</span>
+                    </div>
+                  </div>
+                  <div>
+                    <span className="font-semibold text-foreground block mb-1 text-xs uppercase tracking-wider text-muted-foreground">Resulting Output</span>
+                    <pre className="rounded-lg border border-primary/20 bg-primary/5 p-2.5 font-mono text-xs text-foreground whitespace-pre-wrap">{`Great job!\nGreat job!\nGreat job!`}</pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Mode 2: Each Word Mode */}
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-sm flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="text-lg font-bold text-foreground">2. Each Word Mode</h3>
+                  <span className="rounded-md bg-muted px-2 py-0.5 text-xs font-semibold text-muted-foreground">Word-by-Word</span>
+                </div>
+                <p className="text-xs sm:text-sm text-muted-foreground mb-4 leading-relaxed">
+                  Separates the text by spaces and repeats each individual word consecutively.
+                </p>
+                
+                <div className="space-y-3 text-xs sm:text-sm">
+                  <div>
+                    <span className="font-semibold text-foreground block mb-1 text-xs uppercase tracking-wider text-muted-foreground">Input Text</span>
+                    <pre className="rounded-lg border border-border bg-muted/50 p-2.5 font-mono text-xs text-foreground whitespace-pre-wrap">Good morning friend</pre>
+                  </div>
+                  <div>
+                    <span className="font-semibold text-foreground block mb-1 text-xs uppercase tracking-wider text-muted-foreground">Settings</span>
+                    <div className="flex flex-wrap gap-2 text-xs">
+                      <span className="rounded bg-muted px-2 py-1 font-mono text-foreground">Count: 2</span>
+                      <span className="rounded bg-muted px-2 py-1 font-mono text-foreground">Separator: Space</span>
+                    </div>
+                  </div>
+                  <div>
+                    <span className="font-semibold text-foreground block mb-1 text-xs uppercase tracking-wider text-muted-foreground">Resulting Output</span>
+                    <pre className="rounded-lg border border-primary/20 bg-primary/5 p-2.5 font-mono text-xs text-foreground whitespace-pre-wrap">Good Good morning morning friend friend</pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Mode 3: Each Line Mode */}
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-sm flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="text-lg font-bold text-foreground">3. Each Line Mode</h3>
+                  <span className="rounded-md bg-muted px-2 py-0.5 text-xs font-semibold text-muted-foreground">Line-by-Line</span>
+                </div>
+                <p className="text-xs sm:text-sm text-muted-foreground mb-4 leading-relaxed">
+                  Breaks text at existing line breaks and repeats each line in place before moving to the next.
+                </p>
+                
+                <div className="space-y-3 text-xs sm:text-sm">
+                  <div>
+                    <span className="font-semibold text-foreground block mb-1 text-xs uppercase tracking-wider text-muted-foreground">Input Text</span>
+                    <pre className="rounded-lg border border-border bg-muted/50 p-2.5 font-mono text-xs text-foreground whitespace-pre-wrap">{`Item A\nItem B`}</pre>
+                  </div>
+                  <div>
+                    <span className="font-semibold text-foreground block mb-1 text-xs uppercase tracking-wider text-muted-foreground">Settings</span>
+                    <div className="flex flex-wrap gap-2 text-xs">
+                      <span className="rounded bg-muted px-2 py-1 font-mono text-foreground">Count: 2</span>
+                      <span className="rounded bg-muted px-2 py-1 font-mono text-foreground">Separator: Line Break</span>
+                    </div>
+                  </div>
+                  <div>
+                    <span className="font-semibold text-foreground block mb-1 text-xs uppercase tracking-wider text-muted-foreground">Resulting Output</span>
+                    <pre className="rounded-lg border border-primary/20 bg-primary/5 p-2.5 font-mono text-xs text-foreground whitespace-pre-wrap">{`Item A\nItem A\nItem B\nItem B`}</pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Mode 4: Paragraphs Mode */}
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-sm flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="text-lg font-bold text-foreground">4. Paragraphs Mode</h3>
+                  <span className="rounded-md bg-muted px-2 py-0.5 text-xs font-semibold text-muted-foreground">Paragraph-by-Paragraph</span>
+                </div>
+                <p className="text-xs sm:text-sm text-muted-foreground mb-4 leading-relaxed">
+                  Identifies blocks separated by double line breaks and multiplies each whole paragraph.
+                </p>
+                
+                <div className="space-y-3 text-xs sm:text-sm">
+                  <div>
+                    <span className="font-semibold text-foreground block mb-1 text-xs uppercase tracking-wider text-muted-foreground">Input Text</span>
+                    <pre className="rounded-lg border border-border bg-muted/50 p-2.5 font-mono text-xs text-foreground whitespace-pre-wrap">{`First announcement.\n\nSecond announcement.`}</pre>
+                  </div>
+                  <div>
+                    <span className="font-semibold text-foreground block mb-1 text-xs uppercase tracking-wider text-muted-foreground">Settings</span>
+                    <div className="flex flex-wrap gap-2 text-xs">
+                      <span className="rounded bg-muted px-2 py-1 font-mono text-foreground">Count: 2</span>
+                      <span className="rounded bg-muted px-2 py-1 font-mono text-foreground">Separator: Blank Line</span>
+                    </div>
+                  </div>
+                  <div>
+                    <span className="font-semibold text-foreground block mb-1 text-xs uppercase tracking-wider text-muted-foreground">Resulting Output</span>
+                    <pre className="rounded-lg border border-primary/20 bg-primary/5 p-2.5 font-mono text-xs text-foreground whitespace-pre-wrap">{`First announcement.\n\nFirst announcement.\n\nSecond announcement.\n\nSecond announcement.`}</pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* What Is a Text Repeater? */}
       <section className="py-16 border-t border-border bg-muted/30 cv-auto">
         <div className="container mx-auto px-4 max-w-3xl">
@@ -254,7 +460,7 @@ export default function HomePage() {
               It&apos;s useful for a lot of everyday tasks — from creating repeated replies for messaging apps, to generating long test strings for developers checking input limits.
             </p>
             <p>
-              This tool supports four flexible modes. Type Happy Birthday!, set the count to 5, and choose Each Line to get five separate lines ready to copy. Switch to Each Word mode and each word in your sentence is duplicated individually. The customizable separator controls exactly how the final output is formatted.
+              My Text Repeater supports four flexible modes. Type “Happy Birthday!”, set the count to 5, and choose Each Line to get five separate lines ready to copy. Switch to Each Word mode to repeat each word in your sentence individually. The customizable separator lets you control exactly how the final output is formatted.
             </p>
           </div>
         </div>
@@ -268,7 +474,7 @@ export default function HomePage() {
           </h2>
           <div className="space-y-4 text-foreground/90 leading-relaxed text-base">
             <p>
-              Repeating text by hand is easy to get wrong — you lose count, break formatting, or miss separators in a long paste. This tool handles counting and formatting so the output is consistent every time, whether you are duplicating a single emoji or a full paragraph.
+              Repeating text by hand is easy to get wrong — you lose count, break formatting, or miss separators in a long paste. You don&apos;t have to count or format anything: the output comes out the same every time, from a single emoji to a full paragraph.
             </p>
             <p>
               Because everything runs client-side in your browser, there is no upload delay and no wall between you and your result.
