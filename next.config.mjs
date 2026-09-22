@@ -113,6 +113,33 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'text-repeater0.vercel.app',
+          },
+        ],
+        destination: 'https://mytextrepeater.com/:path*',
+        permanent: true,
+      },
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'www.mytextrepeater.com',
+          },
+        ],
+        destination: 'https://mytextrepeater.com/:path*',
+        permanent: true,
+      },
+      {
+        source: '/blog/emoji-repeater-multiply-emojis-online',
+        destination: '/blog/repeat-emojis-multiple-times',
+        permanent: true,
+      },
+      {
         source: '/blank-text',
         destination: '/blank-text-generator',
         permanent: true,

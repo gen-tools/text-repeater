@@ -4,7 +4,7 @@ import * as React from "react"
 import { Copy, Download, Trash2, Share2, RotateCcw, Check, Sparkles } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { CopyToast, useCopyToast } from "@/components/copy-toast"
-import { getStoredItem, setStoredItem } from "@/lib/indexed-db"
+import { getStoredItem, setStoredItem, removeStoredItem } from "@/lib/indexed-db"
 import { repeatText, countLines } from "@/lib/utils"
 
 type RepeatMode = "characters" | "words" | "lines" | "paragraphs"
@@ -30,39 +30,16 @@ export function TextRepeaterTool() {
         const savedInput = await getStoredItem<string>("input_text")
         if (!isMounted) return
 
-        if (typeof savedInput === "string") {
-          // If it was the previous demo text, migrate to the updated demo text
+        if (typeof savedInput === "string" && savedInput.length > 0) {
+          // If it was the old legacy demo text, standardize to DEFAULT_DEMO_TEXT
           if (savedInput === "I love text repeaters!") {
             setInputText(DEFAULT_DEMO_TEXT)
-            setStoredItem("input_text", DEFAULT_DEMO_TEXT)
           } else {
             setInputText(savedInput)
           }
-        } else {
-          // First-time visit: provide example text so users immediately understand the tool
-          setInputText(DEFAULT_DEMO_TEXT)
-        }
-
-        const savedCount = await getStoredItem<number>("repeat_count")
-        if (isMounted && typeof savedCount === "number" && savedCount >= 1 && savedCount <= 10000) {
-          setRepeatCount(savedCount)
-        }
-
-        const savedMode = await getStoredItem<RepeatMode>("repeat_mode")
-        if (
-          isMounted &&
-          savedMode &&
-          ["characters", "words", "lines", "paragraphs"].includes(savedMode)
-        ) {
-          setRepeatMode(savedMode)
-        }
-
-        const savedSep = await getStoredItem<string>("separator")
-        if (isMounted && typeof savedSep === "string") {
-          setSeparator(savedSep)
         }
       } catch (err) {
-        console.error("Error reading from IndexedDB:", err)
+        console.warn("Storage read fallback active:", err)
       } finally {
         if (isMounted) {
           setIsLoadedFromDB(true)
@@ -77,50 +54,43 @@ export function TextRepeaterTool() {
     }
   }, [])
 
-  // Persist user input to IndexedDB whenever it changes
+  // Persist user input only (not output) to IndexedDB
   React.useEffect(() => {
     if (!isLoadedFromDB) return
 
+    // If input matches the default initial demo, don't write to storage so storage stays empty
+    if (inputText === DEFAULT_DEMO_TEXT) {
+      return
+    }
+
     const timer = setTimeout(async () => {
       try {
-        await setStoredItem("input_text", inputText)
-        setIsSaved(true)
-        const hideTimer = setTimeout(() => setIsSaved(false), 1500)
-        return () => clearTimeout(hideTimer)
+        if (inputText === "") {
+          await removeStoredItem("input_text")
+        } else {
+          await setStoredItem("input_text", inputText)
+          setIsSaved(true)
+          const hideTimer = setTimeout(() => setIsSaved(false), 1500)
+          return () => clearTimeout(hideTimer)
+        }
       } catch (err) {
-        console.error("Failed to save input to IndexedDB:", err)
+        console.warn("Failed to persist input to storage:", err)
       }
     }, 250)
 
     return () => clearTimeout(timer)
   }, [inputText, isLoadedFromDB])
 
-  // Persist controls to IndexedDB
-  React.useEffect(() => {
-    if (!isLoadedFromDB) return
-
-    const timer = setTimeout(async () => {
-      try {
-        await Promise.all([
-          setStoredItem("repeat_count", repeatCount),
-          setStoredItem("repeat_mode", repeatMode),
-          setStoredItem("separator", separator),
-        ])
-      } catch (err) {
-        console.error("Failed to save settings to IndexedDB:", err)
-      }
-    }, 300)
-
-    return () => clearTimeout(timer)
-  }, [repeatCount, repeatMode, separator, isLoadedFromDB])
-
-  // Ensure synchronous backup before tab unload or navigation
+  // Ensure synchronous backup of input before tab unload
   React.useEffect(() => {
     const handleBeforeUnload = () => {
-      setStoredItem("input_text", inputText)
-      setStoredItem("repeat_count", repeatCount)
-      setStoredItem("repeat_mode", repeatMode)
-      setStoredItem("separator", separator)
+      if (inputText && inputText !== DEFAULT_DEMO_TEXT) {
+        try {
+          setStoredItem("input_text", inputText)
+        } catch {
+          // safe fallback
+        }
+      }
     }
 
     window.addEventListener("beforeunload", handleBeforeUnload)
@@ -135,7 +105,7 @@ export function TextRepeaterTool() {
       window.removeEventListener("beforeunload", handleBeforeUnload)
       document.removeEventListener("visibilitychange", handleVisibility)
     }
-  }, [inputText, repeatCount, repeatMode, separator])
+  }, [inputText])
 
   const deferredInputText = React.useDeferredValue(inputText)
   const deferredRepeatCount = React.useDeferredValue(repeatCount)
@@ -184,11 +154,14 @@ export function TextRepeaterTool() {
     return countLines(output)
   }, [output])
 
-  const handleClear = React.useCallback(() => {
+  const handleClearSavedText = React.useCallback(async () => {
     setInputText("")
-    setSeparator("")
-    setStoredItem("input_text", "")
-    setStoredItem("separator", "")
+    setIsSaved(false)
+    try {
+      await removeStoredItem("input_text")
+    } catch {
+      // safe fallback
+    }
   }, [])
 
   const handleResetDemo = React.useCallback(() => {
@@ -196,10 +169,6 @@ export function TextRepeaterTool() {
     setRepeatCount(DEFAULT_REPEAT_COUNT)
     setRepeatMode("characters")
     setSeparator("")
-    setStoredItem("input_text", DEFAULT_DEMO_TEXT)
-    setStoredItem("repeat_count", DEFAULT_REPEAT_COUNT)
-    setStoredItem("repeat_mode", "characters")
-    setStoredItem("separator", "")
   }, [])
 
   const handleDownload = React.useCallback(() => {
@@ -264,6 +233,17 @@ export function TextRepeaterTool() {
                   Saved
                 </span>
               )}
+              {inputText.length > 0 && (
+                <button
+                  type="button"
+                  onClick={handleClearSavedText}
+                  className="text-xs text-muted-foreground hover:text-destructive transition-colors inline-flex items-center gap-1 font-medium"
+                  title="Clear saved text from browser storage"
+                >
+                  <Trash2 className="h-3 w-3" />
+                  Clear saved text
+                </button>
+              )}
               {inputText !== DEFAULT_DEMO_TEXT && (
                 <button
                   type="button"
@@ -292,7 +272,7 @@ export function TextRepeaterTool() {
               <span>{wordCount} words</span>
             </div>
             <span className="text-xs opacity-75 hidden sm:inline">
-              Saved automatically in IndexedDB
+              Saved locally in your browser
             </span>
           </div>
         </div>
@@ -460,12 +440,12 @@ export function TextRepeaterTool() {
           {/* Actions: Clear & Reset */}
           <div className="flex flex-col justify-end gap-2">
             <Button
-              onClick={handleClear}
+              onClick={handleClearSavedText}
               variant="outline"
               className="w-full rounded-lg text-destructive hover:bg-destructive/10 hover:text-destructive"
             >
               <Trash2 className="mr-2 h-4 w-4" />
-              Clear
+              Clear saved text
             </Button>
             <Button
               onClick={handleResetDemo}

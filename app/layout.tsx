@@ -24,7 +24,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://mytextrepeater.com'),
-  title: 'My Text Repeater',
+  title: 'Text Repeater Online | Copy & Paste Up to 10,000 Times',
   description: 'Free Text Repeater to repeat text 100 times or up to 10,000. Repeat words, sentences, emojis, and messages with custom separators. Copy or download.',
   authors: [{ name: 'My Text Repeater' }],
   creator: 'My Text Repeater',

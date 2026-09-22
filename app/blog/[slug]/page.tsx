@@ -15,7 +15,6 @@ import { HowToRepeatAWordOrSentenceArticle } from "@/components/blog-articles/ho
 import { RepeatTextForTestingAndQaArticle } from "@/components/blog-articles/repeat-text-for-testing-and-qa-article"
 import { RepeatTextOnNewLinesArticle } from "@/components/blog-articles/repeat-text-on-new-lines-article"
 import { WordRepeaterArticle } from "@/components/blog-articles/word-repeater-article"
-import { EmojiRepeaterArticle } from "@/components/blog-articles/emoji-repeater-article"
 import { BlankTextArticle } from "@/components/blog-articles/blank-text-article"
 import { CaseConverterArticle } from "@/components/blog-articles/case-converter-article"
 import { FancyTextArticle } from "@/components/blog-articles/fancy-text-article"
@@ -97,8 +96,6 @@ function renderArticleContent(slug: string, paragraphs: string[]) {
       return <RepeatText1000TimesArticle />
     case "word-repeater-how-to-repeat-words":
       return <WordRepeaterArticle />
-    case "emoji-repeater-multiply-emojis-online":
-      return <EmojiRepeaterArticle />
     case "blank-text-generator-invisible-space-guide":
       return <BlankTextArticle />
     case "case-converter-change-text-case-online":

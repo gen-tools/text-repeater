@@ -11,11 +11,24 @@ function isBrowser(): boolean {
   return typeof window !== "undefined"
 }
 
+// In-memory fallback map for environments where IndexedDB and localStorage are disabled or throw (e.g. strict Safari private mode)
+const memoryFallbackMap = new Map<string, string>()
+// In-memory write cache to prevent redundant writes
+const writeCache = new Map<string, string>()
+
 let dbPromise: Promise<IDBDatabase> | null = null
 
 function getDB(): Promise<IDBDatabase> {
-  if (!isBrowser() || !("indexedDB" in window)) {
-    return Promise.reject(new Error("IndexedDB is not supported in this environment"))
+  if (!isBrowser()) {
+    return Promise.reject(new Error("Not in browser"))
+  }
+
+  try {
+    if (!window.indexedDB) {
+      return Promise.reject(new Error("IndexedDB is not supported"))
+    }
+  } catch {
+    return Promise.reject(new Error("IndexedDB access restricted"))
   }
 
   if (dbPromise) {
@@ -23,17 +36,28 @@ function getDB(): Promise<IDBDatabase> {
   }
 
   dbPromise = new Promise((resolve, reject) => {
+    // 1-second timeout safeguard for Safari private mode hanging bug
+    const timeoutId = setTimeout(() => {
+      dbPromise = null
+      reject(new Error("IndexedDB open timed out"))
+    }, 1000)
+
     try {
       const request = window.indexedDB.open(DB_NAME, DB_VERSION)
 
       request.onupgradeneeded = (event) => {
-        const db = (event.target as IDBOpenDBRequest).result
-        if (!db.objectStoreNames.contains(STORE_NAME)) {
-          db.createObjectStore(STORE_NAME)
+        try {
+          const db = (event.target as IDBOpenDBRequest).result
+          if (!db.objectStoreNames.contains(STORE_NAME)) {
+            db.createObjectStore(STORE_NAME)
+          }
+        } catch {
+          // ignore upgrade errors
         }
       }
 
       request.onsuccess = (event) => {
+        clearTimeout(timeoutId)
         const db = (event.target as IDBOpenDBRequest).result
         db.onclose = () => {
           dbPromise = null
@@ -42,15 +66,18 @@ function getDB(): Promise<IDBDatabase> {
       }
 
       request.onerror = (event) => {
+        clearTimeout(timeoutId)
         dbPromise = null
         reject((event.target as IDBOpenDBRequest).error)
       }
 
       request.onblocked = () => {
+        clearTimeout(timeoutId)
         dbPromise = null
         reject(new Error("IndexedDB database blocked"))
       }
     } catch (err) {
+      clearTimeout(timeoutId)
       dbPromise = null
       reject(err)
     }
@@ -60,7 +87,7 @@ function getDB(): Promise<IDBDatabase> {
 }
 
 /**
- * Retrieve an item from IndexedDB, falling back to localStorage if IndexedDB fails.
+ * Retrieve an item from IndexedDB, falling back to localStorage or memory fallback if IndexedDB fails.
  */
 export async function getStoredItem<T>(key: string): Promise<T | null> {
   if (!isBrowser()) return null
@@ -74,20 +101,10 @@ export async function getStoredItem<T>(key: string): Promise<T | null> {
         const req = store.get(key)
 
         req.onsuccess = () => {
-          if (req.result !== undefined) {
+          if (req.result !== undefined && req.result !== null) {
             resolve(req.result as T)
           } else {
-            // Fallback check in localStorage
-            try {
-              const localVal = window.localStorage.getItem(`tr_${key}`)
-              if (localVal !== null) {
-                resolve(JSON.parse(localVal) as T)
-                return
-              }
-            } catch {
-              // ignore localStorage errors
-            }
-            resolve(null)
+            resolve(getLocalStorageFallback<T>(key))
           }
         }
 
@@ -103,11 +120,8 @@ export async function getStoredItem<T>(key: string): Promise<T | null> {
   }
 }
 
-// In-memory write cache to prevent redundant writes and avoid unnecessary disk/IndexedDB I/O
-const writeCache = new Map<string, string>()
-
 /**
- * Store an item in IndexedDB and localStorage (for fast synchronous backup).
+ * Store an item in IndexedDB, localStorage, and memory fallback.
  */
 export async function setStoredItem<T>(key: string, value: T): Promise<void> {
   if (!isBrowser()) return
@@ -118,6 +132,9 @@ export async function setStoredItem<T>(key: string, value: T): Promise<void> {
   } catch {
     return
   }
+
+  // Update in-memory fallback
+  memoryFallbackMap.set(key, serialized)
 
   // Deduplicate redundant writes: if the value hasn't changed, skip disk/db operations
   if (writeCache.get(key) === serialized) {
@@ -147,15 +164,19 @@ export async function setStoredItem<T>(key: string, value: T): Promise<void> {
       }
     })
   } catch {
-    // Graceful fallback to localStorage done above
+    // Graceful fallback to localStorage/memory done above
   }
 }
 
 /**
- * Remove an item from IndexedDB and localStorage.
+ * Remove an item from IndexedDB, localStorage, and memory fallback.
  */
 export async function removeStoredItem(key: string): Promise<void> {
   if (!isBrowser()) return
+
+  // Clear memory cache and fallback
+  writeCache.delete(key)
+  memoryFallbackMap.delete(key)
 
   try {
     window.localStorage.removeItem(`tr_${key}`)
@@ -189,7 +210,18 @@ function getLocalStorageFallback<T>(key: string): T | null {
       return JSON.parse(item) as T
     }
   } catch {
-    // Ignore
+    // Ignore localStorage errors
   }
+
+  // Final fallback: in-memory map
+  const memItem = memoryFallbackMap.get(key)
+  if (memItem !== undefined) {
+    try {
+      return JSON.parse(memItem) as T
+    } catch {
+      return null
+    }
+  }
+
   return null
 }

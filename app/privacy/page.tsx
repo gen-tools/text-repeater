@@ -122,7 +122,7 @@ export default function PrivacyPage() {
                   <ul className="space-y-2.5 text-sm text-foreground/90 pl-1">
                     <li className="flex items-start gap-2.5">
                       <CheckCircle2 className="h-4 w-4 text-green-600 dark:text-green-400 shrink-0 mt-0.5" />
-                      <span><strong>Your Input Text:</strong> Any words, emojis, sentences, or files you input into our tools (e.g. Text Repeater, Nanana Translator, Case Converter, Word Counter) are processed locally inside your web browser. They are not sent to our servers for processing, indexing, or storage.</span>
+                      <span><strong>Your Input Text:</strong> Any words, emojis, sentences, or files you input into our tools (e.g. Text Repeater, Nanana Translator, Case Converter, Word Counter) are processed locally inside your web browser. They are not sent to our servers for processing, indexing, or storage. Your text is never uploaded to any server and stays strictly inside your browser. It is saved locally so you don&apos;t lose your work, and you can remove it anytime with the Clear saved text button.</span>
                     </li>
                     <li className="flex items-start gap-2.5">
                       <CheckCircle2 className="h-4 w-4 text-green-600 dark:text-green-400 shrink-0 mt-0.5" />
@@ -226,6 +226,7 @@ export default function PrivacyPage() {
                     <ul className="list-disc pl-5 text-xs text-muted-foreground space-y-1">
                       <li><code>theme</code>: Remembering your Dark, Light, or System visual theme preference.</li>
                       <li><code>cookie-consent</code>: Storing your cookie banner choices so you are not prompted repeatedly.</li>
+                      <li><code>tr_input_text</code> (and IndexedDB): Storing your input text only inside your browser so you don&apos;t lose your work between visits, which you can erase anytime with the &quot;Clear saved text&quot; button.</li>
                     </ul>
                   </div>
                 </div>

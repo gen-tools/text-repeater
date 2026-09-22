@@ -200,6 +200,65 @@ export function RepeatEmojisMultipleTimesArticle() {
       </p>
 
       <h2 className="text-2xl sm:text-3xl font-bold text-foreground pt-4">
+        Understanding Unicode Emoji Encoding & ZWJ Sequences
+      </h2>
+      <p>
+        While basic letters like &quot;A&quot; or &quot;B&quot; require a single code unit, complex modern emojis combine multiple characters behind the scenes:
+      </p>
+
+      <div className="overflow-x-auto rounded-lg border border-border my-4">
+        <table className="w-full text-left text-sm text-foreground">
+          <thead className="bg-muted text-xs uppercase text-muted-foreground border-b border-border">
+            <tr>
+              <th className="px-4 py-3 font-semibold">Emoji Example</th>
+              <th className="px-4 py-3 font-semibold">Description</th>
+              <th className="px-4 py-3 font-semibold">Underlying Unicode Structure</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-border bg-card">
+            <tr>
+              <td className="px-4 py-3 font-mono text-lg">😀</td>
+              <td className="px-4 py-3">Basic Smiling Face</td>
+              <td className="px-4 py-3 font-mono text-xs">U+1F600 (Single codepoint, surrogate pair in UTF-16)</td>
+            </tr>
+            <tr>
+              <td className="px-4 py-3 font-mono text-lg">👍🏽</td>
+              <td className="px-4 py-3">Thumbs Up + Medium Skin Tone</td>
+              <td className="px-4 py-3 font-mono text-xs">U+1F44D + U+1F3FD (Base emoji + Fitzpatrick modifier)</td>
+            </tr>
+            <tr>
+              <td className="px-4 py-3 font-mono text-lg">👨‍💻</td>
+              <td className="px-4 py-3">Man Technologist</td>
+              <td className="px-4 py-3 font-mono text-xs">U+1F468 + U+200D (ZWJ) + U+1F4BB</td>
+            </tr>
+            <tr>
+              <td className="px-4 py-3 font-mono text-lg">❤️‍🔥</td>
+              <td className="px-4 py-3">Heart on Fire</td>
+              <td className="px-4 py-3 font-mono text-xs">U+2764 + U+FE0F + U+200D (ZWJ) + U+1F525</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        If an unoptimized generator slices string boundaries at arbitrary byte intervals, these compound emojis split into broken question mark boxes or disconnected modifier symbols. Generating emojis with a dedicated tool preserves full UTF-16 surrogate pairs and Zero-Width Joiners so every emoji renders cleanly.
+      </p>
+
+      <h2 className="text-2xl sm:text-3xl font-bold text-foreground pt-4">
+        Social Media Platform Limits for Repeated Emojis
+      </h2>
+      <p>
+        Before pasting large emoji blocks into social media apps, keep platform character ceilings in mind:
+      </p>
+      <ul className="list-disc list-inside space-y-2 pl-2 text-foreground/90">
+        <li><strong>WhatsApp:</strong> Handles up to 65,536 characters per message smoothly.</li>
+        <li><strong>Instagram Comments:</strong> Capped at approximately 2,200 characters and 30 mentions.</li>
+        <li><strong>Twitter / X:</strong> 280 characters for standard accounts (emojis count as 2 characters each).</li>
+        <li><strong>TikTok Comments:</strong> Limited to 150 characters per comment.</li>
+        <li><strong>Discord:</strong> Standard messages allow up to 2,000 characters (4,000 with Nitro).</li>
+      </ul>
+
+      <h2 className="text-2xl sm:text-3xl font-bold text-foreground pt-4">
         Using Repeated Emojis for Software and Input Testing
       </h2>
       <p>

@@ -133,20 +133,6 @@ export const BLOG_POSTS: BlogPost[] = [
     ]
   },
   {
-    slug: "emoji-repeater-multiply-emojis-online",
-    title: "Emoji Repeater: Multiply Emojis Online for Social & Chat",
-    metaTitle: "Emoji Repeater: Multiply Emojis Online for Social & Chat",
-    description: "Learn how to multiply emojis up to 10,000 times for Instagram captions, TikTok videos, Discord chats, and messaging pranks using an online Emoji Repeater.",
-    date: "August 11, 2026",
-    readTime: "7 min read",
-    author: "My Text Repeater Team",
-    category: "Social Media",
-    tags: ["Emoji Repeater", "Emojis", "Social Media", "Messaging"],
-    content: [
-      "Multiply your favorite emojis into solid blocks or structured grids instantly. Learn how Unicode handles emojis and how to generate thousands of emojis for social media."
-    ]
-  },
-  {
     slug: "blank-text-generator-invisible-space-guide",
     title: "Blank Text Generator: Copy Invisible Characters & Spaces",
     metaTitle: "Blank Text Generator: Copy Invisible Characters & Spaces",
