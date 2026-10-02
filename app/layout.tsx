@@ -13,6 +13,7 @@ const geist = Geist({
   display: "swap",
   preload: true,
   fallback: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+  adjustFontFallback: true,
 })
 const geistMono = Geist_Mono({ 
   subsets: ["latin"],
@@ -20,6 +21,7 @@ const geistMono = Geist_Mono({
   display: "swap",
   preload: false,
   fallback: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
+  adjustFontFallback: true,
 })
 
 export const metadata: Metadata = {
@@ -96,14 +98,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="bg-background">
       <head>
-        {/* Global Fetch Guard: Ensures window.fetch provides both a getter and setter to prevent "Cannot set property fetch of #<Window> which has only a getter" when third-party scripts, extensions, or iframe sandboxes reassign or wrap fetch */}
-        <script
-          key="global-fetch-guard"
-          dangerouslySetInnerHTML={{
-            __html: `(function(){if(typeof window==='undefined')return;try{var _raw=window.fetch;var _active=typeof _raw==='function'?_raw.bind(window):_raw;try{Object.defineProperty(window,'fetch',{get:function(){return _active;},set:function(v){_active=typeof v==='function'?v:_raw;},configurable:true,enumerable:true});}catch(_){try{if(window.Window&&window.Window.prototype){Object.defineProperty(window.Window.prototype,'fetch',{get:function(){return _active;},set:function(v){_active=typeof v==='function'?v:_raw;},configurable:true,enumerable:true});}}catch(__){}}}catch(_e){}try{window.addEventListener('error',function(e){var m=e&&(e.message||(e.error&&e.error.message));if(typeof m==='string'&&m.indexOf('fetch')!==-1&&(m.indexOf('getter')!==-1||m.indexOf('only a getter')!==-1)){if(e.preventDefault)e.preventDefault();if(e.stopImmediatePropagation)e.stopImmediatePropagation();return true;}},true);window.addEventListener('unhandledrejection',function(e){var r=e&&e.reason;var m=r&&(r.message||String(r));if(typeof m==='string'&&m.indexOf('fetch')!==-1&&(m.indexOf('getter')!==-1||m.indexOf('only a getter')!==-1)){if(e.preventDefault)e.preventDefault();if(e.stopImmediatePropagation)e.stopImmediatePropagation();return true;}},true);}catch(_err){}})();`,
-          }}
-        />
-        {/* DNS prefetch hints so third-party domains are resolved without competing for initial TCP/SSL handshakes */}
+        {/* DNS prefetch and preconnect hints so third-party domains resolve without blocking rendering */}
         <link key="dns-prefetch-pagead" rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
         <link key="dns-prefetch-gtm" rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link key="dns-prefetch-doubleclick" rel="dns-prefetch" href="https://googleads.g.doubleclick.net" />
@@ -111,6 +106,14 @@ export default function RootLayout({
         <link key="dns-prefetch-adservice" rel="dns-prefetch" href="https://adservice.google.com" />
       </head>
       <body className={`${geist.variable} ${geistMono.variable} font-sans antialiased`} suppressHydrationWarning>
+        {/* Global Fetch Guard: Executed non-blocking inside body */}
+        <script
+          key="global-fetch-guard"
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{
+            __html: `(function(){if(typeof window==='undefined')return;try{var _raw=window.fetch;var _active=typeof _raw==='function'?_raw.bind(window):_raw;try{Object.defineProperty(window,'fetch',{get:function(){return _active;},set:function(v){_active=typeof v==='function'?v:_raw;},configurable:true,enumerable:true});}catch(_){try{if(window.Window&&window.Window.prototype){Object.defineProperty(window.Window.prototype,'fetch',{get:function(){return _active;},set:function(v){_active=typeof v==='function'?v:_raw;},configurable:true,enumerable:true});}}catch(__){}}}catch(_e){}try{window.addEventListener('error',function(e){var m=e&&(e.message||(e.error&&e.error.message));if(typeof m==='string'&&m.indexOf('fetch')!==-1&&(m.indexOf('getter')!==-1||m.indexOf('only a getter')!==-1)){if(e.preventDefault)e.preventDefault();if(e.stopImmediatePropagation)e.stopImmediatePropagation();return true;}},true);window.addEventListener('unhandledrejection',function(e){var r=e&&e.reason;var m=r&&(r.message||String(r));if(typeof m==='string'&&m.indexOf('fetch')!==-1&&(m.indexOf('getter')!==-1||m.indexOf('only a getter')!==-1)){if(e.preventDefault)e.preventDefault();if(e.stopImmediatePropagation)e.stopImmediatePropagation();return true;}},true);}catch(_err){}})();`,
+          }}
+        />
         <script
           key="ld-json-org"
           type="application/ld+json"

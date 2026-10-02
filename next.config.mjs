@@ -89,6 +89,16 @@ const nextConfig = {
         ],
       },
       {
+        // Cache Next.js JavaScript, CSS, and font chunks immutably
+        source: '/_next/static/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
         // Cache static images, icons, and fonts
         source: '/:path*\\.(jpg|jpeg|gif|png|svg|ico|webp|avif|woff|woff2|ttf|eot)',
         headers: [

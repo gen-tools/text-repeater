@@ -1,14 +1,28 @@
 import { Metadata } from "next"
-import Image from "next/image"
 import { ZalgoTextTool } from "@/components/tools/zalgo-text-tool"
+import { Breadcrumbs } from "@/components/breadcrumbs"
 import { FAQAccordion } from "@/components/faq-accordion"
 import { RelatedTools } from "@/components/related-tools"
-import heroImage from "@/src/assets/images/zalgo_text_hero_1784377351127.webp"
-import { Breadcrumbs } from "@/components/breadcrumbs"
-import { Check, Laptop, HelpCircle, AlertCircle, Sparkles, CheckCircle2 } from "lucide-react"
+import {
+  Sparkles,
+  Zap,
+  Sliders,
+  Copy,
+  UserX,
+  Type,
+  Laptop,
+  Smartphone,
+  AlertCircle,
+  HelpCircle,
+  CheckCircle2,
+  ShieldCheck,
+  Lightbulb,
+  Wrench,
+  Layers,
+} from "lucide-react"
 
 const PAGE_TITLE = "Zalgo Text Generator — Glitch & Cursed Text"
-const PAGE_DESCRIPTION = "Zalgo Text Generator turns normal text into corrupted, glitch-style \"cursed\" text by stacking combining diacritical marks above, through, and below each character."
+const PAGE_DESCRIPTION = "Turn any word into glitchy, cursed Zalgo text. Type your text, pick an intensity level, and copy the result."
 const PAGE_URL = "https://mytextrepeater.com/zalgo-text-generator"
 
 export const metadata: Metadata = {
@@ -43,24 +57,32 @@ export const metadata: Metadata = {
 
 const faqs = [
   {
-    question: "What is Zalgo text?",
-    answer: "It's text layered with combining Unicode marks that stack above, through, and below each character to create a distorted, glitch-style look.",
+    question: "What does a Zalgo text generator actually do?",
+    answer: "It adds stacked combining marks to your letters, which creates the glitchy look.",
   },
   {
-    question: "How does Zalgo text work?",
-    answer: "The generator adds combining diacritical marks to each character in your input based on the intensity level you choose, rather than changing the underlying letters themselves.",
+    question: "Is Zalgo text the same as glitch text?",
+    answer: "Mostly. \"Glitch text\" and \"cursed text\" are common nicknames for the same effect.",
   },
   {
-    question: "What are the intensity levels?",
-    answer: "They control how many combining marks are applied per character — Mini (subtle glitch), Normal (moderate distortion), and Crazy (heavy corruption). Lower levels stay more readable, while higher levels produce a heavier, more distorted effect.",
+    question: "Can I make Zalgo text by hand?",
+    answer: "You could, but you'd insert every mark one at a time, which is why most people use a Zalgo text generator.",
   },
   {
-    question: "Will Zalgo text work everywhere?",
-    answer: "Mostly, but not universally — some apps and platforms limit or strip combining marks, so heavily corrupted text may display differently or get trimmed depending on where you paste it.",
+    question: "Why does my Zalgo text look different in another app?",
+    answer: "Apps and fonts draw stacked marks differently, and some trim or remove them.",
   },
   {
-    question: "Is Zalgo text safe?",
-    answer: "Yes, it's standard Unicode text with added diacritical marks — it doesn't contain any code or scripts, just characters that render as a glitch effect.",
+    question: "Will screen readers read it properly?",
+    answer: "Often not well, so avoid it for anything people need to understand.",
+  },
+  {
+    question: "Is this Zalgo Text Generator free?",
+    answer: "Yes, and it needs no signup.",
+  },
+  {
+    question: "Which intensity should I pick?",
+    answer: "Begin with Mini or Normal. Crazy often turns letters unreadable.",
   },
 ]
 
@@ -69,7 +91,7 @@ export default function ZalgoTextPage() {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     name: "Zalgo Text Generator",
-    description: "Free online zalgo text generator to turn normal text into corrupted, glitch-style cursed text using combining diacritical marks.",
+    description: PAGE_DESCRIPTION,
     url: PAGE_URL,
     applicationCategory: "UtilitiesApplication",
     operatingSystem: "All",
@@ -81,12 +103,11 @@ export default function ZalgoTextPage() {
       priceCurrency: "USD",
     },
     featureList: [
-      "Converts any text into Zalgo-style corrupted text instantly",
-      "Multiple intensity levels (Mini, Normal, Crazy)",
-      "One-click copy to clipboard",
+      "Three intensity levels: Mini, Normal, and Crazy",
+      "One-click copy to your clipboard",
+      "No account or signup needed",
       "Works with letters, numbers, and most symbols",
-      "No account or signup required",
-      "Runs entirely in your browser — nothing uploaded to a server",
+      "Runs in your browser, with nothing uploaded",
       "Works on desktop and mobile",
     ],
   }
@@ -116,199 +137,243 @@ export default function ZalgoTextPage() {
       />
 
       {/* Hero Header Section */}
-      <section className="border-b border-border bg-gradient-to-b from-muted/50 to-background py-12 lg:py-20" id="hero-section">
+      <section className="border-b border-border bg-gradient-to-b from-muted/50 to-background py-10 lg:py-16" id="hero-section">
         <div className="container mx-auto px-4">
           <Breadcrumbs />
-          <div className="text-center">
-            <h1 className="mb-4 text-3xl font-bold tracking-tight text-balance sm:text-4xl lg:text-5xl" id="main-heading">
+          <div className="text-center max-w-3xl mx-auto">
+            <h1 className="mb-4 text-3xl font-extrabold tracking-tight text-balance sm:text-4xl lg:text-5xl" id="main-heading">
               Zalgo Text Generator
             </h1>
-            <p className="mx-auto max-w-2xl text-lg text-muted-foreground text-pretty leading-relaxed" id="intro-subtitle">
-              Zalgo Text Generator turns normal text into corrupted, glitch-style &quot;cursed&quot; text by stacking combining diacritical marks above, through, and below each character. Type your text, choose an intensity level, and copy the result — no signup, works instantly in your browser.
+            <p className="text-base sm:text-lg text-muted-foreground text-pretty leading-relaxed" id="intro-subtitle">
+              Turn any word into glitchy, cursed Zalgo text. Type your text, pick an intensity level, and copy the result.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Quick Answer Section */}
+      <section className="py-8 bg-card border-b border-border" id="quick-answer-section">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <div className="rounded-2xl border border-primary/20 bg-primary/5 p-6 sm:p-8 space-y-3 shadow-xs">
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground flex items-center gap-2">
+              <Zap className="h-5 w-5 text-primary" />
+              Quick Answer
+            </h2>
+            <p className="text-foreground/90 leading-relaxed text-base sm:text-lg">
+              A Zalgo text generator takes normal text and stacks extra Unicode combining marks above, through, and below each letter, so the result looks glitchy or &quot;cursed.&quot; You copy the output and paste it into any field that accepts text. Some apps will trim or strip the extra marks, so test first.
             </p>
           </div>
         </div>
       </section>
 
       {/* Tool Section */}
-      <section className="py-12" id="tool-section">
-        <div className="container mx-auto px-4">
+      <section className="py-10" id="tool-section">
+        <div className="container mx-auto px-4 max-w-5xl">
           <ZalgoTextTool />
+          {/* Caption under the tool */}
+          <p className="mt-4 text-center text-xs sm:text-sm text-muted-foreground" id="tool-caption">
+            Mini keeps text readable, and Crazy stacks the most marks. Paste a short test into your destination app before using the full text.
+          </p>
         </div>
       </section>
 
-      {/* Hero Illustration Section */}
-      <section className="py-8 bg-muted/10 border-t border-border cv-auto">
-        <div className="container mx-auto px-4 max-w-3xl text-center">
-          <div className="relative mx-auto w-full max-w-2xl aspect-[1376/768] overflow-hidden rounded-2xl border border-border bg-card shadow-lg transition-all duration-300 hover:shadow-xl">
-            <Image
-              src={heroImage}
-              alt="Zalgo Text Generator online interface"
-              fill
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 672px"
-              className="object-contain rounded-2xl"
-              referrerPolicy="no-referrer"
-              loading="lazy"
-              decoding="async"
-            />
+      {/* Zalgo Text Generator Features Section */}
+      <section className="border-t border-border bg-background py-14 cv-auto" id="features-section">
+        <div className="container mx-auto px-4 max-w-4xl space-y-8">
+          <div className="text-center max-w-2xl mx-auto">
+            <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+              Zalgo Text Generator Features
+            </h2>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="rounded-xl border border-border bg-card p-5 space-y-2 shadow-xs transition-colors hover:border-primary/40">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <Sliders className="h-5 w-5" />
+              </div>
+              <h3 className="font-semibold text-foreground text-base">Three intensity levels</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Mini, Normal, and Crazy
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-border bg-card p-5 space-y-2 shadow-xs transition-colors hover:border-primary/40">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <Copy className="h-5 w-5" />
+              </div>
+              <h3 className="font-semibold text-foreground text-base">One-click copy</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                One-click copy to your clipboard
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-border bg-card p-5 space-y-2 shadow-xs transition-colors hover:border-primary/40">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <UserX className="h-5 w-5" />
+              </div>
+              <h3 className="font-semibold text-foreground text-base">No account or signup needed</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Free and ready to use without an account
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-border bg-card p-5 space-y-2 shadow-xs transition-colors hover:border-primary/40">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <Type className="h-5 w-5" />
+              </div>
+              <h3 className="font-semibold text-foreground text-base">Broad character support</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Works with letters, numbers, and most symbols
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-border bg-card p-5 space-y-2 shadow-xs transition-colors hover:border-primary/40">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <ShieldCheck className="h-5 w-5" />
+              </div>
+              <h3 className="font-semibold text-foreground text-base">Private & Client-Side</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Runs in your browser, with nothing uploaded
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-border bg-card p-5 space-y-2 shadow-xs transition-colors hover:border-primary/40">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <Laptop className="h-5 w-5" />
+              </div>
+              <h3 className="font-semibold text-foreground text-base">Cross-device support</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Works on desktop and mobile
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Features */}
-      <section className="py-16 border-t border-border bg-muted/30 cv-auto">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <h2 className="mb-8 text-2xl font-bold tracking-tight text-foreground sm:text-3xl text-center">
-            Features
-          </h2>
-          <ul className="grid gap-3 sm:grid-cols-2">
-            {[
-              "Converts any text into Zalgo-style corrupted text instantly",
-              "Multiple intensity levels, from a light glitch effect to heavily distorted output",
-              "One-click copy to clipboard",
-              "Works with letters, numbers, and most symbols",
-              "No account or signup required",
-              "Runs entirely in your browser — nothing uploaded to a server",
-              "Works on desktop and mobile",
-            ].map((feature, idx) => (
-              <li
-                key={idx}
-                className="flex items-start gap-3 rounded-xl border border-border bg-card p-4 text-sm text-foreground/90 shadow-sm transition-all hover:border-primary/40"
-              >
-                <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                <span className="font-medium">{feature}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+      {/* How to Use the Zalgo Text Generator Section */}
+      <section className="border-t border-border bg-muted/20 py-14 cv-auto" id="how-to-use-section">
+        <div className="container mx-auto px-4 max-w-3xl space-y-8">
+          <div>
+            <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+              How to Use the Zalgo Text Generator
+            </h2>
+          </div>
 
-      {/* How to Use the Zalgo Text Generator */}
-      <section className="py-16 border-t border-border bg-background cv-auto">
-        <div className="container mx-auto px-4 max-w-3xl">
-          <h2 className="mb-8 text-2xl font-bold tracking-tight text-foreground sm:text-3xl text-center">
-            How to Use the Zalgo Text Generator
-          </h2>
-          <ol className="space-y-4">
+          <ol className="space-y-3.5 list-none">
             {[
-              {
-                title: "Enter your text.",
-                desc: "Type or paste the word, name, or phrase you want to corrupt.",
-              },
-              {
-                title: "Choose an intensity level.",
-                desc: "Pick how heavy the glitch effect should look (Mini, Normal, or Crazy) — lighter levels stay readable, higher levels stack more marks per character.",
-              },
-              {
-                title: "Generate the output.",
-                desc: "The corrupted version appears immediately.",
-              },
-              {
-                title: "Copy the result.",
-                desc: "Paste it wherever you need — a username, a caption, a message.",
-              },
-            ].map((step, idx) => (
+              "Type or paste a word or short phrase into the box above.",
+              "Pick a level, such as Mini, Normal, or Crazy.",
+              "Generate the output.",
+              "Copy the result.",
+              "Paste it where you need it.",
+            ].map((step, index) => (
               <li
-                key={idx}
-                className="flex gap-4 rounded-xl border border-border bg-card p-5 shadow-sm items-start transition-all hover:border-primary/40"
+                key={index}
+                className="flex items-start gap-3.5 rounded-xl border border-border bg-card p-4 text-base text-foreground/90 shadow-xs"
               >
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary font-bold text-primary-foreground text-sm">
-                  {idx + 1}
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary font-bold text-xs text-primary-foreground">
+                  {index + 1}
                 </span>
-                <div>
-                  <h3 className="font-semibold text-foreground text-base">{step.title}</h3>
-                  <p className="text-sm text-muted-foreground mt-1 leading-relaxed">{step.desc}</p>
-                </div>
+                <span className="pt-0.5 leading-relaxed">{step}</span>
               </li>
             ))}
           </ol>
+
+          {/* Test First Callout */}
+          <div className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-5 text-sm sm:text-base text-foreground/90 flex items-start gap-3 shadow-xs">
+            <AlertCircle className="h-5 w-5 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
+            <p className="leading-relaxed text-foreground">
+              Paste a short test first. What looks great in the generator can look different inside the app you&apos;re posting to.
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* What Is Zalgo Text? */}
-      <section className="py-16 border-t border-border bg-muted/30 cv-auto">
-        <div className="container mx-auto px-4 max-w-3xl">
-          <h2 className="mb-6 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+      {/* What Is Zalgo Text? Section */}
+      <section className="border-t border-border bg-background py-14 cv-auto" id="what-is-zalgo-text-section">
+        <div className="container mx-auto px-4 max-w-3xl space-y-5">
+          <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
             What Is Zalgo Text?
           </h2>
-          <div className="space-y-4 text-foreground/90 leading-relaxed text-base">
-            <p>
-              Zalgo text is text that&apos;s been layered with combining diacritical marks — the same category of Unicode character used for things like accents (é, ñ) — stacked repeatedly above, through, and below a letter until it looks distorted, glitchy, or &quot;cursed.&quot; The name comes from an internet creepypasta character associated with reality-breaking corruption, and the aesthetic caught on well beyond its origin as a stand-in for glitch, horror, or chaos effects in text.
-            </p>
-            <p>
-              Unlike a font change or styling effect, Zalgo text isn&apos;t a different typeface — it&apos;s the same base characters with extra Unicode marks attached, which is why it renders differently (and sometimes unpredictably) depending on the app or platform displaying it.
-            </p>
+          <p className="text-foreground/90 leading-relaxed text-base">
+            Zalgo text is ordinary text with a pile of combining marks attached to each character. Those marks were built for accents, like the tilde in ñ, but nothing stops you from stacking dozens on one letter.
+          </p>
+          <p className="text-foreground/90 leading-relaxed text-base">
+            The name comes from an internet creepypasta meme about a chaotic, supernatural figure. The look stuck around as shorthand for horror, glitches, and chaos.
+          </p>
+        </div>
+      </section>
+
+      {/* How Does a Zalgo Text Generator Work? Section */}
+      <section className="border-t border-border bg-card py-14 cv-auto" id="how-it-works-section">
+        <div className="container mx-auto px-4 max-w-3xl space-y-5">
+          <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+            How Does a Zalgo Text Generator Work?
+          </h2>
+          <p className="text-foreground/90 leading-relaxed text-base">
+            A Zalgo text generator reads each character, then adds a set of combining marks above it, through it, or below it. More marks means a messier look.
+          </p>
+          <p className="text-foreground/90 leading-relaxed text-base">
+            Your base letters never change. This isn&apos;t a font. It&apos;s the same text with extra Unicode attached, which is why it behaves differently from fancy font styles.
+          </p>
+          <p className="text-foreground/90 leading-relaxed text-base">
+            The intensity setting controls how many marks get added. Lower levels stay readable. Higher levels can swallow the letters entirely.
+          </p>
+        </div>
+      </section>
+
+      {/* What It Looks Like Section */}
+      <section className="border-t border-border bg-background py-14 cv-auto" id="what-it-looks-like-section">
+        <div className="container mx-auto px-4 max-w-3xl space-y-5">
+          <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+            What It Looks Like
+          </h2>
+          <p className="text-foreground/90 leading-relaxed text-base">
+            A one-word example shows the idea. Plain text: Hello. A light glitch: H̸e̷l̵l̶o̴. Heavier levels add more marks per letter, and the exact output depends on the tool and the level you choose. Any Zalgo text generator can produce this kind of result.
+          </p>
+          <div className="rounded-xl border border-border bg-muted/30 p-4 font-mono text-center text-lg sm:text-xl text-foreground">
+            Hello &rarr; H̸e̷l̵l̶o̴ &rarr; H̶̛̖e̷̘͌l̶͈̚l̷̃ͅo̴̭̽
           </div>
         </div>
       </section>
 
-      {/* Why It Works */}
-      <section className="py-16 border-t border-border bg-background cv-auto">
-        <div className="container mx-auto px-4 max-w-3xl">
-          <h2 className="mb-6 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            Why It Works
+      {/* Zalgo Text Generator vs. Fancy Font Tools Section */}
+      <section className="border-t border-border bg-card py-14 cv-auto" id="comparison-section">
+        <div className="container mx-auto px-4 max-w-4xl space-y-6">
+          <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+            Zalgo Text Generator vs. Fancy Font Tools
           </h2>
-          <div className="rounded-2xl border border-border bg-card p-6 sm:p-8 shadow-sm">
-            <p className="text-foreground/90 leading-relaxed text-base">
-              Building Zalgo text by hand means manually inserting combining marks one at a time, which is slow and easy to get wrong — too few marks and the effect barely reads, too many and the text becomes visually unreadable or breaks certain platforms&apos; rendering. This tool applies marks programmatically based on the intensity level you pick, so the output is consistent and repeatable instead of a manual trial-and-error process.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Zalgo Text Generator vs. Manual Methods */}
-      <section className="py-16 border-t border-border bg-muted/30 cv-auto">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <h2 className="mb-8 text-2xl font-bold tracking-tight text-foreground sm:text-3xl text-center">
-            Zalgo Text Generator vs. Manual Methods
-          </h2>
-          <div className="overflow-x-auto rounded-2xl border border-border bg-card shadow-sm">
-            <table className="w-full border-collapse text-left text-sm">
-              <thead>
-                <tr className="border-b border-border bg-muted/50">
-                  <th className="p-4 font-semibold text-foreground">Feature</th>
-                  <th className="p-4 font-semibold text-muted-foreground">Manual Unicode Insertion</th>
-                  <th className="p-4 font-semibold text-muted-foreground">Font/Styling Apps</th>
-                  <th className="p-4 font-semibold text-primary bg-primary/5 border-l border-primary/20">
-                    <div className="flex items-center gap-1.5">
-                      <Sparkles className="h-4 w-4 text-primary" />
-                      <span>Zalgo Text Generator</span>
-                    </div>
-                  </th>
+          <p className="text-foreground/90 leading-relaxed text-base">
+            Fancy font tools swap your letters for look-alike Unicode symbols. A Zalgo text generator keeps your letters and piles marks on top. The two can look similar at a glance, but they break in different ways.
+          </p>
+          <div className="overflow-x-auto rounded-xl border border-border bg-background shadow-xs">
+            <table className="w-full text-left text-sm text-foreground">
+              <thead className="border-b border-border bg-muted/60 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                <tr>
+                  <th scope="col" className="px-4 py-3.5 sm:px-6">Feature</th>
+                  <th scope="col" className="px-4 py-3.5 sm:px-6">Zalgo text generator</th>
+                  <th scope="col" className="px-4 py-3.5 sm:px-6">Fancy font text</th>
+                  <th scope="col" className="px-4 py-3.5 sm:px-6">Text as an image</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-border text-foreground/90">
-                <tr className="hover:bg-muted/20 transition-colors">
-                  <td className="p-4 font-medium text-foreground">Speed</td>
-                  <td className="p-4 text-muted-foreground">Slow, character by character</td>
-                  <td className="p-4 text-muted-foreground">Fast, but not true Zalgo</td>
-                  <td className="p-4 font-medium text-foreground bg-primary/5 border-l border-primary/20">
-                    Instant
-                  </td>
+              <tbody className="divide-y divide-border">
+                <tr className="transition-colors hover:bg-muted/30">
+                  <td className="px-4 py-3.5 font-medium sm:px-6">What changes</td>
+                  <td className="px-4 py-3.5 sm:px-6 text-foreground/90">Marks added to your letters</td>
+                  <td className="px-4 py-3.5 sm:px-6 text-muted-foreground">Letters swapped for look-alike symbols</td>
+                  <td className="px-4 py-3.5 sm:px-6 text-muted-foreground">Text becomes a picture</td>
                 </tr>
-                <tr className="hover:bg-muted/20 transition-colors">
-                  <td className="p-4 font-medium text-foreground">Consistency</td>
-                  <td className="p-4 text-muted-foreground">Inconsistent, easy to overdo</td>
-                  <td className="p-4 text-muted-foreground">N/A</td>
-                  <td className="p-4 font-medium text-foreground bg-primary/5 border-l border-primary/20">
-                    Controlled by intensity level
-                  </td>
+                <tr className="transition-colors hover:bg-muted/30">
+                  <td className="px-4 py-3.5 font-medium sm:px-6">Copy and paste</td>
+                  <td className="px-4 py-3.5 sm:px-6 text-foreground/90 font-medium">Yes</td>
+                  <td className="px-4 py-3.5 sm:px-6 text-muted-foreground">Yes</td>
+                  <td className="px-4 py-3.5 sm:px-6 text-muted-foreground">No, not selectable text</td>
                 </tr>
-                <tr className="hover:bg-muted/20 transition-colors">
-                  <td className="p-4 font-medium text-foreground">Adjustable intensity</td>
-                  <td className="p-4 text-muted-foreground">Manual guesswork</td>
-                  <td className="p-4 text-muted-foreground">Not applicable</td>
-                  <td className="p-4 font-medium text-foreground bg-primary/5 border-l border-primary/20">
-                    Preset levels (Mini, Normal, Crazy)
-                  </td>
-                </tr>
-                <tr className="hover:bg-muted/20 transition-colors">
-                  <td className="p-4 font-medium text-foreground">Works with any text</td>
-                  <td className="p-4 text-muted-foreground">Yes, but tedious</td>
-                  <td className="p-4 text-muted-foreground">Limited</td>
-                  <td className="p-4 font-medium text-foreground bg-primary/5 border-l border-primary/20">
-                    Yes
-                  </td>
+                <tr className="transition-colors hover:bg-muted/30">
+                  <td className="px-4 py-3.5 font-medium sm:px-6">Common problem</td>
+                  <td className="px-4 py-3.5 sm:px-6 text-foreground/90">Marks trimmed or stripped</td>
+                  <td className="px-4 py-3.5 sm:px-6 text-muted-foreground">Some symbols may not display</td>
+                  <td className="px-4 py-3.5 sm:px-6 text-muted-foreground">Can&apos;t be edited as text</td>
                 </tr>
               </tbody>
             </table>
@@ -316,117 +381,159 @@ export default function ZalgoTextPage() {
         </div>
       </section>
 
-      {/* Supported Platforms */}
-      <section className="py-16 border-t border-border bg-background cv-auto">
-        <div className="container mx-auto px-4 max-w-3xl">
-          <div className="flex items-center gap-3 mb-6">
-            <Laptop className="h-7 w-7 text-primary" />
-            <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-              Supported Platforms
-            </h2>
-          </div>
-          <p className="text-foreground/90 leading-relaxed bg-card p-6 rounded-2xl border border-border shadow-sm text-base">
-            Works in any modern browser — Chrome, Firefox, Edge, Safari — on both desktop and mobile.
+      {/* Does Zalgo Text Work Everywhere? Section */}
+      <section className="border-t border-border bg-background py-14 cv-auto" id="does-it-work-everywhere-section">
+        <div className="container mx-auto px-4 max-w-3xl space-y-5">
+          <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+            Does Zalgo Text Work Everywhere?
+          </h2>
+          <p className="text-foreground/90 leading-relaxed text-base">
+            No. Apps handle stacked marks in different ways. Some show the full pile, some cut it short, and some remove it. Marks can also spill into the lines above and below and make a layout look messy. Even a well-built Zalgo text generator can&apos;t control how other apps display its output.
+          </p>
+          <p className="text-foreground/90 leading-relaxed text-base">
+            The generator itself should open in any modern browser on desktop or mobile. Where you paste the result is a separate question, because rules and rendering change. Test a short sample in the exact place you plan to use it.
           </p>
         </div>
       </section>
 
-      {/* Perfect For */}
-      <section className="border-t border-border bg-muted/30 py-16 cv-auto">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <h2 className="mb-8 text-2xl font-bold tracking-tight text-foreground sm:text-3xl text-center">
-            Perfect For
+      {/* Where People Use a Zalgo Text Generator Section */}
+      <section className="border-t border-border bg-card py-14 cv-auto" id="where-people-use-section">
+        <div className="container mx-auto px-4 max-w-3xl space-y-6">
+          <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+            Where People Use a Zalgo Text Generator
           </h2>
-          <div className="grid gap-4 sm:grid-cols-2">
+          <ul className="space-y-3.5">
             {[
-              {
-                title: "Horror content",
-                desc: "spooky text for Halloween posts and horror-themed content.",
-              },
-              {
-                title: "Memes",
-                desc: "dramatic effect for memes and viral content.",
-              },
-              {
-                title: "Gaming",
-                desc: "unique usernames and clan tags with a glitchy aesthetic.",
-              },
-              {
-                title: "Art projects",
-                desc: "corrupted text for digital art and creative designs.",
-              },
-            ].map((item, idx) => (
-              <div
-                key={idx}
-                className="rounded-xl border border-border bg-card p-5 shadow-sm transition-all hover:border-primary/40 flex items-start gap-4"
+              "Horror and Halloween posts for a creepy caption",
+              "Memes and edits that need a \"broken\" look",
+              "Gaming names and tags, after you check the game's name rules",
+              "Art and poster text with a corrupted style",
+            ].map((useCase, index) => (
+              <li
+                key={index}
+                className="flex items-start gap-3 rounded-xl border border-border bg-background p-4 text-base text-foreground/90 shadow-xs"
               >
-                <div className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
-                  <CheckCircle2 className="h-4 w-4" />
-                </div>
-                <div className="text-base text-foreground/90 leading-relaxed">
-                  <strong className="font-semibold text-foreground">{item.title}</strong> — {item.desc}
-                </div>
-              </div>
+                <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                <span className="leading-relaxed">{useCase}</span>
+              </li>
             ))}
-          </div>
+          </ul>
+          <p className="text-foreground/90 leading-relaxed text-base pt-2">
+            Whatever the use, keep readability in mind. If people can&apos;t read it, the effect has failed.
+          </p>
         </div>
       </section>
 
-      {/* Troubleshooting */}
-      <section className="py-16 border-t border-border bg-background cv-auto">
-        <div className="container mx-auto px-4 max-w-3xl">
-          <div className="flex items-center gap-3 mb-8">
-            <AlertCircle className="h-7 w-7 text-primary" />
-            <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-              Troubleshooting
-            </h2>
-          </div>
+      {/* Is a Zalgo Text Generator Safe? Section */}
+      <section className="border-t border-border bg-background py-14 cv-auto" id="is-it-safe-section">
+        <div className="container mx-auto px-4 max-w-3xl space-y-5">
+          <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+            Is a Zalgo Text Generator Safe?
+          </h2>
+          <p className="text-foreground/90 leading-relaxed text-base">
+            The text is plain Unicode, not code or a virus. The risks are practical.
+          </p>
+          <p className="text-foreground/90 leading-relaxed text-base">
+            Heavy stacking can be hard for screen readers and for people with reading difficulties. It can also break a username you need later, since you can&apos;t retype the marks by hand. Keep it out of logins, forms, and anything important.
+          </p>
+        </div>
+      </section>
+
+      {/* Tips for Using a Zalgo Text Generator Section */}
+      <section className="border-t border-border bg-card py-14 cv-auto" id="tips-section">
+        <div className="container mx-auto px-4 max-w-3xl space-y-6">
+          <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl flex items-center gap-2">
+            <Lightbulb className="h-6 w-6 text-primary" />
+            Tips for Using a Zalgo Text Generator
+          </h2>
+          <ul className="space-y-3.5">
+            {[
+              "Start at the lowest level and move up only if you need more.",
+              "Use it on a word or two, not whole paragraphs.",
+              "Keep a plain-text copy of anything you plan to reuse.",
+              "Check both mobile and desktop, because the same text can render differently.",
+              "Never use it for contact details, links, or passwords.",
+            ].map((tip, index) => (
+              <li
+                key={index}
+                className="flex items-start gap-3 rounded-xl border border-border bg-background p-4 text-base text-foreground/90 shadow-xs"
+              >
+                <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary text-xs font-bold mt-0.5">
+                  {index + 1}
+                </div>
+                <span className="leading-relaxed">{tip}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* Zalgo Text Generator Not Working? Quick Fixes Section */}
+      <section className="border-t border-border bg-background py-14 cv-auto" id="quick-fixes-section">
+        <div className="container mx-auto px-4 max-w-3xl space-y-6">
+          <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl flex items-center gap-2">
+            <Wrench className="h-6 w-6 text-primary" />
+            Zalgo Text Generator Not Working? Quick Fixes
+          </h2>
           <div className="space-y-4">
-            {[
-              {
-                title: "Text looks broken or unreadable elsewhere.",
-                desc: "Some platforms strip or limit combining marks, especially at higher intensity — try a lower level if the destination app doesn't render it well.",
-              },
-              {
-                title: "Copy button not working.",
-                desc: "Some browsers block clipboard access until you've clicked elsewhere on the page first; try again after interacting with the page.",
-              },
-              {
-                title: "Output looks different on mobile vs desktop.",
-                desc: "Rendering of stacked Unicode marks can vary by device and font, so the same text may look slightly different across platforms — this is a platform rendering difference, not a generation issue.",
-              },
-            ].map((item, idx) => (
-              <div
-                key={idx}
-                className="rounded-xl border border-border bg-card p-5 shadow-sm"
-              >
-                <h3 className="font-semibold text-foreground text-base mb-1">
-                  {item.title}
-                </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {item.desc}
-                </p>
-              </div>
-            ))}
+            <div className="rounded-xl border border-border bg-card p-5 space-y-1.5 shadow-xs">
+              <h3 className="font-semibold text-foreground text-base">Output looks plain:</h3>
+              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+                the app may be stripping the marks. Try a different app or a higher level.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-border bg-card p-5 space-y-1.5 shadow-xs">
+              <h3 className="font-semibold text-foreground text-base">Output is unreadable:</h3>
+              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+                drop to a lower level.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-border bg-card p-5 space-y-1.5 shadow-xs">
+              <h3 className="font-semibold text-foreground text-base">Copy button fails:</h3>
+              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+                tap it directly on a secure (HTTPS) page, or select the text and copy it manually.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-border bg-card p-5 space-y-1.5 shadow-xs">
+              <h3 className="font-semibold text-foreground text-base">Looks different on a friend&apos;s phone:</h3>
+              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+                fonts and rendering vary between devices.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Frequently Asked Questions */}
-      <section className="py-16 border-t border-border bg-muted/30 cv-auto" id="faq-section">
+      {/* Frequently Asked Questions Section */}
+      <section className="border-t border-border bg-card py-16 cv-auto" id="faq-section">
         <div className="container mx-auto px-4 max-w-3xl">
-          <div className="flex items-center gap-3 mb-8 justify-center">
-            <HelpCircle className="h-7 w-7 text-primary" />
-            <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl text-center">
-              Frequently Asked Questions
-            </h2>
-          </div>
+          <h2 className="mb-10 text-center text-3xl font-bold tracking-tight text-foreground">
+            Frequently Asked Questions
+          </h2>
           <FAQAccordion items={faqs} />
         </div>
       </section>
 
-      {/* Related Tools */}
-      <section className="border-t border-border bg-background py-16 cv-auto" id="related-tools-section">
+      {/* Final Tip Section */}
+      <section className="border-t border-border bg-background py-12 cv-auto" id="final-tip-section">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <div className="rounded-2xl border border-primary/20 bg-primary/5 p-6 text-center space-y-2">
+            <h2 className="text-lg font-bold text-foreground flex items-center justify-center gap-2">
+              <Lightbulb className="h-5 w-5 text-primary" />
+              Final Tip
+            </h2>
+            <p className="text-foreground/90 text-base leading-relaxed">
+              Use the Zalgo text generator above, start with a low level, and keep a plain copy of your text.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Related Tools Section */}
+      <section className="border-t border-border bg-muted/30 py-12 cv-auto" id="related-tools-section">
         <div className="container mx-auto px-4">
           <RelatedTools currentPath="/zalgo-text-generator" />
         </div>
@@ -434,4 +541,3 @@ export default function ZalgoTextPage() {
     </article>
   )
 }
-
