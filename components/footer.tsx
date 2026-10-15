@@ -54,7 +54,7 @@ export function Footer() {
               <span className="text-lg font-bold text-foreground">My Text Repeater</span>
             </Link>
             <p className="text-sm text-muted-foreground">
-              Free online text manipulation tools. Repeat, transform, and generate text instantly.
+              Repeat, format, and generate text instantly in your browser.
             </p>
           </div>
 

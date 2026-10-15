@@ -1,13 +1,27 @@
 import { Metadata } from "next"
-import Image from "next/image"
+import Link from "next/link"
 import { TextRepeaterTool } from "@/components/tools/text-repeater-tool"
 import { RelatedTools } from "@/components/related-tools"
 import { FAQAccordion } from "@/components/faq-accordion"
-import heroImage from "@/src/assets/images/text_repeater_hero_1784377279044.webp"
-import { Check, Laptop, HelpCircle, AlertCircle, Sparkles, MessageSquare, Wrench, CheckCircle2 } from "lucide-react"
+import {
+  HelpCircle,
+  AlertCircle,
+  Layers,
+  Settings2,
+  Calculator,
+  ShieldCheck,
+  CheckCircle2,
+  FileSpreadsheet,
+  Terminal,
+  Palette,
+  GraduationCap,
+  Sparkles,
+  Smile,
+  CopyCheck,
+} from "lucide-react"
 
 const PAGE_TITLE = "Text Repeater Online | Copy & Paste Up to 10,000 Times"
-const PAGE_DESCRIPTION = "Repeat text online up to 10,000 times with our free Text Repeater. Repeat words, sentences, lines or paragraphs instantly."
+const PAGE_DESCRIPTION = "My Text Repeater duplicates a word, sentence, emoji, line or paragraph up to 10,000 times. Paste text, pick a mode and separator, then copy or download instantly."
 const PAGE_URL = "https://mytextrepeater.com"
 
 export const metadata: Metadata = {
@@ -45,36 +59,36 @@ export const metadata: Metadata = {
 
 const faqs = [
   {
-    question: "Can I repeat text 10,000 times?",
-    answer: "Yes. Enter your text, set the count to 10,000 and generate. For messaging apps, 500-1000 lines usually works more smoothly.",
+    question: "What is the maximum number of repeats?",
+    answer: "10,000 in a single run.",
   },
   {
-    question: "Can I repeat individual words instead of the whole message?",
-    answer: "Yes, choose Each Word mode. It will duplicate every word separately.",
+    question: "How do I repeat each word separately?",
+    answer: "Choose Each Word mode.",
   },
   {
-    question: "Do I need to install an app?",
-    answer: "No. This is a browser-based online tool that works without any download.",
+    question: "How do I put each repeat on its own line?",
+    answer: "Set the separator to Line Break.",
   },
   {
-    question: "Can I use it for WhatsApp messages?",
-    answer: "Yes. Generate your repeated text and paste it directly into WhatsApp or any other messenger.",
+    question: "How do I create a string of an exact length?",
+    answer: "Repeat one character with the separator set to None, and set the count to the length you need.",
   },
   {
-    question: "Does it work for emojis and symbols?",
-    answer: "Yes. It fully supports emojis, special symbols, and Unicode including Hindi text.",
+    question: "Does it work with emojis and Hindi?",
+    answer: "Yes, both are repeated exactly as typed.",
   },
   {
-    question: "Will my text be saved or uploaded?",
-    answer: "Your text is never uploaded to any server and stays strictly inside your browser. It is saved locally so you don't lose your work, and you can remove it anytime with the Clear saved text button.",
+    question: "Can I keep the result?",
+    answer: "Yes, Download TXT saves it as a plain text file.",
   },
   {
-    question: "Is this free to use?",
-    answer: "Yes, completely free with no signup.",
+    question: "Is my text remembered?",
+    answer: "Only in your own browser, and Clear saved text removes it.",
   },
   {
-    question: "Can I download the result?",
-    answer: "Yes, you can save the output as a .txt file.",
+    question: "Is it free?",
+    answer: "Yes, with no signup.",
   },
 ]
 
@@ -84,14 +98,14 @@ export default function HomePage() {
     "@type": ["SoftwareApplication", "WebApplication"],
     "@id": "https://mytextrepeater.com/#software",
     name: "Text Repeater",
-    description: "Text Repeater is a free online tool that repeats any word, sentence, emoji, or paragraph as many times as you need up to 10,000 repetitions in seconds. Type your text once, set a repeat count, and copy or download the result. No signup, no app install, and nothing leaves your browser.",
+    description: "My Text Repeater duplicates a word, sentence, emoji, line or paragraph up to 10,000 times. Paste your text, set a count, choose what gets repeated and what goes between the copies, then copy the result or download it as a .txt file. It’s free, needs no signup, and the repeating happens in your browser.",
     url: "https://mytextrepeater.com",
     applicationCategory: "UtilitiesApplication",
     operatingSystem: "All",
     browserRequirements: "Requires JavaScript. Requires HTML5.",
     softwareVersion: "1.0",
     datePublished: "2025-01-01",
-    dateModified: "2026-09-21",
+    dateModified: "2026-10-10",
     inLanguage: "en-US",
     isAccessibleForFree: true,
     author: {
@@ -119,16 +133,15 @@ export default function HomePage() {
       priceCurrency: "USD",
     },
     featureList: [
-      "Repeat any message up to 10,000 times in one click",
-      "Quick presets like 10, 50, 100, 500, 1,000 or your own custom number",
+      "Duplicate any word, sentence, emoji, line or paragraph up to 10,000 times",
       "Four repeat modes: Entire Text, Each Word, Each Line, and Paragraphs",
-      "Custom separators — use a space, comma, line break, or add your own symbol",
-      "Live character and word counter as you type",
+      "Flexible separators including Line Break, Space, Comma, and None",
+      "Real-time live character and word counter",
       "One-click copy to clipboard",
-      "Download the result as a .txt file for later use",
-      "Works with emojis, symbols, and all Unicode characters including Hindi",
-      "No account or installation required",
-      "Runs entirely in your browser for privacy — client-side verified with zero server uploads",
+      "Download output as .txt file",
+      "Full support for emojis, Hindi, and Unicode scripts",
+      "100% free with no signup or install required",
+      "Private and browser-based client-side execution",
     ],
   }
 
@@ -140,7 +153,7 @@ export default function HomePage() {
     name: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     datePublished: "2025-01-01",
-    dateModified: "2026-09-21",
+    dateModified: "2026-10-10",
     inLanguage: "en-US",
     isPartOf: {
       "@type": "WebSite",
@@ -195,459 +208,416 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
-      {/* Hero Section */}
-      <section className="border-b border-border bg-gradient-to-b from-muted/50 to-background py-12 lg:py-20">
+      {/* Hero Header */}
+      <section className="border-b border-border bg-gradient-to-b from-muted/50 to-background py-10 lg:py-16">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="mb-4 text-3xl font-bold tracking-tight text-balance sm:text-4xl lg:text-5xl">
+          <h1 className="mb-4 text-3xl font-bold tracking-tight text-balance sm:text-4xl lg:text-5xl text-foreground">
             Text Repeater
           </h1>
           <p className="mx-auto max-w-3xl text-base sm:text-lg text-muted-foreground text-pretty leading-relaxed">
-            Text Repeater is a free online tool that repeats any word, sentence, emoji, or paragraph as many times as you need up to 10,000 repetitions in seconds. Type your text once, set a repeat count, and copy or download the result. No signup, no app install, and nothing leaves your browser.
+            My Text Repeater duplicates a word, sentence, emoji, line or paragraph up to 10,000 times. Paste your text, set a count, choose what gets repeated and what goes between the copies, then copy the result or download it as a .txt file. It’s free, needs no signup, and the repeating happens in your browser.
           </p>
         </div>
       </section>
 
-      {/* Main Tool */}
-      <section className="py-12">
+      {/* Tool Component (Above all the copy below) */}
+      <section className="py-8 sm:py-12">
         <div className="container mx-auto px-4">
           <TextRepeaterTool />
         </div>
       </section>
 
-      {/* Featured Illustration Section */}
-      <section className="py-8 bg-muted/10 border-t border-border cv-auto">
-        <div className="container mx-auto px-4 max-w-3xl text-center">
-          <div className="relative mx-auto w-full max-w-2xl aspect-[1376/768] overflow-hidden rounded-2xl border border-border bg-card shadow-lg transition-all duration-300 hover:shadow-xl">
-            <Image
-              src={heroImage}
-              alt="Text Repeater"
-              fill
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 672px"
-              className="object-contain rounded-2xl"
-              referrerPolicy="no-referrer"
-              loading="lazy"
-              decoding="async"
-            />
+      {/* What is a text repeater? */}
+      <section className="py-12 sm:py-16 border-t border-border bg-background cv-auto">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <h2 className="mb-6 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+            What is a text repeater?
+          </h2>
+          <div className="space-y-5 text-foreground/90 leading-relaxed text-base">
+            <p>
+              A text repeater is an online tool that takes a piece of text and duplicates it a set number of times, so you don’t have to select, copy and paste it by hand. You enter a word, sentence, emoji or paragraph, choose a count, and the tool returns the repeated result in one block, ready to copy.
+            </p>
+            <p>
+              What separates a good text repeater from a basic one is control. Beyond the count, you should be able to choose what is repeated (the whole message, each word, each line or each paragraph) and what sits between the copies, such as a line break, a space or a comma. My Text Repeater gives you all of that, up to 10,000 repetitions, and shows a live character count so you know the exact size of the result before you paste it anywhere.
+            </p>
+            <p>
+              People use a text repeater for a mix of practical and playful jobs: generating exact-length strings to test input fields, filling spreadsheet rows, checking how a layout handles long text, preparing repeated messages and{" "}
+              <Link
+                href="/emoji-repeater"
+                className="text-primary font-medium underline underline-offset-2 hover:text-primary/80 transition-colors"
+              >
+                emoji patterns
+              </Link>
+              , and making practice sheets. It does one simple job, and it does it the same way every time, without lost count or stray formatting.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* Features */}
-      <section className="py-16 border-t border-border bg-muted/30 cv-auto">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <h2 className="mb-8 text-2xl font-bold tracking-tight text-foreground sm:text-3xl text-center">
-            Features
-          </h2>
-          <ul className="grid gap-3 sm:grid-cols-2">
-            {[
-              "Repeat any message up to 10,000 times in one click",
-              "Quick presets like 10, 50, 100, 500, 1,000 or your own custom number",
-              "Four repeat modes: Entire Text, Each Word, Each Line, and Paragraphs",
-              "Custom separators — use a space, comma, line break, or add your own symbol",
-              "Live character and word counter as you type",
-              "One-click copy to clipboard",
-              "Download the result as a .txt file for later use",
-              "Works with emojis, symbols, and all Unicode characters including Hindi",
-              "No account or installation required",
-              "Runs entirely in your browser for privacy",
-            ].map((feature, idx) => (
-              <li
-                key={idx}
-                className="flex items-start gap-3 rounded-xl border border-border bg-card p-4 text-sm text-foreground/90 shadow-sm transition-all hover:border-primary/40"
-              >
-                <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                <span className="font-medium">{feature}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* How to Use the Text Repeater */}
-      <section className="py-16 border-t border-border bg-background cv-auto">
+      {/* How to repeat text in four steps */}
+      <section className="py-12 sm:py-16 border-t border-border bg-muted/30 cv-auto">
         <div className="container mx-auto px-4 max-w-3xl">
           <h2 className="mb-8 text-2xl font-bold tracking-tight text-foreground sm:text-3xl text-center">
-            How to Use the Text Repeater
+            How to repeat text in four steps
           </h2>
           <ol className="space-y-4">
             {[
               {
                 stepNum: 1,
-                title: "1. Enter your text",
-                desc: "Type or paste the word, sentence, message, emoji, or paragraph you want repeated.",
+                title: "Enter your text.",
+                desc: "Type or paste anything, from a single emoji to several paragraphs.",
               },
               {
                 stepNum: 2,
-                title: "2. Choose the repeat count",
-                desc: "Pick a preset like 10, 100, or 1,000, or enter any number up to 10,000.",
+                title: "Set the repeat count.",
+                desc: "Tap a preset (10, 50, 100, 500 or 1,000) or type any number up to 10,000.",
               },
               {
                 stepNum: 3,
-                title: "3. Select a repeat mode",
-                desc: "Repeat the whole block, each word separately, each line, or each paragraph — whichever fits what you're building.",
+                title: "Choose a mode and a separator.",
+                desc: "The mode decides what is repeated. The separator decides what sits between the copies.",
               },
               {
                 stepNum: 4,
-                title: "4. Copy or download",
-                desc: "Your result is ready instantly. Copy it with one click or save it as a file.",
+                title: "Copy or download.",
+                desc: "The output updates as you change settings, so adjust until it looks right, then copy it or save it as a file.",
               },
             ].map((step) => (
-              <li key={step.stepNum} className="flex gap-4 rounded-xl border border-border bg-card p-5 shadow-sm items-start transition-all hover:border-primary/40">
+              <li
+                key={step.stepNum}
+                className="flex gap-4 rounded-xl border border-border bg-card p-5 shadow-sm items-start transition-all hover:border-primary/40"
+              >
                 <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary font-bold text-primary-foreground text-sm">
                   {step.stepNum}
                 </span>
-                <div>
-                  <h3 className="font-semibold text-foreground text-base">{step.title}</h3>
-                  <p className="text-sm text-muted-foreground mt-1 leading-relaxed">{step.desc}</p>
+                <div className="text-base text-foreground/90 leading-relaxed">
+                  <strong className="font-semibold text-foreground">{step.title}</strong> {step.desc}
                 </div>
               </li>
             ))}
           </ol>
-        </div>
-      </section>
-
-      {/* Worked Examples for Each Repeat Mode */}
-      <section className="py-16 border-t border-border bg-muted/20 cv-auto">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <div className="text-center max-w-2xl mx-auto mb-10">
-            <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl mb-3">
-              Worked Examples for Each Repeat Mode
-            </h2>
-            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-              See exact inputs, settings, and resulting outputs for all four repetition modes supported by the tool.
-            </p>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-2">
-            {/* Mode 1: Entire Text */}
-            <div className="rounded-2xl border border-border bg-card p-6 shadow-sm flex flex-col justify-between">
-              <div>
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-lg font-bold text-foreground">1. Entire Text Mode</h3>
-                  <span className="rounded-md bg-primary/10 px-2 py-0.5 text-xs font-semibold text-primary">Default</span>
-                </div>
-                <p className="text-xs sm:text-sm text-muted-foreground mb-4 leading-relaxed">
-                  Duplicates the complete input string as a single unit as many times as specified.
-                </p>
-                
-                <div className="space-y-3 text-xs sm:text-sm">
-                  <div>
-                    <span className="font-semibold text-foreground block mb-1 text-xs uppercase tracking-wider text-muted-foreground">Input Text</span>
-                    <pre className="rounded-lg border border-border bg-muted/50 p-2.5 font-mono text-xs text-foreground whitespace-pre-wrap">Great job!</pre>
-                  </div>
-                  <div>
-                    <span className="font-semibold text-foreground block mb-1 text-xs uppercase tracking-wider text-muted-foreground">Settings</span>
-                    <div className="flex flex-wrap gap-2 text-xs">
-                      <span className="rounded bg-muted px-2 py-1 font-mono text-foreground">Count: 3</span>
-                      <span className="rounded bg-muted px-2 py-1 font-mono text-foreground">Separator: Line Break</span>
-                    </div>
-                  </div>
-                  <div>
-                    <span className="font-semibold text-foreground block mb-1 text-xs uppercase tracking-wider text-muted-foreground">Resulting Output</span>
-                    <pre className="rounded-lg border border-primary/20 bg-primary/5 p-2.5 font-mono text-xs text-foreground whitespace-pre-wrap">{`Great job!\nGreat job!\nGreat job!`}</pre>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Mode 2: Each Word Mode */}
-            <div className="rounded-2xl border border-border bg-card p-6 shadow-sm flex flex-col justify-between">
-              <div>
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-lg font-bold text-foreground">2. Each Word Mode</h3>
-                  <span className="rounded-md bg-muted px-2 py-0.5 text-xs font-semibold text-muted-foreground">Word-by-Word</span>
-                </div>
-                <p className="text-xs sm:text-sm text-muted-foreground mb-4 leading-relaxed">
-                  Separates the text by spaces and repeats each individual word consecutively.
-                </p>
-                
-                <div className="space-y-3 text-xs sm:text-sm">
-                  <div>
-                    <span className="font-semibold text-foreground block mb-1 text-xs uppercase tracking-wider text-muted-foreground">Input Text</span>
-                    <pre className="rounded-lg border border-border bg-muted/50 p-2.5 font-mono text-xs text-foreground whitespace-pre-wrap">Good morning friend</pre>
-                  </div>
-                  <div>
-                    <span className="font-semibold text-foreground block mb-1 text-xs uppercase tracking-wider text-muted-foreground">Settings</span>
-                    <div className="flex flex-wrap gap-2 text-xs">
-                      <span className="rounded bg-muted px-2 py-1 font-mono text-foreground">Count: 2</span>
-                      <span className="rounded bg-muted px-2 py-1 font-mono text-foreground">Separator: Space</span>
-                    </div>
-                  </div>
-                  <div>
-                    <span className="font-semibold text-foreground block mb-1 text-xs uppercase tracking-wider text-muted-foreground">Resulting Output</span>
-                    <pre className="rounded-lg border border-primary/20 bg-primary/5 p-2.5 font-mono text-xs text-foreground whitespace-pre-wrap">Good Good morning morning friend friend</pre>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Mode 3: Each Line Mode */}
-            <div className="rounded-2xl border border-border bg-card p-6 shadow-sm flex flex-col justify-between">
-              <div>
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-lg font-bold text-foreground">3. Each Line Mode</h3>
-                  <span className="rounded-md bg-muted px-2 py-0.5 text-xs font-semibold text-muted-foreground">Line-by-Line</span>
-                </div>
-                <p className="text-xs sm:text-sm text-muted-foreground mb-4 leading-relaxed">
-                  Breaks text at existing line breaks and repeats each line in place before moving to the next.
-                </p>
-                
-                <div className="space-y-3 text-xs sm:text-sm">
-                  <div>
-                    <span className="font-semibold text-foreground block mb-1 text-xs uppercase tracking-wider text-muted-foreground">Input Text</span>
-                    <pre className="rounded-lg border border-border bg-muted/50 p-2.5 font-mono text-xs text-foreground whitespace-pre-wrap">{`Item A\nItem B`}</pre>
-                  </div>
-                  <div>
-                    <span className="font-semibold text-foreground block mb-1 text-xs uppercase tracking-wider text-muted-foreground">Settings</span>
-                    <div className="flex flex-wrap gap-2 text-xs">
-                      <span className="rounded bg-muted px-2 py-1 font-mono text-foreground">Count: 2</span>
-                      <span className="rounded bg-muted px-2 py-1 font-mono text-foreground">Separator: Line Break</span>
-                    </div>
-                  </div>
-                  <div>
-                    <span className="font-semibold text-foreground block mb-1 text-xs uppercase tracking-wider text-muted-foreground">Resulting Output</span>
-                    <pre className="rounded-lg border border-primary/20 bg-primary/5 p-2.5 font-mono text-xs text-foreground whitespace-pre-wrap">{`Item A\nItem A\nItem B\nItem B`}</pre>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Mode 4: Paragraphs Mode */}
-            <div className="rounded-2xl border border-border bg-card p-6 shadow-sm flex flex-col justify-between">
-              <div>
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-lg font-bold text-foreground">4. Paragraphs Mode</h3>
-                  <span className="rounded-md bg-muted px-2 py-0.5 text-xs font-semibold text-muted-foreground">Paragraph-by-Paragraph</span>
-                </div>
-                <p className="text-xs sm:text-sm text-muted-foreground mb-4 leading-relaxed">
-                  Identifies blocks separated by double line breaks and multiplies each whole paragraph.
-                </p>
-                
-                <div className="space-y-3 text-xs sm:text-sm">
-                  <div>
-                    <span className="font-semibold text-foreground block mb-1 text-xs uppercase tracking-wider text-muted-foreground">Input Text</span>
-                    <pre className="rounded-lg border border-border bg-muted/50 p-2.5 font-mono text-xs text-foreground whitespace-pre-wrap">{`First announcement.\n\nSecond announcement.`}</pre>
-                  </div>
-                  <div>
-                    <span className="font-semibold text-foreground block mb-1 text-xs uppercase tracking-wider text-muted-foreground">Settings</span>
-                    <div className="flex flex-wrap gap-2 text-xs">
-                      <span className="rounded bg-muted px-2 py-1 font-mono text-foreground">Count: 2</span>
-                      <span className="rounded bg-muted px-2 py-1 font-mono text-foreground">Separator: Blank Line</span>
-                    </div>
-                  </div>
-                  <div>
-                    <span className="font-semibold text-foreground block mb-1 text-xs uppercase tracking-wider text-muted-foreground">Resulting Output</span>
-                    <pre className="rounded-lg border border-primary/20 bg-primary/5 p-2.5 font-mono text-xs text-foreground whitespace-pre-wrap">{`First announcement.\n\nFirst announcement.\n\nSecond announcement.\n\nSecond announcement.`}</pre>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* What Is a Text Repeater? */}
-      <section className="py-16 border-t border-border bg-muted/30 cv-auto">
-        <div className="container mx-auto px-4 max-w-3xl">
-          <h2 className="mb-6 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            What Is a Text Repeater?
-          </h2>
-          <div className="space-y-4 text-foreground/90 leading-relaxed text-base">
-            <p>
-              A text repeater is a simple online utility that takes one piece of text and duplicates it automatically, so you don&apos;t have to copy and paste the same line over and over.
-            </p>
-            <p>
-              It&apos;s useful for a lot of everyday tasks — from creating repeated replies for messaging apps, to generating long test strings for developers checking input limits.
-            </p>
-            <p>
-              My Text Repeater supports four flexible modes. Type “Happy Birthday!”, set the count to 5, and choose Each Line to get five separate lines ready to copy. Switch to Each Word mode to repeat each word in your sentence individually. The customizable separator lets you control exactly how the final output is formatted.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Why It Works */}
-      <section className="py-16 border-t border-border bg-background cv-auto">
-        <div className="container mx-auto px-4 max-w-3xl">
-          <h2 className="mb-6 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            Why It Works
-          </h2>
-          <div className="space-y-4 text-foreground/90 leading-relaxed text-base">
-            <p>
-              Repeating text by hand is easy to get wrong — you lose count, break formatting, or miss separators in a long paste. You don&apos;t have to count or format anything: the output comes out the same every time, from a single emoji to a full paragraph.
-            </p>
-            <p>
-              Because everything runs client-side in your browser, there is no upload delay and no wall between you and your result.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Text Repeater vs. Other Methods */}
-      <section className="py-16 border-t border-border bg-muted/30 cv-auto">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <h2 className="mb-8 text-2xl font-bold tracking-tight text-foreground sm:text-3xl text-center">
-            Text Repeater vs. Other Methods
-          </h2>
-          <div className="overflow-x-auto rounded-2xl border border-border bg-card shadow-sm">
-            <table className="w-full border-collapse text-left text-sm min-w-[540px]">
-              <thead>
-                <tr className="border-b border-border bg-muted/50">
-                  <th className="p-4 font-semibold text-foreground">Feature</th>
-                  <th className="p-4 font-semibold text-muted-foreground">Manual Copy-Paste</th>
-                  <th className="p-4 font-semibold text-muted-foreground">Most Online Tools</th>
-                  <th className="p-4 font-semibold text-primary bg-primary/5 border-l border-primary/20">
-                    <div className="flex items-center gap-1.5">
-                      <Sparkles className="h-4 w-4 text-primary" />
-                      <span>Our Text Repeater</span>
-                    </div>
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-border text-foreground/90">
-                <tr className="hover:bg-muted/20 transition-colors">
-                  <td className="p-4 font-medium text-foreground">Repeat limit</td>
-                  <td className="p-4 text-muted-foreground">Manual and error-prone</td>
-                  <td className="p-4 text-muted-foreground">Often capped low</td>
-                  <td className="p-4 font-medium text-foreground bg-primary/5 border-l border-primary/20">
-                    Up to 10,000 with custom input
-                  </td>
-                </tr>
-                <tr className="hover:bg-muted/20 transition-colors">
-                  <td className="p-4 font-medium text-foreground">Repeat modes</td>
-                  <td className="p-4 text-muted-foreground">One style at a time</td>
-                  <td className="p-4 text-muted-foreground">Usually just whole text</td>
-                  <td className="p-4 font-medium text-foreground bg-primary/5 border-l border-primary/20">
-                    Entire Text, Word, Line, Paragraph
-                  </td>
-                </tr>
-                <tr className="hover:bg-muted/20 transition-colors">
-                  <td className="p-4 font-medium text-foreground">Custom separators</td>
-                  <td className="p-4 text-muted-foreground">You format manually</td>
-                  <td className="p-4 text-muted-foreground">Rarely supported</td>
-                  <td className="p-4 font-medium text-foreground bg-primary/5 border-l border-primary/20">
-                    Built-in option
-                  </td>
-                </tr>
-                <tr className="hover:bg-muted/20 transition-colors">
-                  <td className="p-4 font-medium text-foreground">Emoji &amp; Unicode</td>
-                  <td className="p-4 text-muted-foreground">Depends on app</td>
-                  <td className="p-4 text-muted-foreground">Inconsistent</td>
-                  <td className="p-4 font-medium text-foreground bg-primary/5 border-l border-primary/20">
-                    Full support
-                  </td>
-                </tr>
-                <tr className="hover:bg-muted/20 transition-colors">
-                  <td className="p-4 font-medium text-foreground">Account needed</td>
-                  <td className="p-4 text-muted-foreground">No</td>
-                  <td className="p-4 text-muted-foreground">Sometimes</td>
-                  <td className="p-4 font-medium text-foreground bg-primary/5 border-l border-primary/20">
-                    No
-                  </td>
-                </tr>
-                <tr className="hover:bg-muted/20 transition-colors">
-                  <td className="p-4 font-medium text-foreground">Output</td>
-                  <td className="p-4 text-muted-foreground">Copy only</td>
-                  <td className="p-4 text-muted-foreground">Copy only</td>
-                  <td className="p-4 font-medium text-foreground bg-primary/5 border-l border-primary/20">
-                    Copy or download
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      {/* Supported Platforms */}
-      <section className="py-16 border-t border-border bg-background cv-auto">
-        <div className="container mx-auto px-4 max-w-3xl">
-          <div className="flex items-center gap-3 mb-6">
-            <Laptop className="h-7 w-7 text-primary" />
-            <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-              Supported Platforms
-            </h2>
-          </div>
-          <p className="text-foreground/90 leading-relaxed bg-card p-6 rounded-2xl border border-border shadow-sm text-base">
-            Works in all modern browsers — Chrome, Firefox, Edge, and Safari — on desktop and mobile. No installation needed.
+          <p className="mt-6 text-sm text-muted-foreground text-center italic">
+            Most bad results come from step 3, so the next two sections cover it in detail.
           </p>
         </div>
       </section>
 
-      {/* Common Use Cases */}
-      <section className="py-16 border-t border-border bg-muted/30 cv-auto">
-        <div className="container mx-auto px-4 max-w-3xl">
-          <div className="flex items-center gap-3 mb-8">
-            <MessageSquare className="h-7 w-7 text-primary" />
+      {/* The four repeat modes, and when each one fits */}
+      <section className="py-12 sm:py-16 border-t border-border bg-background cv-auto">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <div className="flex items-center gap-3 mb-6 justify-center text-center">
+            <Layers className="h-6 w-6 text-primary" />
             <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-              Common Use Cases
+              The four repeat modes, and when each one fits
             </h2>
           </div>
-          <ul className="space-y-4">
-            {[
-              {
-                title: "Messaging apps:",
-                desc: "Prepare repeated wishes or reminders for WhatsApp, Telegram and Instagram without retyping.",
-              },
-              {
-                title: "Testing and QA:",
-                desc: "Generate long repeated strings to check character limits, input fields, and chat interfaces.",
-              },
-              {
-                title: "Social captions:",
-                desc: "Create repeated emoji patterns or phrases for emphasis.",
-              },
-              {
-                title: "Fun replies:",
-                desc: "Make that classic 100-times apology or repeating meme text in seconds.",
-              },
-              {
-                title: "Bulk placeholders:",
-                desc: "Quickly fill documents or sheets with repeated lines for formatting tests.",
-              },
-            ].map((item, idx) => (
-              <li
-                key={idx}
-                className="rounded-xl border border-border bg-card p-5 shadow-sm transition-all hover:border-primary/40 flex items-start gap-4"
+          <p className="text-base text-foreground/90 leading-relaxed text-center mb-8 max-w-2xl mx-auto">
+            The same input gives very different output depending on the mode. Here is “Good morning” at a count of 2:
+          </p>
+
+          <div className="overflow-x-auto rounded-2xl border border-border bg-card shadow-sm mb-8">
+            <table className="w-full border-collapse text-left text-sm min-w-[500px]">
+              <thead>
+                <tr className="border-b border-border bg-muted/60">
+                  <th className="p-4 font-semibold text-foreground">Mode</th>
+                  <th className="p-4 font-semibold text-foreground">What it repeats</th>
+                  <th className="p-4 font-semibold text-foreground">Result</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border text-foreground/90">
+                <tr className="hover:bg-muted/20 transition-colors">
+                  <td className="p-4 font-semibold text-foreground">Entire Text</td>
+                  <td className="p-4 text-muted-foreground">The whole input as one block</td>
+                  <td className="p-4 font-mono text-xs sm:text-sm text-foreground">Good morning, Good morning</td>
+                </tr>
+                <tr className="hover:bg-muted/20 transition-colors">
+                  <td className="p-4 font-semibold text-foreground">Each Word</td>
+                  <td className="p-4 text-muted-foreground">Every word, one at a time</td>
+                  <td className="p-4 font-mono text-xs sm:text-sm text-foreground">Good Good morning morning</td>
+                </tr>
+                <tr className="hover:bg-muted/20 transition-colors">
+                  <td className="p-4 font-semibold text-foreground">Each Line</td>
+                  <td className="p-4 text-muted-foreground">Every line, in place</td>
+                  <td className="p-4 text-muted-foreground">Each line twice, then the next line</td>
+                </tr>
+                <tr className="hover:bg-muted/20 transition-colors">
+                  <td className="p-4 font-semibold text-foreground">Paragraphs</td>
+                  <td className="p-4 text-muted-foreground">Every blank-line-separated block</td>
+                  <td className="p-4 text-muted-foreground">Each paragraph twice, then the next</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div className="space-y-4 text-foreground/90 leading-relaxed text-base max-w-3xl mx-auto">
+            <p>
+              Entire Text is the default and the one most people want. Use it for a message, a phrase or an emoji pattern.
+            </p>
+            <p>
+              <Link
+                href="/word-repeater"
+                className="text-primary font-medium underline underline-offset-2 hover:text-primary/80 transition-colors"
               >
-                <div className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
-                  <CheckCircle2 className="h-4 w-4" />
-                </div>
-                <div className="text-base text-foreground/90 leading-relaxed">
-                  <strong className="font-semibold text-foreground">{item.title}</strong> {item.desc}
-                </div>
-              </li>
-            ))}
-          </ul>
+                Each Word
+              </Link>{" "}
+              repeats words individually, which suits emphasis (“very very very”), keyword lists and rhythm exercises.
+            </p>
+            <p>
+              Each Line is for lists. If you enter two lines, A and B, at a count of 2, you get A, A, B, B. You do not get A, B, A, B. If you want the alternating pattern, use Entire Text instead.
+            </p>
+            <p>
+              Paragraphs works the same way for blocks of text separated by a blank line, so it fits announcements, templates and multi-part copy.
+            </p>
+            <p className="rounded-xl border border-primary/20 bg-primary/5 p-4 text-sm sm:text-base font-medium text-foreground">
+              If your result looks grouped when you wanted it alternating, or the reverse, check the mode before touching anything else.
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* Troubleshooting */}
-      <section className="py-16 border-t border-border bg-background cv-auto">
+      {/* Separators: the small setting that changes everything */}
+      <section className="py-12 sm:py-16 border-t border-border bg-muted/30 cv-auto">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <div className="flex items-center gap-3 mb-6">
+            <Settings2 className="h-6 w-6 text-primary shrink-0" />
+            <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+              Separators: the small setting that changes everything
+            </h2>
+          </div>
+          <p className="text-base text-foreground/90 leading-relaxed mb-6">
+            The separator is the text placed between each repeat, and it decides how the result looks when pasted.
+          </p>
+
+          <ul className="space-y-3 mb-6">
+            {[
+              {
+                name: "Line Break",
+                desc: "one repeat per line. Best for lists, spreadsheet rows and chat messages.",
+              },
+              {
+                name: "Space",
+                desc: "everything stays on one line, which suits sentences and emphasis.",
+              },
+              {
+                name: "Comma",
+                desc: "a comma-separated list you can paste into code, a CSV or a form.",
+              },
+              {
+                name: "None",
+                desc: "copies are joined with no gap at all. Use it for filler strings and exact-length tests.",
+              },
+            ].map((sep, idx) => (
+              <li
+                key={idx}
+                className="rounded-xl border border-border bg-card p-4 shadow-sm text-base text-foreground/90 leading-relaxed"
+              >
+                <strong className="font-semibold text-foreground">{sep.name}:</strong> {sep.desc}
+              </li>
+            ))}
+          </ul>
+
+          <p className="text-base text-foreground/90 leading-relaxed bg-card p-4 rounded-xl border border-border">
+            If you get one enormous line when you wanted a list, the separator is almost certainly Space, Comma or None. Switch it to Line Break.
+          </p>
+        </div>
+      </section>
+
+      {/* Work out the output length before you paste */}
+      <section className="py-12 sm:py-16 border-t border-border bg-background cv-auto">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <div className="flex items-center gap-3 mb-6">
+            <Calculator className="h-6 w-6 text-primary shrink-0" />
+            <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+              Work out the output length before you paste
+            </h2>
+          </div>
+          <div className="space-y-5 text-foreground/90 leading-relaxed text-base">
+            <p>
+              Many apps, forms and spreadsheet cells cap what you can paste, so it helps to know the size before you copy.
+            </p>
+
+            <div className="rounded-xl border border-border bg-card p-5 font-mono text-sm sm:text-base text-center shadow-sm text-primary font-semibold">
+              Total length = (text length × count) + (separator length × (count − 1))
+            </div>
+
+            <p>
+              “Great job!” is 10 characters. Repeated 100 times with a line break between copies, that is (10 × 100) + (1 × 99) = 1,099 characters. At 10,000 repeats with no separator, the same phrase produces 100,000 characters.
+            </p>
+
+            <p>
+              The{" "}
+              <Link
+                href="/word-counter"
+                className="text-primary font-medium underline underline-offset-2 hover:text-primary/80 transition-colors"
+              >
+                live character counter
+              </Link>{" "}
+              under the output shows the real figure, so you can confirm it against the limit of wherever you’re pasting.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* What people actually use a text repeater for */}
+      <section className="py-12 sm:py-16 border-t border-border bg-muted/30 cv-auto">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <h2 className="mb-8 text-2xl font-bold tracking-tight text-foreground sm:text-3xl text-center">
+            What people actually use a text repeater for
+          </h2>
+
+          <div className="space-y-8">
+            {/* Testing input fields and character limits */}
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
+              <div className="flex items-center gap-2.5 mb-3">
+                <Terminal className="h-5 w-5 text-primary shrink-0" />
+                <h3 className="text-lg font-bold text-foreground">
+                  Testing input fields and character limits
+                </h3>
+              </div>
+              <p className="text-base text-foreground/90 leading-relaxed mb-4">
+                This is the most valuable use for developers and QA testers. Limits fail at their edges, so the useful test lengths are one under, exactly at, and one over the limit. If a field accepts 255 characters:
+              </p>
+              <ol className="list-decimal list-inside space-y-1.5 text-sm sm:text-base text-foreground/90 mb-4 pl-1">
+                <li>Enter a single character, such as a.</li>
+                <li>Set the separator to None.</li>
+                <li>Set the count to 254, then 255, then 256.</li>
+              </ol>
+              <p className="text-base text-foreground/90 leading-relaxed">
+                You now have three exact-length strings in under a minute, one for each side of the boundary. For stress tests, repeat a longer phrase thousands of times to see how a form, a database field or a chat window handles very long input. A repeated word with spaces behaves differently from one unbroken string, since many interfaces wrap or truncate them differently, so test both.
+              </p>
+            </div>
+
+            {/* Filling spreadsheets */}
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
+              <div className="flex items-center gap-2.5 mb-3">
+                <FileSpreadsheet className="h-5 w-5 text-primary shrink-0" />
+                <h3 className="text-lg font-bold text-foreground">
+                  Filling spreadsheets
+                </h3>
+              </div>
+              <p className="text-base text-foreground/90 leading-relaxed">
+                Use Each Line mode with a Line Break separator and paste the result into a column. Each line lands in its own row. Excel allows 32,767 characters in a single cell and{" "}
+                <Link
+                  href="/blog/repeat-text-in-google-sheets-and-excel"
+                  className="text-primary font-medium underline underline-offset-2 hover:text-primary/80 transition-colors"
+                >
+                  Google Sheets
+                </Link>{" "}
+                allows 50,000, so one giant block pasted into a single cell will be cut off. Keeping the output as separate lines avoids that.
+              </p>
+            </div>
+
+            {/* Messages, captions and reminders */}
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
+              <div className="flex items-center gap-2.5 mb-3">
+                <Smile className="h-5 w-5 text-primary shrink-0" />
+                <h3 className="text-lg font-bold text-foreground">
+                  Messages, captions and reminders
+                </h3>
+              </div>
+              <p className="text-base text-foreground/90 leading-relaxed">
+                Repeated emojis, birthday wishes, playful replies and reminders are the everyday use. Build the block once, copy it, paste it. Two honest cautions: messaging apps have their own length limits, and sending large repeated blocks to people who didn’t ask for them is a reliable way to get muted or reported. Keep it for fun and for groups that enjoy it.
+              </p>
+            </div>
+
+            {/* Design and layout checks */}
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
+              <div className="flex items-center gap-2.5 mb-3">
+                <Palette className="h-5 w-5 text-primary shrink-0" />
+                <h3 className="text-lg font-bold text-foreground">
+                  Design and layout checks
+                </h3>
+              </div>
+              <p className="text-base text-foreground/90 leading-relaxed">
+                Designers and front-end developers repeat a sentence or paragraph to see how a card wraps, how a button label overflows, or whether a layout survives three times the expected copy. Paragraphs mode produces realistic multi-block text in one step, which is more convincing than a single stretched line.
+              </p>
+            </div>
+
+            {/* Practice sheets and classroom exercises */}
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
+              <div className="flex items-center gap-2.5 mb-3">
+                <GraduationCap className="h-5 w-5 text-primary shrink-0" />
+                <h3 className="text-lg font-bold text-foreground">
+                  Practice sheets and classroom exercises
+                </h3>
+              </div>
+              <p className="text-base text-foreground/90 leading-relaxed">
+                Teachers and parents generate repeated lines for handwriting practice, spelling drills and vocabulary repetition. Learners use the same approach for repeating a phrase or word list in a new language.
+              </p>
+            </div>
+
+            {/* Placeholder and sample data */}
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
+              <div className="flex items-center gap-2.5 mb-3">
+                <CopyCheck className="h-5 w-5 text-primary shrink-0" />
+                <h3 className="text-lg font-bold text-foreground">
+                  Placeholder and sample data
+                </h3>
+              </div>
+              <p className="text-base text-foreground/90 leading-relaxed">
+                When you need a hundred rows of dummy content for a prototype, a formatting test or a demo, Each Line mode with a short entry gets you there faster than copying by hand, and Download TXT gives you a file to import.
+              </p>
+            </div>
+
+            {/* Emojis, Hindi and other scripts */}
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
+              <div className="flex items-center gap-2.5 mb-3">
+                <Sparkles className="h-5 w-5 text-primary shrink-0" />
+                <h3 className="text-lg font-bold text-foreground">
+                  Emojis, Hindi and other scripts
+                </h3>
+              </div>
+              <p className="text-base text-foreground/90 leading-relaxed">
+                The tool repeats whatever you give it, including emojis, symbols and Unicode scripts such as Hindi. One detail surprises people: a single emoji can count as more than one “character,” depending on who is counting. In JavaScript, for example, 👍 has a string length of 2, and combined emoji such as flags and family sequences are built from several joined code points. So if two counters disagree on an emoji-heavy block, neither is necessarily wrong. They simply count differently. When a limit is tight, leave yourself some margin.
+              </p>
+            </div>
+
+            {/* Privacy */}
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
+              <div className="flex items-center gap-2.5 mb-3">
+                <ShieldCheck className="h-5 w-5 text-primary shrink-0" />
+                <h3 className="text-lg font-bold text-foreground">
+                  Privacy
+                </h3>
+              </div>
+              <p className="text-base text-foreground/90 leading-relaxed">
+                The repeating happens in your browser. Your last input is saved on your own device so that a refresh doesn’t erase your work, and the Clear saved text button deletes it whenever you like. If you’re on a shared computer, clear it before you leave.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* When something doesn’t work */}
+      <section className="py-12 sm:py-16 border-t border-border bg-background cv-auto">
         <div className="container mx-auto px-4 max-w-3xl">
           <div className="flex items-center gap-3 mb-8">
-            <AlertCircle className="h-7 w-7 text-primary" />
+            <AlertCircle className="h-6 w-6 text-primary shrink-0" />
             <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-              Troubleshooting
+              When something doesn’t work
             </h2>
           </div>
           <div className="space-y-4">
             {[
               {
-                title: "Nothing happens when I click generate:",
-                desc: "Make sure the text field isn't empty and the count is between 1 and 10,000.",
+                title: "Nothing is generated.",
+                desc: "The input is empty, or the count is outside 1 to 10,000.",
               },
               {
-                title: "The page feels slow at high counts:",
-                desc: "Very large outputs can take a moment to render, especially on mobile. Give it a second.",
+                title: "The page slows down at high counts.",
+                desc: "Very large results take longer to render, especially on phones. Try 1,000 first, or use a desktop browser.",
               },
               {
-                title: "Copy button isn't working:",
-                desc: "Some browsers block clipboard access until you tap the page first. Click anywhere, then try again.",
+                title: "Copy doesn’t work.",
+                desc: "Some browsers need a tap on the page before they allow clipboard access. Tap once, then try again.",
               },
               {
-                title: "Separators not showing as expected:",
-                desc: "Check which repeat mode you are using. Separators work differently between Each Word, Each Line, and Paragraph modes.",
+                title: "Pasted text is cut off.",
+                desc: "The destination has a length limit. Compare it with the live character count and lower the repeat count.",
+              },
+              {
+                title: "The separator looks wrong.",
+                desc: "Separators behave differently in each mode, so confirm the mode first.",
               },
             ].map((item, idx) => (
               <div
@@ -666,27 +636,30 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Frequently Asked Questions */}
-      <section className="py-16 border-t border-border bg-muted/30 cv-auto">
+      {/* Frequently asked questions */}
+      <section className="py-12 sm:py-16 border-t border-border bg-muted/30 cv-auto">
         <div className="container mx-auto px-4 max-w-3xl">
-          <div className="flex items-center gap-3 mb-8 justify-center">
-            <HelpCircle className="h-7 w-7 text-primary" />
+          <div className="flex items-center gap-3 mb-8 justify-center text-center">
+            <HelpCircle className="h-6 w-6 text-primary" />
             <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-              Frequently Asked Questions
+              Frequently asked questions
             </h2>
           </div>
           <FAQAccordion items={faqs} />
         </div>
       </section>
 
-      {/* Related Tools */}
-      <section className="border-t border-border bg-background cv-auto">
+      {/* Related tools */}
+      <section className="py-12 sm:py-16 border-t border-border bg-background cv-auto">
         <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto mb-6">
+            <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl text-center">
+              Related tools
+            </h2>
+          </div>
           <RelatedTools currentPath="/" />
         </div>
       </section>
     </article>
   )
 }
-
-

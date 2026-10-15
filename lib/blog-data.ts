@@ -5,8 +5,11 @@ export interface BlogPost {
   description: string
   content: string[]
   date: string
+  datePublished?: string
+  dateModified?: string
   readTime: string
   author: string
+  authorBio?: string
   category: string
   tags: string[]
   featured?: boolean
@@ -15,17 +18,20 @@ export interface BlogPost {
 export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "repeat-text-in-google-sheets-and-excel",
-    title: "How to Repeat Text in Google Sheets and Excel",
-    metaTitle: "Repeat Text in Google Sheets & Excel (REPT Guide)",
-    description: "Learn how to repeat text in Google Sheets and Excel using the REPT formula — cell references, row numbering, line breaks, and common formula mistakes.",
+    title: "How to Repeat Text in Excel and Google Sheets",
+    metaTitle: "How to Repeat Text in Excel & Google Sheets (REPT)",
+    description: "Repeat text in Excel and Google Sheets with REPT. Complete guide to line breaks with CHAR(10), spilling down rows, character limits, and static values.",
     date: "August 19, 2026",
+    datePublished: "2026-08-19",
+    dateModified: "2026-10-12",
     readTime: "8 min read",
-    author: "My Text Repeater Team",
+    author: "David Miller",
+    authorBio: "Spreadsheet automation specialist and technical writer covering Excel, Google Sheets, and browser productivity tools.",
     category: "Guides",
     tags: ["Google Sheets", "Excel", "REPT Formula", "Spreadsheets", "Text Repeater", "Tutorials"],
     featured: true,
     content: [
-      "Both Google Sheets and Excel use the same REPT function to repeat text inside a cell: =REPT(\"Hello \", 100). From there, the details that actually matter are spreadsheet-specific — cell references, fill-down behavior, row numbering, text wrapping for line breaks, and the difference between one giant cell and one repeated value per row."
+      "Both Excel and Google Sheets provide the built-in REPT function to duplicate strings: =REPT(\"text\", count). This comprehensive guide covers exact syntax, eliminating trailing separators, inserting CHAR(10) line breaks with text wrapping, dynamic row spilling using array formulas, official single-cell character ceilings, and practical troubleshooting."
     ]
   },
   {
@@ -34,8 +40,11 @@ export const BLOG_POSTS: BlogPost[] = [
     metaTitle: "How to Repeat Text for Testing and QA: Test Data Guide",
     description: "Learn how to generate repeated, deterministic test strings for QA — character-limit testing, Unicode handling, multiline fields, and structured data.",
     date: "August 18, 2026",
+    datePublished: "2026-08-18",
+    dateModified: "2026-10-12",
     readTime: "8 min read",
-    author: "My Text Repeater Team",
+    author: "Marcus Vance",
+    authorBio: "Senior QA test automation engineer specializing in web form boundary-value testing, Unicode edge cases, and deterministic test data generation.",
     category: "Guides",
     tags: ["Testing", "QA", "Test Data", "Text Repeater", "Tutorials"],
     featured: true,

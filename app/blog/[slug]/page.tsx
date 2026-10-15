@@ -138,14 +138,20 @@ export default async function BlogPostPage({ params }: Props) {
       "@type": "WebPage",
       "@id": `https://mytextrepeater.com/blog/${post.slug}`,
     },
-    url: `https://mytextrepeater.com/blog/${post.slug}`,
-    datePublished: post.date,
-    dateModified: post.date,
-    author: {
-      "@type": "Organization",
-      name: post.author || "My Text Repeater",
-      url: "https://mytextrepeater.com",
-    },
+    datePublished: post.datePublished || post.date,
+    dateModified: post.dateModified || post.date,
+    author: post.authorBio
+      ? {
+          "@type": "Person",
+          name: post.author,
+          description: post.authorBio,
+          url: "https://mytextrepeater.com",
+        }
+      : {
+          "@type": "Organization",
+          name: post.author || "My Text Repeater",
+          url: "https://mytextrepeater.com",
+        },
     publisher: {
       "@type": "Organization",
       name: "My Text Repeater",
