@@ -12,6 +12,8 @@ const tools = [
   { name: "Zalgo Text Generator", href: "/zalgo-text-generator" },
   { name: "Fancy Text Generator", href: "/fancy-text-generator" },
   { name: "Case Converter", href: "/case-converter" },
+  { name: "Robux Tax Calculator", href: "https://robux-tax-calculator.vercel.app/" },
+
 ]
 
 const pages = [
